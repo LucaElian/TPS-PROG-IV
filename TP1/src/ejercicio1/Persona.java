@@ -4,33 +4,44 @@ import java.time.LocalDate;
 
 public class Persona {
 	private String dni;
-    private String nombre;
-    private String apellido;
-    private int edad;
-    private LocalDate fechaNacimiento;
-    private String genero;
-    private String direccion;
-    private String telefono;
-    private String email;
-    
-    
-    // constructor
-    
-    public Persona() {
-        this.nombre = "sin nombre";
-        this.edad = 0;
-        this.dni = "";
-        this.apellido = "";
-        this.fechaNacimiento = null;
-        this.genero = "";
-        this.direccion = "";
-        this.telefono = "";
-        this.email = "";
-    }
+	private String nombre;
+	private String apellido;
+	private int edad;
+	private LocalDate fechaNacimiento;
+	private String genero;
+	private String direccion;
+	private String telefono;
+	private String email;
 
-    
-    // getters y setters
-    
+	// constructor
+
+	public Persona() {
+		this.dni = "";
+		this.nombre = "sin nombre";
+		this.apellido = "";
+		this.edad = 99;
+		this.fechaNacimiento = null;
+		this.genero = "";
+		this.direccion = "";
+		this.telefono = "";
+		this.email = "";
+	}
+
+	public Persona(String dni, String nombre, String apellido, int edad, LocalDate fechaNacimiento, String genero,
+			String direccion, String telefono, String email) {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.fechaNacimiento = fechaNacimiento;
+		this.genero = genero;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.email = email;
+	}
+
+	// getters y setters
+
 	public String getDni() {
 		return dni;
 	}
@@ -103,19 +114,12 @@ public class Persona {
 		this.email = email;
 	}
 
-	
 	// metodo toString()
-	
+
 	@Override
 	public String toString() {
-		return "DNI=" + dni + 
-				"\nnombre=" + nombre + 
-				"\napellido=" + apellido + 
-				"\nedad=" + edad +
-				"\nfechaNacimiento=" + fechaNacimiento + 
-				"\ngenero=" + genero + 
-				"\ndireccion=" + direccion +
-				"\ntelefono=" + telefono + 
-				"\nemail=" + email;
+		return "DNI=" + dni + "\nnombre=" + nombre + "\napellido=" + apellido + "\nedad=" + edad + "\nfechaNacimiento="
+				+ fechaNacimiento + "\ngenero=" + genero + "\ndireccion=" + direccion + "\ntelefono=" + telefono
+				+ "\nemail=" + email;
 	}
 }
