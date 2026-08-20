@@ -1,5 +1,7 @@
 package ejercicio1;
 
+import java.time.LocalDate;
+
 public class Empleado extends Persona {
 
 	private String puesto;
@@ -12,7 +14,21 @@ public class Empleado extends Persona {
 	public Empleado() {
 		this.legajo = contLegajo ++;
 	}
+	
+	
+	 // Constructor con parámetros (recibe atributos de Persona y puesto de Empleado, legajo se autogenera)
+    public Empleado(String dni, String nombre, String apellido, LocalDate fechaNacimiento, int edad,
+                    String genero, String direccion, String telefono, String email, String puesto) {
+        super(dni, nombre, apellido,edad, fechaNacimiento, genero, direccion, telefono, email);
+        this.legajo = contLegajo++;
+        this.puesto = puesto;
+    }
+    
+   
+    
+    
 
+	
 	// getters y setters
 
 	public int getLegajo() {
