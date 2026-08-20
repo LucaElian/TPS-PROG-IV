@@ -2,13 +2,15 @@ package ejercicio1;
 
 public class Empleado extends Persona {
 
-	private int legajo;
 	private String puesto;
-
-	// constructor
-
+	private static int contLegajo = 1000;
+	private final int legajo;
+	
+	
+	//Constructor provisorio
+	
 	public Empleado() {
-		super();
+		this.legajo = contLegajo ++;
 	}
 
 	// getters y setters
@@ -17,9 +19,6 @@ public class Empleado extends Persona {
 		return legajo;
 	}
 
-	public void setLegajo(int legajo) {
-		this.legajo = legajo;
-	}
 
 	public String getPuesto() {
 		return puesto;
