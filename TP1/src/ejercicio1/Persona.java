@@ -13,7 +13,8 @@ public class Persona {
 	private String telefono;
 	private String email;
 
-	// constructor
+	
+	// constructores
 
 	public Persona() {
 		this.dni = "";
@@ -27,8 +28,9 @@ public class Persona {
 		this.email = "";
 	}
 
-	public Persona(String dni, String nombre, String apellido, int edad, LocalDate fechaNacimiento, String genero,
-			String direccion, String telefono, String email) {
+	public Persona(String dni, String nombre, String apellido, 
+					int edad, LocalDate fechaNacimiento, String genero,
+					String direccion, String telefono, String email) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -118,8 +120,14 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "DNI=" + dni + "\nnombre=" + nombre + "\napellido=" + apellido + "\nedad=" + edad + "\nfechaNacimiento="
-				+ fechaNacimiento + "\ngenero=" + genero + "\ndireccion=" + direccion + "\ntelefono=" + telefono
-				+ "\nemail=" + email;
+		return "DNI="+ dni + 
+				"\nnombre=" + nombre + 
+				"\napellido=" + apellido + 
+				"\nedad=" + edad +
+				"\nfechaNacimiento=" + fechaNacimiento + 
+				"\ngenero=" + genero + 
+				"\ndireccion=" + direccion +
+				"\ntelefono=" + telefono + 
+				"\nemail=" + email;
 	}
 }
