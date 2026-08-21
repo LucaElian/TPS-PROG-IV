@@ -12,6 +12,19 @@ public class Principal {
 				"Pueyrredon 35", "654983", "lopez.maria@mail.com", "Gerente");
 		Empleado e3 = new Empleado("32145687", "Pablo", "Diaz", 18, LocalDate.of(2004, 1, 24), "Masculino",
 				"Av. Libertador 1500", "3654123", "paulitodiaz@mail.com", "Pasante");
+		Empleado e4 = new Empleado();
+		Empleado e5 = new Empleado();
+		System.out.println(e1.toString());
+		System.out.println("\n");
+		System.out.println(e2.toString());
+		System.out.println("\n");
+		System.out.println(e3.toString());
+		System.out.println("\n");
+		System.out.println(e4.toString());
+		System.out.println("\n");
+		System.out.println(e5.toString());
+		System.out.println("\n");
+		System.out.println("El próximo legajo será " + Empleado.devuelveProximoLegajo());
 	}
 
 }
