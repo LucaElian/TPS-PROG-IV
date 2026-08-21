@@ -44,4 +44,5 @@ build/
 # Variables / secretos
 .env
 .env.*
-/.metadata/
+.metadata/
+.metadata/
