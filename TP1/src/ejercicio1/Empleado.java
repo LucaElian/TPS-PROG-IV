@@ -3,6 +3,7 @@ package ejercicio1;
 import java.time.LocalDate;
 
 public class Empleado extends Persona {
+	
 	private final int legajo;
 	private String puesto;
 	
@@ -12,8 +13,8 @@ public class Empleado extends Persona {
 	// constructores
 	
 	public Empleado() {
-		super();
 		
+		super();
 		this.legajo = contLegajo++;
 		this.puesto = "";
 	}
@@ -52,6 +53,8 @@ public class Empleado extends Persona {
 	}
 	
 	// metodo devuelveProximoLegajo()
-	
+	public static int devuelveProximoLegajo() {
+		return contLegajo; 
+	}
 	
 }
