@@ -38,16 +38,12 @@ public class Principal {
 		
 		Empleado e5 = new Empleado();
 		
-		System.out.println(e1.toString());
-		System.out.println("\n");
-		System.out.println(e2.toString());
-		System.out.println("\n");
-		System.out.println(e3.toString());
-		System.out.println("\n");
-		System.out.println(e4.toString());
-		System.out.println("\n");
-		System.out.println(e5.toString());
-		System.out.println("\n");
+		Empleado[] empleados = { e1, e2, e3, e4, e5 };
+		
+		for(Empleado empleado : empleados) {
+			System.out.println(empleado.toString());
+			System.out.println("\n");
+		}
 		
 		System.out.println("El próximo legajo será " + Empleado.devuelveProximoLegajo());
 	}
