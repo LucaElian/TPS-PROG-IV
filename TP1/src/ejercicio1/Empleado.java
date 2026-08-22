@@ -19,7 +19,6 @@ public class Empleado extends Persona {
 		this.puesto = "";
 	}
 	
-	
     public Empleado(String dni, String nombre, String apellido, 
     				int edad, LocalDate fechaNacimiento, String genero, 
 					String direccion, String telefono, String email, String puesto) {
@@ -53,6 +52,7 @@ public class Empleado extends Persona {
 	}
 	
 	// metodo devuelveProximoLegajo()
+	
 	public static int devuelveProximoLegajo() {
 		return contLegajo; 
 	}
