@@ -130,4 +130,13 @@ public class Persona {
 				"\ntelefono=" + telefono + 
 				"\nemail=" + email;
 	}
+	public static boolean exVerificarDNI(String dni) throws ExVerificarDNI {
+		
+		if ( dni.length() != 8 ) {
+			throw new ExVerificarDNI("DNI INVALIDO: Debe contener exactamente 8 caracteres numericos.");
+		}
+		return true;
+	}
+	
+	
 }

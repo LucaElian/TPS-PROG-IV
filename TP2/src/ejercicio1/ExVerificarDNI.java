@@ -2,4 +2,5 @@ package ejercicio1;
 
 public class ExVerificarDNI extends RuntimeException {
 	private static final long serialVersionUID = 1L; 
+	//falta el constructor que genera el msg
 }
