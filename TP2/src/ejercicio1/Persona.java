@@ -132,7 +132,7 @@ public class Persona {
 	}
 	public static void exVerificarDNI(String dni) throws ExVerificarDNI {
 		
-		if ( dni.length() != 8 ) {
+		if ( dni.length() != 8 || !dni.matches("\\d{8}")) {
 			throw new ExVerificarDNI("DNI INVALIDO: Debe contener exactamente 8 caracteres numericos.");
 		}
 	}
