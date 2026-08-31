@@ -5,5 +5,5 @@ public class ExVerificarDNI extends RuntimeException {
 	
 	 public ExVerificarDNI(String mensaje) {
 	        super(mensaje);
-	    }
+	 }
 }

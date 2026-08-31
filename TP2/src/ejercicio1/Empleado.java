@@ -56,5 +56,4 @@ public class Empleado extends Persona {
 	public static int devuelveProximoLegajo() {
 		return contLegajo; 
 	}
-	
 }

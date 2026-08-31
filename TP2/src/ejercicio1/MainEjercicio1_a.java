@@ -4,12 +4,15 @@ public class MainEjercicio1_a {
 
 	public static void main(String[] args) {
 			
-		Persona persona = new Persona(); 
+		Persona persona1 = new Persona(); 
 		
 		try {
-			persona.setDni("AA202020");
-			Persona.exVerificarDNI(persona.getDni());
+			persona1.setDni("AA202020");
 			
+			Persona.exVerificarDNI(persona1.getDni());
+			
+			System.out.println("Persona agregada correctamente.");
+
 		} catch (ExVerificarDNI e) {
 			System.out.println(e.getMessage());
 		}
@@ -17,15 +20,14 @@ public class MainEjercicio1_a {
 		Persona persona2 = new Persona();
 		
 		try {
-			
 			persona2.setDni("20202020");
+			
 			Persona.exVerificarDNI(persona2.getDni());
+			
 			System.out.println("Persona agregada correctamente.");
 			
 		} catch (ExVerificarDNI e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
 	}
 }
