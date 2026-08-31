@@ -56,4 +56,9 @@ public class Empleado extends Persona {
 	public static int devuelveProximoLegajo() {
 		return contLegajo; 
 	}
+	public int compareTo(Empleado o) {
+		if (o == null) return 1;
+		return Integer.compare(this.legajo, o.legajo);
+	}
+	
 }
