@@ -21,6 +21,11 @@ public class Edificio {
 	public void setSuperficie(double superficie) {
 		this.superficie = superficie;
 	}
+
+	@Override
+	public String toString() {
+		return "La superficie es de " + superficie;
+	}
 	
 	
 
