@@ -1,31 +1,24 @@
 package ejercicio2;
 
 public class Polideportivo extends Edificio implements IInstalacionDeportiva {
-
-	// Atributos
 	private String nombre;
 	private int tipoDeInstalacion;
 	
-	// Constructores	
+	// constructores
+	
 	public Polideportivo() {
 		super();
 		this.nombre = "Sin nombre";
 		this.tipoDeInstalacion = 0;
 	}
 
-	public Polideportivo(String nombre, double superficie) {
-		super(superficie);
-		this.nombre = nombre;
-		this.tipoDeInstalacion = 0;
-	}
-
-	public Polideportivo(String nombre, double superficie, int tipoDeInstalacion) {
+	public Polideportivo(double superficie, String nombre, int tipoDeInstalacion) {
 		super(superficie);
 		this.nombre = nombre;
 		this.tipoDeInstalacion = tipoDeInstalacion;
 	}
 
-	// Getters y Setters
+	// getters y setters
 
 	public String getNombre() {
 		return nombre;
@@ -44,11 +37,13 @@ public class Polideportivo extends Edificio implements IInstalacionDeportiva {
 		this.tipoDeInstalacion = tipoDeInstalacion;
 	}
 
-	// Metodo toString()
+	// metodo toString()
 
 	@Override
 	public String toString() {
-		return "Polideportivo [Nombre: " + nombre + ", Tipo de instalacion: " + tipoDeInstalacion + ", " + super.toString() + "]";
+		return "POLIDEPORTIVO" + 
+				"\n" + super.toString() +
+				"\nnombre=" + nombre +
+				"\ntipo=" + tipoDeInstalacion;
 	}
-	
 }

@@ -1,10 +1,10 @@
 package ejercicio2;
 
 public class Edificio {
-
 	private double superficie; 
 
-	//constructores
+	// constructores
+	
 	public Edificio() {
 		this.superficie = 0; 
 	}
@@ -13,20 +13,22 @@ public class Edificio {
 		this.superficie = superficie; 
 	}
 	
-	//metodos
+	// metodo getSuperficieEdificio
+	
 	public double getSuperficieEdificio() {
 		return superficie;
 	}
 
+	// setter
+	
 	public void setSuperficie(double superficie) {
 		this.superficie = superficie;
 	}
 
+	// metodo toString
+	
 	@Override
 	public String toString() {
-		return "La superficie es de " + superficie;
+		return "superficie=" + superficie;
 	}
-	
-	
-
 }
