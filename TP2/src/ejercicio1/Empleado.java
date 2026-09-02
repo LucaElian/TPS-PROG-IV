@@ -1,6 +1,7 @@
 package ejercicio1;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Empleado extends Persona implements Comparable<Empleado> {
 	
@@ -62,5 +63,27 @@ public class Empleado extends Persona implements Comparable<Empleado> {
 	public int compareTo(Empleado o) {
 		if (o == null) return 1;
 		return Integer.compare(this.legajo, o.legajo);
+	}
+
+	//metodo equals y hashcode
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+
+		if (obj == null)
+			return false;
+
+		if (getClass() != obj.getClass())
+			return false;
+
+		Empleado other = (Empleado) obj;
+
+		return super.equals(other) && legajo == other.legajo;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), legajo);
 	}
 }
