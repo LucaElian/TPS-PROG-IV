@@ -1,7 +1,7 @@
 package ejercicio2;
 
 import java.util.ArrayList;
-
+import java.util.Iterator;
 public class MainEjercicio2 {
 	
 	public static void main(String[] args) {
@@ -20,6 +20,13 @@ public class MainEjercicio2 {
 		listaEdificios.add(p3);
 		listaEdificios.add(edO1);
 		listaEdificios.add(edO2);
+		Iterator<Edificio> it = listaEdificios.iterator();
+		while (it.hasNext()) {
+			Edificio edificio = it.next();
+			System.out.println(edificio);
+			System.out.println("Superficie obtenida: " + edificio.getSuperficieEdificio());
+			System.out.println("------------------------------------------------------------");
+		}
 		
 		
 	}
