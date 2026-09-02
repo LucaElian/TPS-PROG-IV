@@ -1,6 +1,7 @@
 package ejercicio1;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Persona {
 	private String dni;
@@ -120,19 +121,45 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "[DNI="+ dni + 
-				", nombre=" + nombre + 
-				", apellido=" + apellido + 
-				", edad=" + edad +
-				", fechaNacimiento=" + fechaNacimiento + 
-				", genero=" + genero + 
-				", direccion=" + direccion +
-				", telefono=" + telefono + 
-				", email=" + email;
+		return "DNI="+ dni + 
+				"\nnombre=" + nombre + 
+				"\napellido=" + apellido + 
+				"\nedad=" + edad +
+				"\nfechaNacimiento=" + fechaNacimiento + 
+				"\ngenero=" + genero + 
+				"\ndireccion=" + direccion +
+				"\ntelefono=" + telefono + 
+				"\nemail=" + email;
 	}
+
+	// metodo hashCode
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellido, direccion, dni, edad, email, fechaNacimiento, genero, nombre, telefono);
+	}
+
+	// metodo equals
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		return Objects.equals(apellido, other.apellido) && Objects.equals(direccion, other.direccion)
+				&& Objects.equals(dni, other.dni) && edad == other.edad && Objects.equals(email, other.email)
+				&& Objects.equals(fechaNacimiento, other.fechaNacimiento) && Objects.equals(genero, other.genero)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(telefono, other.telefono);
+	}
+	
+	// excepcion verificar DNI
 
 	public static void exVerificarDNI(String dni) throws ExVerificarDNI {
 		if (!dni.matches("\\d{8}"))
-			throw new ExVerificarDNI("DNI INVALIDO: Debe contener exactamente 8 caracteres numericos.");
+			throw new ExVerificarDNI("Persona no agregada por no verificar el DNI.");
 	}
 }

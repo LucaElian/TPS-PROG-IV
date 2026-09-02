@@ -22,7 +22,6 @@ public class MainEjercicio1_b {
 		e5.setDni("56789123");
 
 		ArrayList<Empleado> listaE = new ArrayList<Empleado>(5);
-		
 		listaE.add(e1);
 		listaE.add(e2);
 		listaE.add(e3);
@@ -33,7 +32,9 @@ public class MainEjercicio1_b {
 
 		while (itE.hasNext()) {
 			Empleado e = itE.next();
+			
 			System.out.println(e.toString());
+			System.out.println("\n");
 		}
 	}
 }

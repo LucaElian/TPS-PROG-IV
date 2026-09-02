@@ -47,8 +47,8 @@ public class Empleado extends Persona implements Comparable<Empleado> {
 	@Override
 	public String toString() {
 		return super.toString() + 
-				", legajo=" + legajo +
-				", puesto=" + puesto + "]\n";
+				"\nlegajo=" + legajo +
+				"\npuesto=" + puesto;
 	}
 	
 	// metodo devuelveProximoLegajo()
@@ -56,9 +56,11 @@ public class Empleado extends Persona implements Comparable<Empleado> {
 	public static int devuelveProximoLegajo() {
 		return contLegajo; 
 	}
+	
+	// metodo compareTo
+	
 	public int compareTo(Empleado o) {
 		if (o == null) return 1;
 		return Integer.compare(this.legajo, o.legajo);
 	}
-	
 }
