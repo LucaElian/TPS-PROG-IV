@@ -2,7 +2,7 @@ package ejercicio1;
 
 import java.time.LocalDate;
 
-public class Empleado extends Persona {
+public class Empleado extends Persona implements Comparable<Empleado> {
 	
 	private final int legajo;
 	private String puesto;
@@ -47,8 +47,8 @@ public class Empleado extends Persona {
 	@Override
 	public String toString() {
 		return super.toString() + 
-				"\nlegajo=" + legajo +
-				"\npuesto=" + puesto;
+				", legajo=" + legajo +
+				", puesto=" + puesto + "]\n";
 	}
 	
 	// metodo devuelveProximoLegajo()
