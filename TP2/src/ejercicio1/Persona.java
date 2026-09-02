@@ -121,15 +121,15 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "DNI="+ dni + 
-				"\nnombre=" + nombre + 
-				"\napellido=" + apellido + 
-				"\nedad=" + edad +
-				"\nfechaNacimiento=" + fechaNacimiento + 
-				"\ngenero=" + genero + 
-				"\ndireccion=" + direccion +
-				"\ntelefono=" + telefono + 
-				"\nemail=" + email;
+		return "[DNI="+ dni + 
+				", nombre=" + nombre + 
+				", apellido=" + apellido + 
+				", edad=" + edad +
+				", fechaNacimiento=" + fechaNacimiento + 
+				", genero=" + genero + 
+				", direccion=" + direccion +
+				", telefono=" + telefono + 
+				", email=" + email;
 	}
 
 	// metodo hashCode
