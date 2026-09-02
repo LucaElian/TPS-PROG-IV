@@ -28,13 +28,12 @@ public class MainEjercicio1_b {
 		listaE.add(e4);
 		listaE.add(e5);
 
-		Iterator<Empleado> itE = listaE.iterator();
+		Iterator<Empleado> it = listaE.iterator();
 
-		while (itE.hasNext()) {
-			Empleado e = itE.next();
+		while (it.hasNext()) {
+			Empleado e = it.next();
 			
 			System.out.println(e.toString());
-			System.out.println("\n");
 		}
 	}
 }

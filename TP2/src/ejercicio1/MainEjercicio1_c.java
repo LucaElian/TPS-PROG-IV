@@ -19,21 +19,20 @@ public class MainEjercicio1_c {
 
 		Empleado e5 = new Empleado("10123896","Carla","Colombo", 78, LocalDate.of(1952, 8, 22), "femenino", "Recoleta 1520", "11897488", "carla@jkdkl", "Profesora");
 				
-		TreeSet<Empleado> listaEmpleados = new TreeSet<Empleado>();
-		listaEmpleados.add(e1);
-		listaEmpleados.add(e2);
-		listaEmpleados.add(e3);
-		listaEmpleados.add(e4);
-		listaEmpleados.add(e5);
-		listaEmpleados.add(e5);
+		TreeSet<Empleado> listaE = new TreeSet<Empleado>();
+		listaE.add(e1);
+		listaE.add(e2);
+		listaE.add(e3);
+		listaE.add(e4);
+		listaE.add(e5);
+		listaE.add(e5);
 		
-		Iterator<Empleado> it = listaEmpleados.iterator();
+		Iterator<Empleado> it = listaE.iterator();
 		
 		while(it.hasNext()) {
-			Empleado em = (Empleado) it.next();
+			Empleado e = it.next();
 			
-			System.out.println(em.toString());
-			System.out.println("\n");
+			System.out.println(e.toString());
 		}
 	}
 }

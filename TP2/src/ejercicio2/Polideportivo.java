@@ -42,8 +42,8 @@ public class Polideportivo extends Edificio implements IInstalacionDeportiva {
 	@Override
 	public String toString() {
 		return "POLIDEPORTIVO" + 
-				"\n" + super.toString() +
-				"\nnombre=" + nombre +
-				"\ntipo=" + tipoDeInstalacion;
+				"\n[" + super.toString() +
+				", nombre= " + nombre +
+				", tipo= " + tipoDeInstalacion + "]\n";
 	}
 }

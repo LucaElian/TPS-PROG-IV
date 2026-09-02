@@ -3,6 +3,7 @@ package ejercicio2;
 public class Edificio {
 	private double superficie; 
 
+	
 	// constructores
 	
 	public Edificio() {
@@ -29,6 +30,6 @@ public class Edificio {
 	
 	@Override
 	public String toString() {
-		return "superficie=" + superficie;
+		return "superficie= " + superficie;
 	}
 }

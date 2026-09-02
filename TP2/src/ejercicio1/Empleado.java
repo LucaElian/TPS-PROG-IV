@@ -48,7 +48,7 @@ public class Empleado extends Persona implements Comparable<Empleado> {
 	public String toString() {
 		return super.toString() + 
 				", legajo=" + legajo +
-				", puesto=" + puesto + "]";
+				", puesto=" + puesto + "]\n";
 	}
 	
 	// metodo devuelveProximoLegajo()

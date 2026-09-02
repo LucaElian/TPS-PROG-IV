@@ -1,11 +1,10 @@
 package ejercicio2;
 
 public class EdificioDeOficinas extends Edificio {
-	
-	//atributos
 	private int cantidadOficinas;
 	
 	// constructores
+	
 	public EdificioDeOficinas() {
 		super();
 		this.cantidadOficinas = 0;
@@ -16,7 +15,8 @@ public class EdificioDeOficinas extends Edificio {
 		this.cantidadOficinas = cantidadOficinas;
 	}
 	
-	//metodos
+	// getters y setters
+	
 	public int getCantidadOficinas() {
 		return cantidadOficinas;
 	}
@@ -26,9 +26,11 @@ public class EdificioDeOficinas extends Edificio {
 	}
 
 	//metodo toString 
+	
 	@Override
 	public String toString() {
-		return super.toString() + 
-		"\nCantidad de oficinas: " + cantidadOficinas;
+		return "EDIFICIO DE OFICINAS" +
+				"\n[" + super.toString() + 
+				", cantidad de oficinas= " + cantidadOficinas + "]\n";
 	}
 }
