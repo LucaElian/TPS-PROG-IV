@@ -24,7 +24,7 @@ public class MainEjercicio2 {
 		while (it.hasNext()) {
 			Edificio edificio = it.next();
 			System.out.println(edificio);
-			System.out.println("Superficie obtenida: " + edificio.getSuperficieEdificio());
+			System.out.println("Superficie obtenida: " + edificio.toString());
 			System.out.println("------------------------------------------------------------");
 		}
 		
