@@ -24,7 +24,8 @@ public class MainEjercicio1_d {
 
 		while (it.hasNext()) {
 			Persona p = it.next();
-			System.out.println(p.toString());
+
+			System.out.println(p.toString() + "]\n");
 		}
 	}
 }
