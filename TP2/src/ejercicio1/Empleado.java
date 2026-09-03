@@ -79,11 +79,11 @@ public class Empleado extends Persona implements Comparable<Empleado> {
 
 		Empleado other = (Empleado) obj;
 
-		return super.equals(other) && legajo == other.legajo;
+		return super.equals(other) && legajo == other.legajo && Objects.equals(puesto, other.puesto);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(super.hashCode(), legajo);
+		return Objects.hash(super.hashCode(), legajo, puesto);
 	}
 }
