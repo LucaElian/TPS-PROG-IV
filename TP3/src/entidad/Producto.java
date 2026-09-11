@@ -24,14 +24,6 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
-	public Producto(String codigo, String nombre, double precio, int stock, int idCategoria) {
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.precio = precio;
-		this.stock = stock;
-		this.categoria = new Categoria(idCategoria, "");
-	}
-
 	
 
 	public String getCodigo() {
