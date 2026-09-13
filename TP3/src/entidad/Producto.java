@@ -19,7 +19,7 @@ public class Producto {
 		this.stock = stock;
 
 		this.categoria = new Categoria();
-		this.categoria.setIdCatetgoria(idCategoria);
+		this.categoria.setIdCategoria(idCategoria);
 	}
 
 	// getters y setters
