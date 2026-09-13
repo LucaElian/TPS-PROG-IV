@@ -3,58 +3,88 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import entidad.Categoria;
 
-public class daoCategoria {
-	
+public class DaoCategoria {
 	private String host = "jdbc:mysql://localhost:3306/"; 
-	private String dbName = "bdinventario"; 
+	private String dbName = "bdinventario";
+	private String user = "root";
+	private String pass = "root";
 	
-	public daoCategoria() {
-		
+	public DaoCategoria() { }
+	
+	private Connection obtenerConexion() throws SQLException {
+		return DriverManager.getConnection(host + dbName, user, pass);
 	}
 	
-	//metodo de alta Categoria
+	// metodo de alta Categoria
+	
 	public int altaCategoria(Categoria categoria) {
 		
-		String query = "Insert into categorias(Nombre)values('"+categoria.getNombre()+"')";
-		Connection cn = null; 
-		int filas = 0 ; 
+		String query = "INSERT INTO categorias (Nombre) "
+					 + "VALUES (?)";
 		
-		try {
-			cn = DriverManager.getConnection(host+dbName); 
-			Statement st = cn.createStatement();
-			filas = st.executeUpdate(query); 
+		try (
+			Connection cn = obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query)
+		){
 			
-		} catch (Exception e) {
+			pst.setString(1, categoria.getNombre());
+			
+			return pst.executeUpdate();
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
-		
-		return filas; 
 	}
 	
-	//Metodo de modificacion de Categoria
-	public int modificarCategoria(int idCategoria, String nombre) {
+	// metodo de modificacion Categoria
+	
+	public int modificarCategoria(Categoria categoria) {
 		
-		Connection cn = null;
-		int filas = 0;
+		String query = "UPDATE categorias "
+					 + "SET Nombre = ? "
+					 + "WHERE IdCategoria = ?";
 		
-		try {
-			cn = DriverManager.getConnection(host+dbName);
-			String query = "UPDATE categorias SET Nombre=? WHERE IdCategoria=?";
-			PreparedStatement pst = cn.prepareStatement(query);
-			pst.setString(1, nombre);
-			pst.setInt(2,idCategoria);
-			filas = pst.executeUpdate();
+		try (
+			Connection cn = obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
+			
+			pst.setString(1, categoria.getNombre());
+			pst.setInt(2, categoria.getIdCategoria());
+			
+			return pst.executeUpdate();
 					
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
-		
-		return filas;
 	}
 	
+	// metodo de baja Categoria
 	
+	public int bajaCategoria(int idCategoria) {
+		
+		String query = "DELETE FROM categorias "
+					 + "WHERE IdCategoria = ?";
+		
+		try (
+			Connection cn = obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
+			
+			pst.setInt(1, idCategoria);
+			
+			return pst.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }

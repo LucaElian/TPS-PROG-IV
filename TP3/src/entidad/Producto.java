@@ -1,30 +1,28 @@
 package entidad;
 
 public class Producto {
-
 	private String codigo;
 	private String nombre;
 	private double precio;
 	private int stock;
 	private Categoria categoria;
 
-	public Producto() {
-		this.codigo = "";
-		this.nombre = "";
-		this.precio = 0;
-		this.stock = 0;
-		this.categoria = new Categoria();
-	}
+	
+	// constructores
+	
+	public Producto() {	}
 
-	public Producto(String codigo, String nombre, double precio, int stock, Categoria categoria) {
+	public Producto(String codigo, String nombre, double precio, int stock, int idCategoria) {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.stock = stock;
-		this.categoria = categoria;
+
+		this.categoria = new Categoria();
+		this.categoria.setIdCatetgoria(idCategoria);
 	}
 
-	
+	// getters y setters
 
 	public String getCodigo() {
 		return codigo;
@@ -66,15 +64,10 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
-	// Metodo toString
+	// metodo toString
+	
 	@Override
 	public String toString() {
-		return "Producto: " + codigo +
-				", Nombre: " + nombre + 
-				", Precio: " + precio + 
-				", Stock: " + stock
-				+ ", " + 
-				(categoria != null ? categoria.toString() : "Sin categoria");
+		return "[" + codigo + ", " + nombre + ", " + precio + ", " + stock + ", " + categoria + "]";
 	}
-
 }

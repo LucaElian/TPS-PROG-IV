@@ -1,12 +1,16 @@
 package entidad;
 
 public class Categoria {
-
 	private int idCategoria;
 	private String nombre;
 	
-	public Categoria() {
-		
+	
+	// constructores
+	
+	public Categoria() { }
+	
+	public Categoria(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	public Categoria(int idCategoria, String nombre) {
@@ -14,25 +18,28 @@ public class Categoria {
 		this.nombre = nombre;
 	}
 	
+	// getters y setters
 	
-	public int getIdCatetgoria() {
+	public int getIdCategoria() {
 		return idCategoria;
 	}
+	
 	public void setIdCatetgoria(int idCatetgoria) {
 		this.idCategoria = idCatetgoria;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+	// metodo toString()
+	
 	@Override
 	public String toString() {
-		return "Categoria: " + idCategoria + ", nombre: " + nombre;
-	}
-	
-	
-	
+		return idCategoria + ", " + nombre;
+	}	
 }
