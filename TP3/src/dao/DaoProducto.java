@@ -46,4 +46,22 @@ public class DaoProducto {
 		}
 	}
 	
+	// Metodo de baja Producto
+
+	public int bajaProducto(String codigo) {
+
+		String query = "DELETE FROM productos " + "WHERE codigo = ?";
+
+		try (Connection cn = obtenerConexion(); PreparedStatement pst = cn.prepareStatement(query)) {
+
+			pst.setString(1, codigo);
+
+			return pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 }
