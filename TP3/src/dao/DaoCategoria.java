@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import entidad.Categoria;
@@ -16,8 +15,7 @@ public class DaoCategoria {
 	private String user = "root";
 	private String pass = "root";
 
-	public DaoCategoria() {
-	}
+	public DaoCategoria() { }
 
 	private Connection obtenerConexion() throws SQLException {
 		return DriverManager.getConnection(host + dbName, user, pass);
@@ -27,9 +25,13 @@ public class DaoCategoria {
 
 	public int altaCategoria(Categoria categoria) {
 
-		String query = "INSERT INTO categorias (Nombre) " + "VALUES (?)";
+		String query = "INSERT INTO categorias (Nombre) "
+					 + "VALUES (?)";
 
-		try (Connection cn = obtenerConexion(); PreparedStatement pst = cn.prepareStatement(query)) {
+		try (
+			Connection cn = obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
 
 			pst.setString(1, categoria.getNombre());
 
@@ -45,9 +47,14 @@ public class DaoCategoria {
 
 	public int modificarCategoria(Categoria categoria) {
 
-		String query = "UPDATE categorias " + "SET Nombre = ? " + "WHERE IdCategoria = ?";
+		String query = "UPDATE categorias "
+					 + "SET Nombre = ? " 
+					 + "WHERE IdCategoria = ?";
 
-		try (Connection cn = obtenerConexion(); PreparedStatement pst = cn.prepareStatement(query)) {
+		try (
+			Connection cn = obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
 
 			pst.setString(1, categoria.getNombre());
 			pst.setInt(2, categoria.getIdCategoria());
@@ -64,9 +71,13 @@ public class DaoCategoria {
 
 	public int bajaCategoria(int idCategoria) {
 
-		String query = "DELETE FROM categorias " + "WHERE IdCategoria = ?";
+		String query = "DELETE FROM categorias "
+					 + "WHERE IdCategoria = ?";
 
-		try (Connection cn = obtenerConexion(); PreparedStatement pst = cn.prepareStatement(query)) {
+		try (
+			Connection cn = obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
 
 			pst.setInt(1, idCategoria);
 
@@ -81,12 +92,15 @@ public class DaoCategoria {
 	// metodo de listado Categoria
 
 	public ArrayList<Categoria> listaCategorias() {
-		ArrayList<Categoria> listaCat = new ArrayList<Categoria>();
 		
-		String query = "SELECT * from categorias";
+		ArrayList<Categoria> listaCat = new ArrayList<>();
+		String query = "SELECT * FROM categorias";
 		
-		try (Connection cn = obtenerConexion(); PreparedStatement pst = cn.prepareStatement(query)){
-			ResultSet rs = pst.executeQuery();
+		try (
+			Connection cn = obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query);
+			ResultSet rs = pst.executeQuery()
+		) {
 			
 			while(rs.next()) {
 				Categoria cat = new Categoria();
@@ -95,7 +109,8 @@ public class DaoCategoria {
 				
 				listaCat.add(cat);				
 			}
-		}catch(SQLException e) {
+			
+		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
