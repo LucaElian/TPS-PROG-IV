@@ -6,6 +6,7 @@ USE bdInventario;
 CREATE TABLE Categorias (
     IdCategoria INT NOT NULL AUTO_INCREMENT,
     Nombre VARCHAR(45) NOT NULL,
+    Estado BIT NOT NULL DEFAULT 1,
     PRIMARY KEY (IdCategoria)
 );
 
@@ -16,6 +17,7 @@ CREATE TABLE Productos (
     Precio DECIMAL(10,2) NOT NULL,
     Stock INT NOT NULL,
     IdCategoria INT NOT NULL,
+    Estado BIT NOT NULL DEFAULT 1,
 
     PRIMARY KEY (Codigo),
 
