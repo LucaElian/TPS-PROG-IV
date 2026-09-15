@@ -106,6 +106,7 @@ public class DaoCategoria {
 				Categoria cat = new Categoria();
 				cat.setIdCategoria(rs.getInt("IdCategoria"));
 				cat.setNombre(rs.getString("Nombre"));
+				cat.setEstado(rs.getBoolean("Estado"));
 				
 				listaCat.add(cat);				
 			}
