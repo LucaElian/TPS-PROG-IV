@@ -71,9 +71,9 @@ public class DaoCategoria {
 
 	public int bajaCategoria(int idCategoria) {
 
-		String query = "DELETE FROM categorias "
-					 + "WHERE IdCategoria = ?";
-
+		String query = "UPDATE categorias "
+	             + "SET Estado = 0 "
+	             + "WHERE IdCategoria = ?";
 		try (
 			Connection cn = obtenerConexion(); 
 			PreparedStatement pst = cn.prepareStatement(query)
