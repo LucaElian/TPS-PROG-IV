@@ -48,8 +48,7 @@ public class DaoCategoria {
 	public int modificarCategoria(Categoria categoria) {
 
 		String query = "UPDATE categorias "
-					 + "SET Nombre = ?, "
-					 + "SET Estado = ?" 
+					 + "SET Nombre = ?, Estado = ?" 
 					 + "WHERE IdCategoria = ?";
 
 		try (

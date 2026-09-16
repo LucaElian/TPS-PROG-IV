@@ -40,6 +40,8 @@ public class Principal {
 		
 		System.out.println("\n==============\n");
 		
+		
+		categoria3.setIdCategoria(3);
 		// BAJA CATEGORIA
 		
 		int ok =  daoC.bajaCategoria(3);
@@ -53,5 +55,18 @@ public class Principal {
 		System.out.println("\n==============\n");
 		
 		// MODIFICACION CATEGORIA
+		categoria3.setEstado(true);
+		ok = daoC.modificarCategoria(categoria3);
+		if ( ok == 1) 
+			System.out.println(" Se modifico la categoria");
+		else
+			System.out.println(" No se pudo modificar la categoria");
+		
+		
+		//LISTAR
+		ArrayList<Categoria> listaDesdeBD = daoC.listaCategorias();
+		for (Categoria c : listaDesdeBD) {
+		    System.out.println(c);
+		}
 	}
 }
