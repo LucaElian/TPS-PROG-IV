@@ -25,13 +25,14 @@ public class DaoProducto {
 	
 	// metodo de modificacion Producto
 
-	public int modificarCategoria(Producto producto) {
+	public int modificarProducto(Producto producto) {
 
 		String query = "UPDATE Productos "
 					 + "SET Nombre = ?, "
 					 + "Precio = ?, "
 					 + "Stock = ?, "
-					 + "IdCategoria = ? "
+					 + "IdCategoria = ? ,"
+					 + "Estado = ? "
 					 + "WHERE Codigo = ?";
 
 		try (
@@ -43,7 +44,8 @@ public class DaoProducto {
 			pst.setDouble(2, producto.getPrecio());
 			pst.setInt(3, producto.getStock());
 			pst.setInt(4, producto.getCategoria().getIdCategoria());
-			pst.setString(5, producto.getCodigo());
+			pst.setBoolean(5, producto.isEstado());
+			pst.setString(6, producto.getCodigo());
 
 			return pst.executeUpdate();
 
@@ -57,10 +59,14 @@ public class DaoProducto {
 
 	public int bajaProducto(String codigo) {
 
-		String query = "DELETE FROM productos "
-					 + "WHERE codigo = ?";
+		String query = "UPDATE Productos "
+				 + "SET Estado = FALSE "
+				 + "WHERE Codigo = ?";
 
-		try (Connection cn = obtenerConexion(); PreparedStatement pst = cn.prepareStatement(query)) {
+		try (
+			Connection cn = obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
 
 			pst.setString(1, codigo);
 
@@ -76,16 +82,19 @@ public class DaoProducto {
 
 	public ArrayList<Producto> listarProductos() {
 			
-		ArrayList<Producto> listaPro = new ArrayList<>();
+		ArrayList<Producto> productos = new ArrayList<>();
 		String query = "SELECT p.Codigo, "
 							+ "p.Nombre, "
 							+ "p.Precio, "
 							+ "p.Stock, "
+							+ "p.Estado, "
 							+ "c.IdCategoria, "
 							+ "c.Nombre AS NombreCategoria "
-					 + "FROM productos p "
-					 + "INNER JOIN categorias c "
-							+ "ON p.IdCategoria = c.IdCategoria";
+					+ "FROM Productos p "
+					+ "INNER JOIN Categorias c "
+						+ "ON p.IdCategoria = c.IdCategoria "
+					+ "WHERE p.Estado = TRUE "
+					+ "AND c.Estado = TRUE";
 		
 		try (
 			Connection cn = obtenerConexion();
@@ -107,14 +116,16 @@ public class DaoProducto {
 
 				producto.setCategoria(categoria);
 				
-				listaPro.add(producto);
+				producto.setEstado(rs.getBoolean("Estado"));
+				
+				productos.add(producto);
 			}
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 			
-		return listaPro;
+		return productos;
 	}
 	
 	// metodo de alta Producto con procedimiento almacenado

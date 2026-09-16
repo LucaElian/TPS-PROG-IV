@@ -9,51 +9,49 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		DaoCategoria daoCat = new DaoCategoria(); 
+		DaoCategoria daoC = new DaoCategoria(); 
 		
-		ArrayList<Categoria> listCategorias = new ArrayList<>();
-		Categoria categoria = new Categoria();
-		categoria.setIdCategoria(1);
-		categoria.setNombre("Terror");
-		categoria.setEstado(true);
+		System.out.println("===== ABML CATEGORIAS =====");
 		
-		Categoria categoria2 = new Categoria(2,"Surrealismo",true); 
-		Categoria categoria3 = new Categoria(3,"Infantil",true); 
-		
-		
-		listCategorias.add(categoria); 
-		listCategorias.add(categoria2); 
-		listCategorias.add(categoria3); 
-		
-		for (Categoria cat : listCategorias) {
+		ArrayList<Categoria> listcat = new ArrayList<>();
 
-		    int filas = daoCat.altaCategoria(cat);
+		// ALTA CATEGORIA
+		
+		Categoria categoria1 = new Categoria("Terror");
+		Categoria categoria2 = new Categoria("Surrealismo"); 
+		Categoria categoria3 = new Categoria("Infantil"); 
+		
+		listcat.add(categoria1); 
+		listcat.add(categoria2); 
+		listcat.add(categoria3); 
+		
+		for (Categoria cat : listcat) {
+
+		    int filas = daoC.altaCategoria(cat);
 
 		    if (filas != 0) {
 		        System.out.println("Categoría agregada correctamente");
 		        System.out.println(cat.toString());
-		        System.out.println(" ");
+		        System.out.println();
 		    } else {
 		        System.out.println("No se pudo agregar la categoría");
 		    }
 		}
 		
-		System.out.println("==============");
+		System.out.println("\n==============\n");
 		
-		//baja de objeto 
+		// BAJA CATEGORIA
 		
-		int ok =  daoCat.bajaCategoria(categoria3.getIdCategoria()) ; 
-		if(ok != 0 ) {
-			categoria3.setEstado(false); 
+		int ok =  daoC.bajaCategoria(3);
+		
+		if (ok != 0) {
 			System.out.println("Categoria dada de baja");
 			System.out.println(categoria3.toString());
-		}else {
+		} else
 			System.out.println("No se pudo dar de baja");
-		}
 		
-	
+		System.out.println("\n==============\n");
 		
-
+		// MODIFICACION CATEGORIA
 	}
-
 }

@@ -7,14 +7,13 @@ public class Categoria {
 
 	// constructores
 
-	public Categoria() {
-	}
+	public Categoria() { }
 
-	public Categoria(String nombre) {
+	public Categoria(String nombre) { // Para agregar
 		this.nombre = nombre;
 	}
 
-	public Categoria(int idCategoria, String nombre, boolean estado) {
+	public Categoria(int idCategoria, String nombre, boolean estado) { // Para modificar
 		this.idCategoria = idCategoria;
 		this.nombre = nombre;
 		this.estado = estado;
@@ -38,21 +37,19 @@ public class Categoria {
 		this.nombre = nombre;
 	}
 
-	public boolean getEstado() {
+	public boolean isEstado() {
 		return estado;
 	}
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-
+	
 	// metodo toString()
 
 	@Override
 	public String toString() {
 		return idCategoria + ", " + nombre + ", " +
 				(this.estado ? "Activo" : "Inactivo");
-
 	}
-
 }

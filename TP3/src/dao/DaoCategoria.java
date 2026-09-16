@@ -48,7 +48,8 @@ public class DaoCategoria {
 	public int modificarCategoria(Categoria categoria) {
 
 		String query = "UPDATE categorias "
-					 + "SET Nombre = ? " 
+					 + "SET Nombre = ?, "
+					 + "SET Estado = ?" 
 					 + "WHERE IdCategoria = ?";
 
 		try (
@@ -57,7 +58,8 @@ public class DaoCategoria {
 		) {
 
 			pst.setString(1, categoria.getNombre());
-			pst.setInt(2, categoria.getIdCategoria());
+			pst.setBoolean(2, categoria.isEstado());
+			pst.setInt(3, categoria.getIdCategoria());
 
 			return pst.executeUpdate();
 
@@ -72,8 +74,8 @@ public class DaoCategoria {
 	public int bajaCategoria(int idCategoria) {
 
 		String query = "UPDATE categorias "
-	             + "SET Estado = 0 "
-	             + "WHERE IdCategoria = ?";
+	             	 + "SET Estado = FALSE "
+	             	 + "WHERE IdCategoria = ?";
 		try (
 			Connection cn = obtenerConexion(); 
 			PreparedStatement pst = cn.prepareStatement(query)
@@ -93,7 +95,7 @@ public class DaoCategoria {
 
 	public ArrayList<Categoria> listaCategorias() {
 		
-		ArrayList<Categoria> listaCat = new ArrayList<>();
+		ArrayList<Categoria> categorias = new ArrayList<>();
 		String query = "SELECT * FROM categorias";
 		
 		try (
@@ -108,13 +110,13 @@ public class DaoCategoria {
 				cat.setNombre(rs.getString("Nombre"));
 				cat.setEstado(rs.getBoolean("Estado"));
 				
-				listaCat.add(cat);				
+				categorias.add(cat);			
 			}
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return listaCat;
+		return categorias;
 	}
 }
