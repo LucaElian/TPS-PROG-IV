@@ -3,14 +3,16 @@ package main;
 import java.util.ArrayList;
 
 import dao.DaoCategoria;
+import dao.DaoProducto;
 import entidad.Categoria;
+import entidad.Producto;
 
 public class Principal {
 
 	public static void main(String[] args) {
 		
-		DaoCategoria daoC = new DaoCategoria(); 
-		
+		DaoCategoria daoC = new DaoCategoria();
+/*		
 		System.out.println("===== ABML CATEGORIAS =====");
 		
 		ArrayList<Categoria> listcat = new ArrayList<>();
@@ -40,10 +42,10 @@ public class Principal {
 		
 		System.out.println("\n==============\n");
 		
-		
+	
 		categoria3.setIdCategoria(3);
 		// BAJA CATEGORIA
-		
+			
 		int ok =  daoC.bajaCategoria(3);
 		
 		if (ok != 0) {
@@ -62,11 +64,60 @@ public class Principal {
 		else
 			System.out.println(" No se pudo modificar la categoria");
 		
-		
 		//LISTAR
 		ArrayList<Categoria> listaDesdeBD = daoC.listaCategorias();
 		for (Categoria c : listaDesdeBD) {
 		    System.out.println(c);
 		}
+ */		
+	
+		System.out.println("===== ABML PRODUCTOS =====");
+		
+		DaoProducto daoP = new DaoProducto();
+		
+		ArrayList<Producto> listProductos = new ArrayList<>();
+		
+		Producto p1 = new Producto("aa11","Juego de mesa", 35000, 5, 1);
+		Producto p2 = new Producto("ab12", "Libro", 25000, 20, 2);
+		Producto p3 = new Producto("ac13", "Almanaque", 15000, 8, 3);
+		Producto p4 = new Producto("ad14", "Novela", 45000, 10, 1);
+		Producto p5 = new Producto("ae15", "Cuento", 30000, 12, 3);
+		Producto p6 = new Producto("af16", "Almanaque", 30000, 12, 3);
+				
+
+		listProductos.add(p1);
+		listProductos.add(p2);
+		listProductos.add(p3);
+		listProductos.add(p4);
+		listProductos.add(p5);
+		listProductos.add(p6);
+		
+		for( Producto producto : listProductos) {
+			
+			int filas = daoP.sp_AgregarProducto(producto);
+			
+			if ( filas > 0 ) {
+				
+				System.out.println("Se agregó correctamente el producto: " + producto.getNombre());
+			}else {
+				System.out.println("No se pudo agregar el producto: " + producto.getNombre());
+			}
+		
+		}
+		
+		System.out.println("-----------------------");
+		
+		System.out.println("Baja del producto con codigo af16");
+		
+		// Baja de un Producto
+		
+		int bajaOk = daoP.bajaProducto("af16");
+		
+		if (bajaOk != 0) {
+			System.out.println("Producto dado de baja.");
+		} else
+			System.out.println("No se pudo dar de baja el producto.");
+	
+	
 	}
 }

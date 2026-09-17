@@ -130,9 +130,9 @@ public class DaoProducto {
 	
 	// metodo de alta Producto con procedimiento almacenado
 	
-	public void sp_AgregarProducto(Producto producto) {
+	public int sp_AgregarProducto(Producto producto) {
 		
-		String query = "CALL sp_AgregarProducto(?, ?, ?, ?, ?)}";
+		String query = "CALL sp_AgregarProducto(?, ?, ?, ?, ?)";
 		
 		try (
 			Connection cn = obtenerConexion();
@@ -145,10 +145,11 @@ public class DaoProducto {
 			cs.setInt(4, producto.getStock());
 			cs.setInt(5, producto.getCategoria().getIdCategoria());
 			
-			cs.executeUpdate();
+			return cs.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 }

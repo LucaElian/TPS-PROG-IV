@@ -90,6 +90,6 @@ public class Producto {
 	@Override
 	public String toString() {
 		return "[" + codigo + ", " + nombre + ", " + precio + ", " + stock + ", " + 
-					categoria + ", " + (this.estado ? "Activo" : "Inactivo") + "]";
+					categoria.getIdCategoria() + ", " + (this.estado ? "Activo" : "Inactivo") + "]";
 	}
 }
