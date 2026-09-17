@@ -127,6 +127,31 @@ public class DaoProducto {
 			
 		return productos;
 	}
+
+	// metodo de alta Producto
+
+	public int altaProducto(Producto producto){
+		String query = "INSERT into productos (codigo, nombre, precio, stock, IdCategoria) " +
+						"VALUES (?, ?, ?, ?, ?)";
+
+		try (
+			Connection cn = obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
+
+			pst.setString(1, producto.getCodigo());
+			pst.setString(2, producto.getNombre());
+			pst.setDouble(3, producto.getPrecio());
+			pst.setInt(4, producto.getStock());
+			pst.setInt(5, producto.getCategoria().getIdCategoria());
+
+			return pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 	
 	// metodo de alta Producto con procedimiento almacenado
 	
