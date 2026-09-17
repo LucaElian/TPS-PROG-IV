@@ -15,7 +15,8 @@ public class DaoCategoria {
 	private String user = "root";
 	private String pass = "root";
 
-	public DaoCategoria() { }
+	public DaoCategoria() {
+	}
 
 	private Connection obtenerConexion() throws SQLException {
 		return DriverManager.getConnection(host + dbName, user, pass);
@@ -26,12 +27,11 @@ public class DaoCategoria {
 	public int altaCategoria(Categoria categoria) {
 
 		String query = "INSERT INTO categorias (Nombre) "
-					 + "VALUES (?)";
+				+ "VALUES (?)";
 
 		try (
-			Connection cn = obtenerConexion(); 
-			PreparedStatement pst = cn.prepareStatement(query)
-		) {
+				Connection cn = obtenerConexion();
+				PreparedStatement pst = cn.prepareStatement(query)) {
 
 			pst.setString(1, categoria.getNombre());
 
@@ -48,13 +48,12 @@ public class DaoCategoria {
 	public int modificarCategoria(Categoria categoria) {
 
 		String query = "UPDATE categorias "
-					 + "SET Nombre = ?, Estado = ? " 
-					 + "WHERE IdCategoria = ?";
+				+ "SET Nombre = ?, Estado = ? "
+				+ "WHERE IdCategoria = ?";
 
 		try (
-			Connection cn = obtenerConexion(); 
-			PreparedStatement pst = cn.prepareStatement(query)
-		) {
+				Connection cn = obtenerConexion();
+				PreparedStatement pst = cn.prepareStatement(query)) {
 
 			pst.setString(1, categoria.getNombre());
 			pst.setBoolean(2, categoria.isEstado());
@@ -73,12 +72,11 @@ public class DaoCategoria {
 	public int bajaCategoria(int idCategoria) {
 
 		String query = "UPDATE categorias "
-	             	 + "SET Estado = FALSE "
-	             	 + "WHERE IdCategoria = ?";
+				+ "SET Estado = FALSE "
+				+ "WHERE IdCategoria = ?";
 		try (
-			Connection cn = obtenerConexion(); 
-			PreparedStatement pst = cn.prepareStatement(query)
-		) {
+				Connection cn = obtenerConexion();
+				PreparedStatement pst = cn.prepareStatement(query)) {
 
 			pst.setInt(1, idCategoria);
 
@@ -93,29 +91,49 @@ public class DaoCategoria {
 	// metodo de listado Categoria
 
 	public ArrayList<Categoria> listaCategorias() {
-		
+
 		ArrayList<Categoria> categorias = new ArrayList<>();
 		String query = "SELECT * FROM categorias";
-		
+
 		try (
-			Connection cn = obtenerConexion(); 
-			PreparedStatement pst = cn.prepareStatement(query);
-			ResultSet rs = pst.executeQuery()
-		) {
-			
-			while(rs.next()) {
+				Connection cn = obtenerConexion();
+				PreparedStatement pst = cn.prepareStatement(query);
+				ResultSet rs = pst.executeQuery()) {
+
+			while (rs.next()) {
 				Categoria cat = new Categoria();
 				cat.setIdCategoria(rs.getInt("IdCategoria"));
 				cat.setNombre(rs.getString("Nombre"));
 				cat.setEstado(rs.getBoolean("Estado"));
-				
-				categorias.add(cat);			
+
+				categorias.add(cat);
 			}
-			
-		} catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return categorias;
+	}
+
+	// vaciar categoria
+	public int vaciarCategorias() {
+		String query = "DELETE FROM categorias";
+		String queryReset = "ALTER TABLE categorias AUTO_INCREMENT = 1";
+
+		try (
+				Connection cn = obtenerConexion();
+				PreparedStatement pst = cn.prepareStatement(query);
+				PreparedStatement pstReset = cn.prepareStatement(queryReset);) {
+
+			int filas = pst.executeUpdate(); // Borra las categorías
+			pstReset.executeUpdate(); // Reinicia el contador a 1
+
+			return filas;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 }
