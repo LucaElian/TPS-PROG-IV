@@ -5,6 +5,7 @@ public class Categoria {
 	private String nombre;
 	private boolean estado;
 
+
 	// constructores
 
 	public Categoria() { }

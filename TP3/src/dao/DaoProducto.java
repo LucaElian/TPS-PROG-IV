@@ -23,15 +23,39 @@ public class DaoProducto {
 		return DriverManager.getConnection(host + dbName, user, pass);
 	}
 	
+	// metodo de alta Producto
+
+	public int altaProducto(Producto producto){
+		
+		String query = "INSERT into productos (Codigo, Nombre, Precio, Stock, IdCategoria) " +
+						"VALUES (?, ?, ?, ?, ?)";
+
+		try (
+			Connection cn = obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
+
+			pst.setString(1, producto.getCodigo());
+			pst.setString(2, producto.getNombre());
+			pst.setDouble(3, producto.getPrecio());
+			pst.setInt(4, producto.getStock());
+			pst.setInt(5, producto.getCategoria().getIdCategoria());
+
+			return pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 	// metodo de modificacion Producto
 
 	public int modificarProducto(Producto producto) {
 
-		String query = "UPDATE Productos "
-					 + "SET Nombre = ?, "
-					 + "Precio = ?, "
-					 + "Stock = ?, "
-					 + "IdCategoria = ? ,"
+		String query = "UPDATE productos "
+					 + "SET Nombre = ?, Precio = ?, "
+					 + "Stock = ?, IdCategoria = ?, "
 					 + "Estado = ? "
 					 + "WHERE Codigo = ?";
 
@@ -59,9 +83,9 @@ public class DaoProducto {
 
 	public int bajaProducto(String codigo) {
 
-		String query = "UPDATE Productos "
-				 + "SET Estado = FALSE "
-				 + "WHERE Codigo = ?";
+		String query = "UPDATE productos "
+				 	 + "SET Estado = FALSE "
+				 	 + "WHERE Codigo = ?";
 
 		try (
 			Connection cn = obtenerConexion(); 
@@ -90,8 +114,8 @@ public class DaoProducto {
 							+ "p.Estado, "
 							+ "c.IdCategoria, "
 							+ "c.Nombre AS NombreCategoria "
-					+ "FROM Productos p "
-					+ "INNER JOIN Categorias c "
+					+ "FROM productos p "
+					+ "INNER JOIN categorias c "
 						+ "ON p.IdCategoria = c.IdCategoria "
 					+ "WHERE p.Estado = TRUE "
 					+ "AND c.Estado = TRUE";
@@ -126,31 +150,6 @@ public class DaoProducto {
 		}
 			
 		return productos;
-	}
-
-	// metodo de alta Producto
-
-	public int altaProducto(Producto producto){
-		String query = "INSERT into productos (codigo, nombre, precio, stock, IdCategoria) " +
-						"VALUES (?, ?, ?, ?, ?)";
-
-		try (
-			Connection cn = obtenerConexion(); 
-			PreparedStatement pst = cn.prepareStatement(query)
-		) {
-
-			pst.setString(1, producto.getCodigo());
-			pst.setString(2, producto.getNombre());
-			pst.setDouble(3, producto.getPrecio());
-			pst.setInt(4, producto.getStock());
-			pst.setInt(5, producto.getCategoria().getIdCategoria());
-
-			return pst.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
 	}
 	
 	// metodo de alta Producto con procedimiento almacenado

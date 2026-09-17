@@ -10,114 +10,126 @@ import entidad.Producto;
 public class Principal {
 
 	public static void main(String[] args) {
-		
 		DaoCategoria daoC = new DaoCategoria();
-/*		
+		DaoProducto daoP = new DaoProducto();
+
+		
 		System.out.println("===== ABML CATEGORIAS =====");
 		
 		ArrayList<Categoria> listcat = new ArrayList<>();
 
 		// ALTA CATEGORIA
 		
-		Categoria categoria1 = new Categoria("Terror");
-		Categoria categoria2 = new Categoria("Surrealismo"); 
-		Categoria categoria3 = new Categoria("Infantil"); 
-		
-		listcat.add(categoria1); 
-		listcat.add(categoria2); 
-		listcat.add(categoria3); 
+		listcat.add(new Categoria("Terror")); 
+		listcat.add(new Categoria("Surrealismo")); 
+		listcat.add(new Categoria("Infantil")); 
 		
 		for (Categoria cat : listcat) {
-
-		    int filas = daoC.altaCategoria(cat);
-
-		    if (filas != 0) {
-		        System.out.println("Categoría agregada correctamente");
-		        System.out.println(cat.toString());
-		        System.out.println();
-		    } else {
-		        System.out.println("No se pudo agregar la categoría");
-		    }
+		    if (daoC.altaCategoria(cat) == 0)
+		        System.out.println("No se pudo agregar la categoría " + cat.getNombre() + "\n");
 		}
 		
+		System.out.println("Categorias agregadas:");
+		
+		for (Categoria cat : daoC.listaCategorias())
+			System.out.println("[" + cat + "]");
+		
+		
 		System.out.println("\n==============\n");
 		
-	
-		categoria3.setIdCategoria(3);
+		
 		// BAJA CATEGORIA
-			
-		int ok =  daoC.bajaCategoria(3);
 		
-		if (ok != 0) {
-			System.out.println("Categoria dada de baja");
-			System.out.println(categoria3.toString());
-		} else
-			System.out.println("No se pudo dar de baja");
+		if (daoC.bajaCategoria(2) != 0)
+			System.out.println("Categoria " + listcat.get(1).getNombre() + " dada de baja");
+		else
+			System.out.println("No se pudo dar de baja la categoria");
+		
 		
 		System.out.println("\n==============\n");
+		
 		
 		// MODIFICACION CATEGORIA
-		categoria3.setEstado(true);
-		ok = daoC.modificarCategoria(categoria3);
-		if ( ok == 1) 
-			System.out.println(" Se modifico la categoria");
+		
+		Categoria catMod = new Categoria(2, "Accion", true);
+		
+		if (daoC.modificarCategoria(catMod) != 0) 
+			System.out.println("Se modifico la categoria 2");
 		else
-			System.out.println(" No se pudo modificar la categoria");
+			System.out.println("No se pudo modificar la categoria");
 		
-		//LISTAR
-		ArrayList<Categoria> listaDesdeBD = daoC.listaCategorias();
-		for (Categoria c : listaDesdeBD) {
-		    System.out.println(c);
-		}
- */		
+		
+		System.out.println("\n==============\n");
+		
+		
+		// LISTAR CATEGORIA
+		
+		for (Categoria c : daoC.listaCategorias())
+		    System.out.println("[" + c + "]");
+ 		
 	
-		System.out.println("===== ABML PRODUCTOS =====");
+		System.out.println("\n===== ABML PRODUCTOS =====\n");
 		
-		DaoProducto daoP = new DaoProducto();
+		ArrayList<Producto> listpro = new ArrayList<>();
 		
-		ArrayList<Producto> listProductos = new ArrayList<>();
+		// ALTA PRODUCTO
+	
+		listpro.add(new Producto("AA11","It", 35000, 5, 1));
+		listpro.add(new Producto("AB12", "Duro de matar", 25000, 20, 2));
+		listpro.add(new Producto("AC13", "Toy Story", 15000, 8, 3));
+		listpro.add(new Producto("AD14", "El exorcista", 45000, 10, 1));
+		listpro.add(new Producto("AE15", "El mago de Oz", 30000, 12, 3));
+		listpro.add(new Producto("AF16", "El gigante de hierro", 30000, 12, 3));
 		
-		Producto p1 = new Producto("aa11","Juego de mesa", 35000, 5, 1);
-		Producto p2 = new Producto("ab12", "Libro", 25000, 20, 2);
-		Producto p3 = new Producto("ac13", "Almanaque", 15000, 8, 3);
-		Producto p4 = new Producto("ad14", "Novela", 45000, 10, 1);
-		Producto p5 = new Producto("ae15", "Cuento", 30000, 12, 3);
-		Producto p6 = new Producto("af16", "Almanaque", 30000, 12, 3);
-				
-
-		listProductos.add(p1);
-		listProductos.add(p2);
-		listProductos.add(p3);
-		listProductos.add(p4);
-		listProductos.add(p5);
-		listProductos.add(p6);
-		
-		for( Producto producto : listProductos) {
-			
-			int filas = daoP.sp_AgregarProducto(producto);
-			
-			if ( filas > 0 ) {
-				
-				System.out.println("Se agregó correctamente el producto: " + producto.getNombre());
-			}else {
-				System.out.println("No se pudo agregar el producto: " + producto.getNombre());
-			}
-		
+		for (Producto pro : listpro) {
+			if (daoP.sp_AgregarProducto(pro) == 0)
+				System.out.println("No se pudo agregar el producto: " + pro.getNombre() + "\n");
 		}
 		
-		System.out.println("-----------------------");
+		System.out.println("Productos agregados:");
 		
-		System.out.println("Baja del producto con codigo af16");
+		for (Producto pro : daoP.listarProductos())
+			System.out.println(pro);
 		
-		// Baja de un Producto
 		
-		int bajaOk = daoP.bajaProducto("af16");
+		System.out.println("\n==============\n");
 		
-		if (bajaOk != 0) {
-			System.out.println("Producto dado de baja.");
+		
+		// BAJA PRODUCTO
+		
+		if (daoP.bajaProducto("AF16") != 0) {
+			System.out.println("Producto " + listpro.get(5).getNombre() + " dado de baja");
 		} else
-			System.out.println("No se pudo dar de baja el producto.");
+			System.out.println("No se pudo dar de baja el producto");
 	
+		
+		System.out.println("\n==============\n");
+		
+		
+		// MODIFICACION PRODUCTO
+		
+		Producto proMod = new Producto("AC13", "Toy Story 2", 30000, 12, 2, true);
+		
+		if (daoP.modificarProducto(proMod) != 0) 
+			System.out.println("Se modifico el producto AC13");
+		else
+			System.out.println("No se pudo modificar el producto");
+		
+		
+		System.out.println("\n==============\n");
 	
+		
+		// LISTAR PRODUCTO
+		
+		for (Producto p : daoP.listarProductos())
+		    System.out.println(p);
+		
+		
+		System.out.println("\n==============\n");
+		
+		
+		// ALTA PRODUCTO CON PROCEDIMIENTO ALMACENADO
+		
+		
 	}
 }
