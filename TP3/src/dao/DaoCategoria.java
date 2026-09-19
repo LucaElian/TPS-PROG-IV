@@ -15,8 +15,7 @@ public class DaoCategoria {
 	private String user = "root";
 	private String pass = "root";
 
-	public DaoCategoria() {
-	}
+	public DaoCategoria() { }
 
 	private Connection obtenerConexion() throws SQLException {
 		return DriverManager.getConnection(host + dbName, user, pass);
@@ -27,15 +26,29 @@ public class DaoCategoria {
 	public int altaCategoria(Categoria categoria) {
 
 		String query = "INSERT INTO categorias (Nombre) "
-				+ "VALUES (?)";
+					 + "VALUES (?)";
 
 		try (
-				Connection cn = obtenerConexion();
-				PreparedStatement pst = cn.prepareStatement(query)) {
+			Connection cn = obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)
+		) {
 
 			pst.setString(1, categoria.getNombre());
 
-			return pst.executeUpdate();
+			int filas = pst.executeUpdate();
+					
+			if (filas != 0) {
+				
+				try (ResultSet rs = pst.getGeneratedKeys()) {
+					
+					if (rs.next()) {
+						categoria.setIdCategoria(rs.getInt(1));
+						categoria.setEstado(true);
+					}
+				}
+			}
+			
+			return filas;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,8 +65,9 @@ public class DaoCategoria {
 				+ "WHERE IdCategoria = ?";
 
 		try (
-				Connection cn = obtenerConexion();
-				PreparedStatement pst = cn.prepareStatement(query)) {
+			Connection cn = obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
 
 			pst.setString(1, categoria.getNombre());
 			pst.setBoolean(2, categoria.isEstado());
@@ -72,11 +86,12 @@ public class DaoCategoria {
 	public int bajaCategoria(int idCategoria) {
 
 		String query = "UPDATE categorias "
-				+ "SET Estado = FALSE "
-				+ "WHERE IdCategoria = ?";
+					 + "SET Estado = FALSE "
+					 + "WHERE IdCategoria = ?";
 		try (
-				Connection cn = obtenerConexion();
-				PreparedStatement pst = cn.prepareStatement(query)) {
+			Connection cn = obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
 
 			pst.setInt(1, idCategoria);
 
@@ -96,9 +111,10 @@ public class DaoCategoria {
 		String query = "SELECT * FROM categorias";
 
 		try (
-				Connection cn = obtenerConexion();
-				PreparedStatement pst = cn.prepareStatement(query);
-				ResultSet rs = pst.executeQuery()) {
+			Connection cn = obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query);
+			ResultSet rs = pst.executeQuery()
+		) {
 
 			while (rs.next()) {
 				Categoria cat = new Categoria();
@@ -117,25 +133,22 @@ public class DaoCategoria {
 	}
 
 	// vaciar categoria
-	public int vaciarCategorias() {
+	
+	public void vaciarCategorias() {
 		String query = "DELETE FROM categorias";
 		String queryReset = "ALTER TABLE categorias AUTO_INCREMENT = 1";
 
 		try (
-				Connection cn = obtenerConexion();
-				PreparedStatement pst = cn.prepareStatement(query);
-				PreparedStatement pstReset = cn.prepareStatement(queryReset);) {
+			Connection cn = obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query);
+			PreparedStatement pstReset = cn.prepareStatement(queryReset)
+		) {
 
-			int filas = pst.executeUpdate(); // Borra las categorías
-			pstReset.executeUpdate(); // Reinicia el contador a 1
-
-			return filas;
+			pst.executeUpdate();
+			pstReset.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return -1;
 		}
 	}
-	
-
 }

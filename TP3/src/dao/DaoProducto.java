@@ -116,9 +116,7 @@ public class DaoProducto {
 							+ "c.Nombre AS NombreCategoria "
 					+ "FROM productos p "
 					+ "INNER JOIN categorias c "
-						+ "ON p.IdCategoria = c.IdCategoria "
-					+ "WHERE p.Estado = TRUE "
-					+ "AND c.Estado = TRUE";
+						+ "ON p.IdCategoria = c.IdCategoria ";
 		
 		try (
 			Connection cn = obtenerConexion();
@@ -160,7 +158,7 @@ public class DaoProducto {
 		
 		try (
 			Connection cn = obtenerConexion();
-			CallableStatement cs = cn.prepareCall(query);
+			CallableStatement cs = cn.prepareCall(query)
 		) {
 			
 			cs.setString(1, producto.getCodigo());
@@ -178,20 +176,19 @@ public class DaoProducto {
 	}
 	
 	// vaciar producto
-	public int vaciarProductos() {
+	
+	public void vaciarProductos() {
 		String query = "DELETE FROM productos";
 
-		try ( Connection cn = obtenerConexion();PreparedStatement pst = cn.prepareStatement(query); )
-		{
+		try ( 
+			Connection cn = obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
 
-			int filas = pst.executeUpdate();
-
-			return filas;
+			pst.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return -1;
 		}
 	}
-	
 }
