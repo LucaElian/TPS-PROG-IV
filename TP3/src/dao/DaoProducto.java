@@ -176,4 +176,22 @@ public class DaoProducto {
 			return 0;
 		}
 	}
+	
+	// vaciar producto
+	public int vaciarProductos() {
+		String query = "DELETE FROM productos";
+
+		try ( Connection cn = obtenerConexion();PreparedStatement pst = cn.prepareStatement(query); )
+		{
+
+			int filas = pst.executeUpdate();
+
+			return filas;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
 }

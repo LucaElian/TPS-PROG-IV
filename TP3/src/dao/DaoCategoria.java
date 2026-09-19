@@ -133,7 +133,9 @@ public class DaoCategoria {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return 0;
+			return -1;
 		}
 	}
+	
+
 }
