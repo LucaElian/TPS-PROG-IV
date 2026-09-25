@@ -77,8 +77,6 @@ public class Principal {
 		
 		listpro.add(new Producto("AG01", "Rambo", 25000, 15, 2));
 		listpro.add(new Producto("AH02", "Alien", 35000, 25, 1));
-		listpro.add(new Producto("AI03", "Cars", 45000, 18, 3));
-		listpro.add(new Producto("AJ04", "Bad Boys", 30000, 10, 2));
 		listpro.add(new Producto("AK05", "Shrek", 20000, 15, 1));
 
 		for (Producto pro : listpro) {
