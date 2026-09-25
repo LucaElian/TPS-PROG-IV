@@ -136,7 +136,7 @@ public class Persona {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellido, direccion, dni, edad, email, fechaNacimiento, genero, nombre, telefono);
+		return Objects.hash(dni);
 	}
 
 	// metodo equals
@@ -150,10 +150,7 @@ public class Persona {
 		if (getClass() != obj.getClass())
 			return false;
 		Persona other = (Persona) obj;
-		return Objects.equals(apellido, other.apellido) && Objects.equals(direccion, other.direccion)
-				&& Objects.equals(dni, other.dni) && edad == other.edad && Objects.equals(email, other.email)
-				&& Objects.equals(fechaNacimiento, other.fechaNacimiento) && Objects.equals(genero, other.genero)
-				&& Objects.equals(nombre, other.nombre) && Objects.equals(telefono, other.telefono);
+		return Objects.equals(dni, other.dni);
 	}
 	
 	// excepcion verificar DNI

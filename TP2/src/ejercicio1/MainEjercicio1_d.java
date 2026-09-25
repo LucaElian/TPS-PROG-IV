@@ -12,13 +12,15 @@ public class MainEjercicio1_d {
 		Persona p3 = new Persona("33333333", "Martin", "Gomez", 35, LocalDate.of(1989, 2, 20), "Masculino", "Mitre 789", "33445566", "martin@mail.com");
 		Persona p4 = new Persona("44444444", "Sofia", "Rodriguez", 26, LocalDate.of(1998, 11, 5), "Femenino", "Rivadavia 1011", "44556677", "sofia@mail.com");
 		Persona p5 = new Persona("55555555", "Lucas", "Fernandez", 40, LocalDate.of(1984, 4, 25), "Masculino", "Lavalle 1213", "55667788", "lucas@mail.com");
-
+		Persona p6 = new Persona("11111111", "Pedro", "Perez", 45, LocalDate.of(1979, 1, 1), "Masculino", "Otra direccion", "99999999", "pedro@mail.com");
+		
 		HashSet<Persona> listaPersonas = new HashSet<Persona>();
 		listaPersonas.add(p1);
 		listaPersonas.add(p2);
 		listaPersonas.add(p3);
 		listaPersonas.add(p4);
 		listaPersonas.add(p5);
+		listaPersonas.add(p6);
 
 		Iterator<Persona> it = listaPersonas.iterator();
 
