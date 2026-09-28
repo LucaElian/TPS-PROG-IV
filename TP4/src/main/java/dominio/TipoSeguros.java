@@ -1,21 +1,20 @@
 package dominio;
 
 public class TipoSeguros {
-	
 	private int idTipo; 
 	private String descripcion; 
 	
 	//constructores 
-	public TipoSeguros() {
-		
-	}
+	
+	public TipoSeguros() { }
 	
 	public TipoSeguros(int idTipo, String descripcion) {
 		this.idTipo = idTipo; 
 		this.descripcion = descripcion;
 	}
 
-	//metodos get y set
+	// getters y setters
+	
 	public int getIdTipo() {
 		return idTipo;
 	}
@@ -32,12 +31,12 @@ public class TipoSeguros {
 		this.descripcion = descripcion;
 	}
 
+	// metodo toString
+	
 	@Override
 	public String toString() {
 		return "TipoSeguro\n" +
 				"idTipo: " + idTipo + "\n" +
 				"descripcion" + descripcion ;
 	}
-	
-	
 }
