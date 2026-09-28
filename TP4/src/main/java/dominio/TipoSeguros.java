@@ -1,16 +1,16 @@
 package dominio;
 
-public class TipoSeguro {
+public class TipoSeguros {
 	
 	private int idTipo; 
 	private String descripcion; 
 	
 	//constructores 
-	public TipoSeguro() {
+	public TipoSeguros() {
 		
 	}
 	
-	public TipoSeguro(int idTipo, String descripcion) {
+	public TipoSeguros(int idTipo, String descripcion) {
 		this.idTipo = idTipo; 
 		this.descripcion = descripcion;
 	}
