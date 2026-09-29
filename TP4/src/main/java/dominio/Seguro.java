@@ -46,7 +46,7 @@ public class Seguro {
 	    this.tipoSeguro = tipoSeguro;
 	}
 	
-	public Double getCostoContratacion() {
+	public double getCostoContratacion() {
 		return costoContratacion;
 	}
 	
@@ -54,7 +54,7 @@ public class Seguro {
 		this.costoContratacion = costoContratacion;
 	}
 	
-	public Double getCostoAsegurado() {
+	public double getCostoAsegurado() {
 		return costoAsegurado;
 	}
 	
