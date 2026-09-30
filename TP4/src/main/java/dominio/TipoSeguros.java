@@ -4,6 +4,7 @@ public class TipoSeguros {
 	private int idTipo; 
 	private String descripcion; 
 	
+	
 	//constructores 
 	
 	public TipoSeguros() { }
