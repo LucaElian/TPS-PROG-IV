@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import conexion.Conexion;
@@ -33,4 +34,25 @@ public class SeguroDao {
 		
 	}
 
+	public int obtenerProximoId() {
+		int proximoId = 1;
+		String query = "SELECT MAX(idSeguro) FROM seguros";
+		
+		try (Connection cn = Conexion.obtenerConexion();
+			 PreparedStatement pst = cn.prepareStatement(query);
+			 ResultSet rs = pst.executeQuery()) {
+			
+			if (rs.next()) {
+				proximoId = rs.getInt(1) + 1;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return proximoId;
+	}
+
 }
+
+
