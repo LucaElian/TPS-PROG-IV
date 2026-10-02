@@ -37,6 +37,7 @@ public class ServletSeguro extends HttpServlet {
 			break;
 		case "agregar":
 			req.setAttribute("tiposSeguro", daoTS.listarTipoSeguros());
+			req.setAttribute("proximoId", daoS.obtenerProximoId());
 			rd = req.getRequestDispatcher("/AgregarSeguro.jsp");
 			rd.forward(req, resp);
 			break;
@@ -83,13 +84,14 @@ public class ServletSeguro extends HttpServlet {
 			
 			if (filas > 0) 
 			{
-				req.setAttribute("mensaje", "El seguro fue agregado correctamente" );
+				req.setAttribute("mensaje", "Seguro agregado con éxito");
 				
 			}else {
 				req.setAttribute("mensaje", "No se pudo agregar el seguro");
 			}
 			
 			req.setAttribute("tiposSeguro", daoTS.listarTipoSeguros());
+			req.setAttribute("proximoId", daoS.obtenerProximoId());
 			
 			RequestDispatcher rd = req.getRequestDispatcher("/AgregarSeguro.jsp");
 			
