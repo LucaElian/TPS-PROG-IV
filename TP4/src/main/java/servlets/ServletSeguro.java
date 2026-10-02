@@ -49,6 +49,7 @@ public class ServletSeguro extends HttpServlet {
 			if (request.getParameter("btnFiltrar") != null)
 				idTipo = Integer.parseInt(request.getParameter("tipoSeguro"));
 
+			request.setAttribute("idTipoSeleccionado", idTipo);
 			request.setAttribute("listaTiposSeguros", daoTS.listarTipoSeguros());
 			request.setAttribute("listaSeguros", daoS.listarSeguros(idTipo));
 
@@ -75,9 +76,15 @@ public class ServletSeguro extends HttpServlet {
 			String costoContratacionStr = request.getParameter("txtCostoContratacion");
 			String costoAseguradoStr = request.getParameter("txtCostoMax");
 
-			if (costoContratacionStr == "" || costoAseguradoStr == "") {
-				request.setAttribute("mensaje", "Ingrese datos válidos");
-			} else {
+			boolean conservar = true;
+			
+			if (descripcion.trim().isEmpty())
+				request.setAttribute("mensaje", "Ingrese una descripción");
+			
+			else if (costoContratacionStr.trim().isEmpty() || costoAseguradoStr.trim().isEmpty())
+				request.setAttribute("mensaje", "Ingrese ambos costos");
+			
+			else {
 
 				try {
 					double costoContratacion = Double.parseDouble(costoContratacionStr);
@@ -86,6 +93,7 @@ public class ServletSeguro extends HttpServlet {
 					if (!validarNumeros(costoContratacion) || !validarNumeros(costoAsegurado)) {
 						request.setAttribute("mensaje", "Los costos deben ser valores mayores a 0");
 					} else {
+						
 						TipoSeguros tipo = new TipoSeguros();
 						tipo.setIdTipo(idTipo);
 
@@ -98,17 +106,26 @@ public class ServletSeguro extends HttpServlet {
 
 						int filas = daoS.altaSeguro(seguro);
 
-						if (filas > 0)
-							request.setAttribute("mensaje", "Seguro agregado con éxito");
+						if (filas > 0) {
+							request.setAttribute("mensaje", "Seguro agregado con exito");
+							conservar = false;
+						}
 						else
 							request.setAttribute("mensaje", "No se pudo agregar el seguro");
 					}
 
-				} catch (Exception e) {
-					request.setAttribute("mensaje", "Los costos deben ser números positivos");
+				} catch (NumberFormatException e) {
+					request.setAttribute("mensaje", "Los costos deben ser valores numericos");
 				}
 			}
-
+			
+			if (conservar) {
+				request.setAttribute("descripcionIng", descripcion);
+				request.setAttribute("idTipoIng", idTipo);
+				request.setAttribute("costoContratacionIng", costoContratacionStr);
+				request.setAttribute("costoAseguradoIng", costoAseguradoStr);
+			}
+			
 			request.setAttribute("listaTiposSeguros", daoTS.listarTipoSeguros());
 			request.setAttribute("proximoId", daoS.obtenerProximoId());
 
@@ -117,10 +134,6 @@ public class ServletSeguro extends HttpServlet {
 	}
 
 	private boolean validarNumeros(double valor) {
-		if (valor > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return valor > 0;
 	}
 }

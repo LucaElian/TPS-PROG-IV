@@ -29,22 +29,22 @@
 		${proximoId} <br><br>
 		
 		Descripción:
-		<input type="text" name="txtDescripcion"> <br><br>
+		<input type="text" name="txtDescripcion" value="${descripcionIng}"> <br><br>
 		
 		Tipo de Seguro: 
 		<select name="tipoSeguro">
 		    <c:forEach var="tipo" items="${listaTiposSeguros}">
-		        <option value="${tipo.idTipo}">
-		            ${tipo.descripcion}
+		        <option value="${tipo.idTipo}" ${tipo.idTipo == idTipoIng ? 'selected' : ''}>
+					${tipo.descripcion}
 		        </option>
 		    </c:forEach>
 		</select> <br><br>
 		
 		Costo contratación:
-		<input type="text" name="txtCostoContratacion"> <br><br>
+		<input type="text" name="txtCostoContratacion" value="${costoContratacionIng}"> <br><br>
 		
 		Costo Máximo Asegurado:
-		<input type="text" name="txtCostoMax"><br><br>
+		<input type="text" name="txtCostoMax" value="${costoAseguradoIng}"><br><br>
 
 		<input type="submit" name="btnAceptar" value="Aceptar"> <br>
 		

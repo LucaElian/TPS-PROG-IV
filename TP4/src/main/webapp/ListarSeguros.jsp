@@ -28,14 +28,17 @@
 		Filtrar por tipo:
 		<select id="ddlTipo" name="tipoSeguro">
 		
-			<option value="0">-- Todos --</option>
+			<option value="0" ${idTipoSeleccionado == 0 ? 'selected' : ''}>
+				-- Todos --
+			</option>
 			
 			<c:forEach var="tipo" items="${listaTiposSeguros}">
-				<option value="${tipo.idTipo}">
-					${tipo.descripcion}
+			
+				<option value="${tipo.idTipo}" ${tipo.idTipo == idTipoSeleccionado ? 'selected' : ''}>
+					<c:out value="${tipo.descripcion}" />
 				</option>
+				
 			</c:forEach>
-
 		</select>
 		
 		<input type="submit" name="btnFiltrar" value="Filtrar">
