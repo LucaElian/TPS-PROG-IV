@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +13,6 @@ import dominio.Seguro;
 import dominio.TipoSeguros;
 import dao.SeguroDao;
 
-
 @WebServlet("/ServletSeguro")
 public class ServletSeguro extends HttpServlet {
 
@@ -23,52 +21,58 @@ public class ServletSeguro extends HttpServlet {
 	private final SeguroDao daoS = new SeguroDao();
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String pagina = req.getParameter("accion");
+		String pagina = request.getParameter("accion");
 
-		if (pagina == null) {
+		if (pagina == null)
 			pagina = "inicio";
-		}
-		switch (pagina) {
-		case "inicio":
-			RequestDispatcher rd = req.getRequestDispatcher("/Inicio.jsp");
-			rd.forward(req, resp);
-			break;
-		case "agregar":
-			req.setAttribute("tiposSeguro", daoTS.listarTipoSeguros());
-			req.setAttribute("proximoId", daoS.obtenerProximoId());
-			rd = req.getRequestDispatcher("/AgregarSeguro.jsp");
-			rd.forward(req, resp);
-			break;
-		case "listar":
-			req.setAttribute("tiposSeguro", daoTS.listarTipoSeguros());
-			rd = req.getRequestDispatcher("/ListadoSeguros.jsp");
-			rd.forward(req, resp);
-			break;
-		default:
-			rd = req.getRequestDispatcher("/Inicio.jsp");
-			rd.forward(req, resp);
-			break;
-		}
 
+		switch (pagina) {
+		
+			case "inicio":
+				request.getRequestDispatcher("/Inicio.jsp").forward(request, response);
+				break;
+
+			case "agregar":
+				request.setAttribute("listaTiposSeguros", daoTS.listarTipoSeguros());
+				request.setAttribute("proximoId", daoS.obtenerProximoId());
+
+				request.getRequestDispatcher("/AgregarSeguro.jsp").forward(request, response);
+				break;
+
+			case "listar":
+				
+				int idTipo = 0;
+				
+				if (request.getParameter("btnFiltrar") != null)
+					idTipo = Integer.parseInt(request.getParameter("tipoSeguro"));
+				
+				request.setAttribute("listaTiposSeguros", daoTS.listarTipoSeguros());
+				request.setAttribute("listaSeguros", daoS.listarSeguros(idTipo));
+				
+				request.getRequestDispatcher("/ListarSeguros.jsp").forward(request, response);
+				break;
+
+			default:
+				request.getRequestDispatcher("/Inicio.jsp").forward(request, response);
+				break;
+		}
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String accion = req.getParameter("accion");
+		String pagina = request.getParameter("accion");
 		
-		if ("guardar".equals(accion))
+		if ("guardar".equals(pagina))
 		{
+
+			String descripcion = request.getParameter("txtDescripcion");
+			int idTipo = Integer.parseInt(request.getParameter("tipoSeguro"));
 			
-			String descripcion = req.getParameter("txtDescripcion");
-			
-			int idTipo =Integer.parseInt(req.getParameter("tipoSeguro"));
-			
-			double costoContratacion = Double.parseDouble(req.getParameter("txtCostoContratacion"));
-			
-			double costoAsegurado = Double.parseDouble((req.getParameter("txtCostoMax")));
+			double costoContratacion = Double.parseDouble(request.getParameter("txtCostoContratacion"));
+			double costoAsegurado = Double.parseDouble((request.getParameter("txtCostoMax")));
 			
 			TipoSeguros tipo = new TipoSeguros();
 			tipo.setIdTipo(idTipo);
@@ -83,22 +87,14 @@ public class ServletSeguro extends HttpServlet {
 			int filas = daoS.altaSeguro(seguro);
 			
 			if (filas > 0) 
-			{
-				req.setAttribute("mensaje", "Seguro agregado con éxito");
-				
-			}else {
-				req.setAttribute("mensaje", "No se pudo agregar el seguro");
-			}
+				request.setAttribute("mensaje", "Seguro agregado con éxito");
+			else
+				request.setAttribute("mensaje", "No se pudo agregar el seguro");
 			
-			req.setAttribute("tiposSeguro", daoTS.listarTipoSeguros());
-			req.setAttribute("proximoId", daoS.obtenerProximoId());
+			request.setAttribute("listaTiposSeguros", daoTS.listarTipoSeguros());
+			request.setAttribute("proximoId", daoS.obtenerProximoId());
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/AgregarSeguro.jsp");
-			
-			rd.forward(req, resp);
-						
-			
+			request.getRequestDispatcher("/AgregarSeguro.jsp").forward(request, response);
 		}
 	}
-	
 }

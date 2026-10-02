@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<c:if test="${requestScope.listaTiposSeguros == null or requestScope.proximoId == null}">
+	<c:redirect url="ServletSeguro?accion=agregar" />
+</c:if>
+
 <!DOCTYPE html>
 <html>
 
@@ -29,7 +33,7 @@
 		
 		Tipo de Seguro: 
 		<select name="tipoSeguro">
-		    <c:forEach var="tipo" items="${tiposSeguro}">
+		    <c:forEach var="tipo" items="${listaTiposSeguros}">
 		        <option value="${tipo.idTipo}">
 		            ${tipo.descripcion}
 		        </option>

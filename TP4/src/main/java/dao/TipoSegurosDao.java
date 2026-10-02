@@ -41,5 +41,4 @@ public class TipoSegurosDao {
 
         return listaTS;
     } 
-
 }

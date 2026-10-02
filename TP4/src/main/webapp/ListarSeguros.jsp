@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<c:if test="${requestScope.listaTiposSeguros == null or requestScope.listaSeguros == null}">
+	<c:redirect url="ServletSeguro?accion=listar" />
+</c:if>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,22 +19,23 @@
 	| <a href="ServletSeguro?accion=agregar">Agregar seguros</a>
 	| <a href="ServletSeguro?accion=listar">Listar seguros</a> |
 
-	<br><br>
+	<h1>Listado de seguros</h1>
 
 	<form action = "ServletSeguro" method="get">
 	
 		<input type="hidden" name="accion" value="listar">
 		
-		<label for="ddlTipo">Filtrar por Tipo:</label>
-		
+		Filtrar por tipo:
 		<select id="ddlTipo" name="tipoSeguro">
+		
 			<option value="0">-- Todos --</option>
 			
-			<c:forEach var="tipo" items="${tiposSeguros}">
+			<c:forEach var="tipo" items="${listaTiposSeguros}">
 				<option value="${tipo.idTipo}">
 					${tipo.descripcion}
 				</option>
 			</c:forEach>
+
 		</select>
 		
 		<input type="submit" name="btnFiltrar" value="Filtrar">
@@ -42,11 +47,11 @@
 		
 		<thead>
 			<tr>
-				<th>ID Seguro</th>
+				<th>ID seguro</th>
                 <th>Descripción</th>
-                <th>Tipo de Seguro</th>
-                <th>Costo de Contratación</th>
-                <th>Costo Máximo Asegurado</th>
+                <th>Tipo de seguro</th>
+                <th>Costo de contratación</th>
+                <th>Costo máximo asegurado</th>
             </tr>
 		</thead>
 		
@@ -64,5 +69,6 @@
        
        	</tbody>
 	</table>
+
 </body>
 </html>
