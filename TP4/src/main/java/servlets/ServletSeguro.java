@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.TipoSegurosDao;
+
 @WebServlet("/ServletSeguro")
 public class ServletSeguro extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private final TipoSegurosDao daoTS = new TipoSegurosDao();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,17 +25,18 @@ public class ServletSeguro extends HttpServlet {
 		if (pagina == null) {
 			pagina = "inicio";
 		}
-
 		switch (pagina) {
 		case "inicio":
 			RequestDispatcher rd = req.getRequestDispatcher("/Inicio.jsp");
 			rd.forward(req, resp);
 			break;
 		case "agregar":
+			req.setAttribute("tiposSeguro", daoTS.listarTipoSeguros());
 			rd = req.getRequestDispatcher("/AgregarSeguro.jsp");
 			rd.forward(req, resp);
 			break;
 		case "listar":
+			req.setAttribute("tiposSeguro", daoTS.listarTipoSeguros());
 			rd = req.getRequestDispatcher("/ListadoSeguros.jsp");
 			rd.forward(req, resp);
 			break;

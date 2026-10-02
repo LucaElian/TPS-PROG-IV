@@ -29,7 +29,11 @@
 		
 		Tipo de Seguro: 
 		<select name="tipoSeguro">
-		
+		    <c:forEach var="tipo" items="${tiposSeguro}">
+		        <option value="${tipo.idTipo}">
+		            ${tipo.descripcion}
+		        </option>
+		    </c:forEach>
 		</select> <br><br>
 		
 		Costo contratación:

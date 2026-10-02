@@ -26,7 +26,7 @@
 		<select id="ddlTipo" name="tipoSeguro">
 			<option value="0">-- Todos --</option>
 			
-			<c:forEach var="tipo" items="${tiposSeguro}">
+			<c:forEach var="tipo" items="${tiposSeguros}">
 				<option value="${tipo.idTipo}">
 					${tipo.descripcion}
 				</option>
