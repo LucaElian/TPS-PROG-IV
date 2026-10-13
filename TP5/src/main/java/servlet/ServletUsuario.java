@@ -22,8 +22,8 @@ public class ServletUsuario extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String usuario = request.getParameter("txtNombre");
-		String pass = request.getParameter("txtPass");
+		String usuario = request.getParameter("txtUsuario");
+		String pass = request.getParameter("txtPassword");
 		
 		if (campoVacio(usuario) || campoVacio(pass)) {
 			
