@@ -14,16 +14,16 @@
 	
 	<h2>Iniciar sesión</h2>
 	
-	<form action="ServletUsuario" method="post">
+	<form action="${pageContext.request.contextPath}/ServletUsuario" method="post">
 	
 		<p>
-			<label>Usuario:</label>
-			<input type="text" name="txtUsuario" value="${usuarioIng}">
+			<label for="txtUsuario">Usuario:</label>
+			<input type="text" id="txtUsuario" name="txtUsuario" value="${usuarioIng}">
 		</p>
 		
 		<p>
-			<label>Contraseña:</label>
-			<input type="password" name="txtPassword">
+			<label for="txtPassword">Contraseña:</label>
+			<input type="password" id="txtPassword" name="txtPassword">
 		</p>
 		
 		<input type="submit" name="btnIngresar" value="Ingresar">

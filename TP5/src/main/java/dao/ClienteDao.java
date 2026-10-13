@@ -12,13 +12,18 @@ import entidad.Cliente;
 public class ClienteDao {
 
 	public int altaCliente(Cliente cliente) {
-		int filas = 0;
 
-		String query = "INSERT INTO clientes (dni, cuil, nombre, apellido, sexo, fecha_nacimiento, "
-				+ "direccion, nacionalidad, localidad, provincia, correo_electronico, telefono) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO clientes "
+					 + "(dni, cuil, nombre, apellido, sexo, fecha_nacimiento, "
+					 + "direccion, nacionalidad, localidad, provincia, "
+					 + "correo_electronico, telefono) "
+					 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		try (Connection cn = Conexion.obtenerConexion(); PreparedStatement pst = cn.prepareStatement(query)) {
+		try (
+			Connection cn = Conexion.obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
+
 			pst.setString(1, cliente.getDni());
 			pst.setString(2, cliente.getCuil());
 			pst.setString(3, cliente.getNombre());
@@ -32,53 +37,21 @@ public class ClienteDao {
 			pst.setString(11, cliente.getCorreo());
 			pst.setString(12, cliente.getTelefono());
 
-			filas = pst.executeUpdate();
+			return pst.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-
-		return filas;
-	}
-
-	public boolean existeDni(String dni) {
-		String query = "SELECT 1 FROM clientes WHERE dni = ?";
-
-		try (Connection cn = Conexion.obtenerConexion(); PreparedStatement pst = cn.prepareStatement(query)) {
-			pst.setString(1, dni);
-
-			try (ResultSet rs = pst.executeQuery()) {
-				return rs.next();
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
+			return 0;
 		}
 	}
 
-	public boolean existeDniYCuil(String dni, String cuil) {
-		String query = "SELECT 1 FROM clientes WHERE dni = ? AND cuil = ?";
-
-		try (Connection cn = Conexion.obtenerConexion(); PreparedStatement pst = cn.prepareStatement(query)) {
-			pst.setString(1, dni);
-			pst.setString(2, cuil);
-
-			try (ResultSet rs = pst.executeQuery()) {
-				return rs.next();
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
 	public ArrayList<Cliente> listarClientes() {
 
-	    ArrayList<Cliente> listaClientes = new ArrayList<>();
+	    ArrayList<Cliente> listaC = new ArrayList<>();
 
-	    String query = "SELECT * FROM clientes";
+	    String query = "SELECT dni, cuil, nombre, apellido, sexo, fecha_nacimiento, "
+	    			 + "direccion, nacionalidad, localidad, provincia "
+	    			 + "FROM clientes";
 
 	    try (
 	        Connection cn = Conexion.obtenerConexion();
@@ -90,7 +63,6 @@ public class ClienteDao {
 
 	            Cliente cliente = new Cliente();
 
-	            cliente.setIdCliente(rs.getInt("id_cliente"));
 	            cliente.setDni(rs.getString("dni"));
 	            cliente.setCuil(rs.getString("cuil"));
 	            cliente.setNombre(rs.getString("nombre"));
@@ -101,17 +73,56 @@ public class ClienteDao {
 	            cliente.setNacionalidad(rs.getString("nacionalidad"));
 	            cliente.setLocalidad(rs.getString("localidad"));
 	            cliente.setProvincia(rs.getString("provincia"));
-	            cliente.setCorreo(rs.getString("correo_electronico"));
-	            cliente.setTelefono(rs.getString("telefono"));
 
-	            listaClientes.add(cliente);
+	            listaC.add(cliente);
 	        }
 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 
-	    return listaClientes;
+	    return listaC;
+	}
+	
+	public boolean existeDni(String dni) {
+		
+		String query = "SELECT 1 FROM clientes WHERE dni = ?";
+
+		try (
+			Connection cn = Conexion.obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
+		
+			pst.setString(1, dni);
+
+			try (ResultSet rs = pst.executeQuery()) {
+				return rs.next();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
+	public boolean existeCuil(String cuil) {
+		
+		String query = "SELECT 1 FROM clientes WHERE cuil = ?";
+
+		try (
+			Connection cn = Conexion.obtenerConexion(); 
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
+			
+			pst.setString(1, cuil);
+
+			try (ResultSet rs = pst.executeQuery()) {
+				return rs.next();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
