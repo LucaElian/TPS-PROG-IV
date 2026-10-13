@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import conexion.Conexion;
 import entidad.Cliente;
@@ -71,6 +72,46 @@ public class ClienteDao {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public ArrayList<Cliente> listarClientes() {
+
+	    ArrayList<Cliente> listaClientes = new ArrayList<>();
+
+	    String query = "SELECT * FROM clientes";
+
+	    try (
+	        Connection cn = Conexion.obtenerConexion();
+	        PreparedStatement pst = cn.prepareStatement(query);
+	        ResultSet rs = pst.executeQuery()
+	    ) {
+
+	        while (rs.next()) {
+
+	            Cliente cliente = new Cliente();
+
+	            cliente.setIdCliente(rs.getInt("id_cliente"));
+	            cliente.setDni(rs.getString("dni"));
+	            cliente.setCuil(rs.getString("cuil"));
+	            cliente.setNombre(rs.getString("nombre"));
+	            cliente.setApellido(rs.getString("apellido"));
+	            cliente.setSexo(rs.getString("sexo"));
+	            cliente.setFecha(rs.getString("fecha_nacimiento"));
+	            cliente.setDireccion(rs.getString("direccion"));
+	            cliente.setNacionalidad(rs.getString("nacionalidad"));
+	            cliente.setLocalidad(rs.getString("localidad"));
+	            cliente.setProvincia(rs.getString("provincia"));
+	            cliente.setCorreo(rs.getString("correo_electronico"));
+	            cliente.setTelefono(rs.getString("telefono"));
+
+	            listaClientes.add(cliente);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaClientes;
 	}
 
 }
