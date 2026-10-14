@@ -18,9 +18,9 @@
 
 	<h3>Menú</h3>
 
-	<a href="ServletCliente?accion=agregar">Alta de Cliente</a>
+	<a href="${pageContext.request.contextPath}/ServletCliente?accion=agregar">Alta de Cliente</a>
 	|
-	<a href="ServletCliente?accion=listar">Listado de Clientes</a>
+	<a href="${pageContext.request.contextPath}/ServletCliente?accion=listar">Listado de Clientes</a>
 	
 	<hr>
 	
@@ -28,7 +28,7 @@
 	
 	<p>Usuario: ${sessionScope.usuario}</p>
 	
-	<h3>Cantidad de clientes: ${fn:length(listaClientes)}</h3>
+	<h3>Cantidad de clientes (${fn:length(listaClientes)})</h3>
 
 	<table id="tablaClientes">
 	
@@ -49,15 +49,15 @@
         <tbody>
         	<c:forEach var="cliente" items="${listaClientes}">
             	<tr>
-	                <td>${cli.dni}</td>
-	                <td>${cli.cuil}</td>
-	                <td>${cli.nombre} ${cli.apellido}</td>
-	                <td>${cli.sexo}</td>
-	                <td>${cli.fechaNacimiento}</td>
-	                <td>${cli.direccion}</td>
-	                <td>${cli.nacionalidad}</td>
-	                <td>${cli.localidad}</td>
-	                <td>${cli.provincia}</td>
+	                <td>${cliente.dni}</td>
+	                <td>${cliente.cuil}</td>
+	                <td>${cliente.nombre} ${cliente.apellido}</td>
+	                <td>${cliente.sexo}</td>
+	                <td>${cliente.fecha}</td>
+	                <td>${cliente.direccion}</td>
+	                <td>${cliente.nacionalidad}</td>
+	                <td>${cliente.localidad}</td>
+	                <td>${cliente.provincia}</td>
                 </tr>
            	</c:forEach>
             

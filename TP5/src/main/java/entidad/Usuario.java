@@ -2,7 +2,7 @@ package entidad;
 
 public class Usuario {
 	private int IdUsuario;
-	private String nombre;
+	private String usuario;
 	private String pass;
 	
 	
@@ -10,8 +10,8 @@ public class Usuario {
 	
 	public Usuario() { }
 	
-	public Usuario(String nombre, String pass) {
-		this.nombre = nombre;
+	public Usuario(String usuario, String pass) {
+		this.usuario = usuario;
 		this.pass = pass;
 	}
 	
@@ -25,12 +25,12 @@ public class Usuario {
 		IdUsuario = idUsuario;
 	}
 	
-	public String getNombre() {
-		return nombre;
+	public String getUsuario() {
+		return usuario;
 	}
 	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 	
 	public String getPass() {
@@ -45,6 +45,6 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return "[" + IdUsuario + ", " + nombre + ", " + pass + "]";
+		return "[" + IdUsuario + ", " + usuario + ", " + pass + "]";
 	}
 }
