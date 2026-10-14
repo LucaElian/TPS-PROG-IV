@@ -10,7 +10,6 @@
 <body>
     <h3>Menú</h3>
     <a href="${pageContext.request.contextPath}/ServletCliente?accion=agregar">Alta de Cliente</a>
-    |
     <a href="${pageContext.request.contextPath}/ServletCliente?accion=listar">Listado de Clientes</a>
     <hr>
     <h1>Alta de Cliente</h1>

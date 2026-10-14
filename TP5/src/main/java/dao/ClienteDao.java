@@ -31,6 +31,25 @@ public class ClienteDao {
 	
 	
 
+	public boolean existeCorreo(String correo) {
+		String query = "SELECT 1 FROM clientes WHERE correo_electronico = ?";
+		
+		try (
+			Connection cn = Conexion.obtenerConexion();
+			PreparedStatement pst = cn.prepareStatement(query)
+		) {
+			pst.setString(1, correo);
+			
+			try (ResultSet rs = pst.executeQuery()) {
+				return rs.next();
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public boolean existeDniYCuil(String dni, String cuil) {
 		String query = "SELECT 1 FROM clientes WHERE dni = ? AND cuil = ?";
 		
