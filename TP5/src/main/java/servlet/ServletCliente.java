@@ -52,7 +52,7 @@ public class ServletCliente extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException{
 
 		if (!usuarioAutenticado(request)) {
 			response.sendRedirect(request.getContextPath() + "/Login.jsp");
