@@ -25,6 +25,10 @@ formularioAlta.addEventListener("input", function () {
     mensajeValidacion.hidden = true;
 });
 
-formularioAlta.addEventListener("reset", function () {
+formularioAlta.addEventListener("reset", function (evento) {
+    evento.preventDefault();
+    formularioAlta.querySelectorAll("input:not([type]), input[type='text'], input[type='email'], input[type='date'], select").forEach(function (campo) {
+        campo.value = "";
+    });
     mensajeValidacion.hidden = true;
 });

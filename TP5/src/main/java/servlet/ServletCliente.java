@@ -1,6 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -77,15 +81,62 @@ public class ServletCliente extends HttpServlet {
 			Cliente nuevoCliente = new Cliente(dni, cuil, nombre, apellido, sexo, fecha, direccion, nacionalidad,
 					localidad, provincia, correo, telefono);
 
+			request.setAttribute("clienteIng", nuevoCliente);
+			List<String> errores = validarCliente(nuevoCliente);
+			if (errores.isEmpty()) {
+				if (cliente.existeDni(dni.trim())) errores.add("Ya existe un cliente con ese DNI.");
+				if (cliente.existeCuil(cuil.trim())) errores.add("Ya existe un cliente con ese CUIL.");
+				if (cliente.existeCorreo(correo.trim())) errores.add("Ya existe un cliente con ese correo electr\u00f3nico.");
+			}
+			if (!errores.isEmpty()) {
+				request.setAttribute("errores", errores);
+				request.getRequestDispatcher("/WEB-INF/Vistas/AltaCliente.jsp").forward(request, response);
+				return;
+			}
+
 			int filas = cliente.altaCliente(nuevoCliente);
 
 			if (filas > 0) {
+				request.removeAttribute("clienteIng");
 				request.setAttribute("mensaje", "Cliente agregado correctamente");
 			} else {
 				request.setAttribute("mensaje", "No se pudo agregar el cliente");
 			}
 
 			request.getRequestDispatcher("/WEB-INF/Vistas/AltaCliente.jsp").forward(request, response);
+		}
+	}
+
+	private List<String> validarCliente(Cliente c) {
+		List<String> errores = new ArrayList<>();
+		validarCampo(errores, "DNI", c.getDni(), 8, "[0-9]{6,8}");
+		validarCampo(errores, "CUIL", c.getCuil(), 11, "[0-9]{11}");
+		String letras = "\\p{L}+(?: +\\p{L}+)*";
+		validarCampo(errores, "Nombre", c.getNombre(), 100, letras);
+		validarCampo(errores, "Apellido", c.getApellido(), 100, letras);
+		validarCampo(errores, "Sexo", c.getSexo(), 10, "M|F|Otro");
+		validarCampo(errores, "Direcci\u00f3n", c.getDireccion(), 150, ".*[\\p{L}0-9].*");
+		validarCampo(errores, "Nacionalidad", c.getNacionalidad(), 50, letras);
+		validarCampo(errores, "Localidad", c.getLocalidad(), 50, letras);
+		validarCampo(errores, "Provincia", c.getProvincia(), 50, letras);
+		validarCampo(errores, "Correo electr\u00f3nico", c.getCorreo(), 100, "[^\\s@]+@[^\\s@]+\\.[^\\s@]+");
+		validarCampo(errores, "Tel\u00e9fono", c.getTelefono(), 10, "[0-9]{10}");
+		try {
+			LocalDate nacimiento = LocalDate.parse(c.getFecha() == null ? "" : c.getFecha());
+			if (nacimiento.getYear() < 1 || nacimiento.isAfter(LocalDate.now())) {
+				errores.add("La fecha de nacimiento no puede ser futura y debe tener un a\u00f1o v\u00e1lido.");
+			}
+		} catch (DateTimeParseException e) {
+			errores.add("Ingrese una fecha de nacimiento v\u00e1lida.");
+		}
+		return errores;
+	}
+
+	private void validarCampo(List<String> errores, String nombre, String valor, int maximo, String patron) {
+		if (valor == null || valor.trim().isEmpty()) {
+			errores.add(nombre + ": debe completar este campo.");
+		} else if (valor.length() > maximo || !valor.matches(patron)) {
+			errores.add(nombre + ": revise el formato y la longitud ingresados.");
 		}
 	}
 
