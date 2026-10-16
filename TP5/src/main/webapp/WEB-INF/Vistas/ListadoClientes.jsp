@@ -9,8 +9,9 @@
     <title>Listado de Clientes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/app-theme.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/listado-clientes.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/general.css?v=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/listar.css?v=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/listado-clientes.css?v=2">
 </head>
 <body class="clients-page">
     <div class="ambient-mesh" aria-hidden="true">
@@ -34,7 +35,7 @@
         <section class="clients-heading" aria-labelledby="clients-title">
             <div>
                 <p class="clients-eyebrow"><span></span> DIRECTORIO DE CLIENTES</p>
-                <h1 id="clients-title">Tus clientes, <span>en un solo lugar.</span></h1>
+                <h1 id="clients-title">TUS CLIENTES</h1>
                 <p class="clients-description">Consult&aacute; y encontr&aacute; la informaci&oacute;n de cada cliente de forma simple.</p>
             </div>
             <a class="app-btn-primary" href="${pageContext.request.contextPath}/ServletCliente?accion=agregar"><i class="bi bi-plus-lg" aria-hidden="true"></i> Nuevo cliente</a>
