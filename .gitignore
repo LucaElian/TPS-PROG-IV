@@ -12,6 +12,7 @@ Servers/
 .project
 .classpath
 .settings/
+.metadata/
 
 # IntelliJ IDEA
 .idea/
@@ -35,15 +36,13 @@ Servers/
 .DS_Store
 Thumbs.db
 
-# Maven
-target/
-
 # Gradle
 .gradle/
-build/
 
 # Variables / secretos
 .env
 .env.*
-.metadata/
-.metadata/
+
+# Archivos comprimidos
+*.zip
+*.rar
