@@ -25,48 +25,42 @@
     
     <p>Usuario: ${sessionScope.usuario}</p>
     
-    <c:if test="${not empty errores}">
-        <div role="alert">
-            <p>No se pudo guardar el cliente. Revise los siguientes datos:</p>
-            <ul>
-                <c:forEach var="error" items="${errores}">
-                    <li><c:out value="${error}" /></li>
-                </c:forEach>
-            </ul>
-        </div>
-    </c:if>
-    <form id="formAltaCliente" action="${pageContext.request.contextPath}/ServletCliente" method="post">
+    <form action="${pageContext.request.contextPath}/ServletCliente" method="post" novalidate>
     
         <input type="hidden" name="accion" value="guardar">
         
         <p>
             <label for="txtDni">DNI *</label> <br>
-            <input type="text" id="txtDni" name="txtDni" value="<c:out value='${clienteIng.dni}' />" inputmode="numeric" pattern="[0-9]{6,8}"  maxlength="8" required> <br>
+            <input type="text" id="txtDni" name="txtDni" value="<c:out value='${clienteIng.dni}' />" inputmode="numeric" maxlength="8"> <br>
+
             <small>Ingrese entre 6 y 8 dígitos, sin puntos</small>
         </p>
         
         <p>
             <label for="txtCuil">CUIL *</label> <br>
-            <input type="text" id="txtCuil" name="txtCuil" value="<c:out value='${clienteIng.cuil}' />" inputmode="numeric" pattern="[0-9]{11}" maxlength="11" required> <br>
+            <input type="text" id="txtCuil" name="txtCuil" value="<c:out value='${clienteIng.cuil}' />" inputmode="numeric" maxlength="11"> <br>
+
             <small>Ingrese 11 dígitos, sin guiones</small>
         </p>
         
         <p>
             <label for="txtNombre">Nombre *</label> <br>
-            <input type="text" id="txtNombre" name="txtNombre" value="<c:out value='${clienteIng.nombre}' />" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" maxlength="100" required> <br>
+            <input type="text" id="txtNombre" name="txtNombre" value="<c:out value='${clienteIng.nombre}' />" maxlength="100"> <br>
+
             <small>Ingrese solo letras y espacios entre palabras</small>
         </p>
         
         <p>
             <label for="txtApellido">Apellido *</label> <br>
-            <input type="text" id="txtApellido" name="txtApellido" value="<c:out value='${clienteIng.apellido}' />" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" maxlength="100" required> <br>
+            <input type="text" id="txtApellido" name="txtApellido" value="<c:out value='${clienteIng.apellido}' />" maxlength="100"> <br>
+
             <small>Ingrese solo letras y espacios entre palabras</small>
         </p>
         
         <p>
             <label for="ddlSexo">Sexo *</label> <br>
             
-            <select id="ddlSexo" name="ddlSexo" required>
+            <select id="ddlSexo" name="ddlSexo">
             
                 <option value="">-- Seleccione una opción --</option>
                 
@@ -90,57 +84,71 @@
         
         <p>
             <label for="txtFecha">Fecha de nacimiento *</label> <br>
-            <input type="date" id="txtFecha" name="txtFecha" value="<c:out value='${clienteIng.fecha}' />" max="<%= LocalDate.now() %>" required>
+            <input type="date" id="txtFecha" name="txtFecha" value="<c:out value='${clienteIng.fecha}' />" max="<%= LocalDate.now() %>">
         </p>
         
         <p>
             <label for="txtDireccion">Dirección *</label> <br>
-            <input type="text" id="txtDireccion" name="txtDireccion" value="<c:out value='${clienteIng.direccion}' />" maxlength="150" required> <br>
+            <input type="text" id="txtDireccion" name="txtDireccion" value="<c:out value='${clienteIng.direccion}' />" maxlength="150"> <br>
+
             <small>Ingrese una dirección con letras y/o números</small>
         </p>
         
         <p>
             <label for="txtNacionalidad">Nacionalidad *</label> <br>
-            <input type="text" id="txtNacionalidad" name="txtNacionalidad" value="<c:out value='${clienteIng.nacionalidad}' />" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" maxlength="50" required> <br>
+            <input type="text" id="txtNacionalidad" name="txtNacionalidad" value="<c:out value='${clienteIng.nacionalidad}' />" maxlength="50"> <br>
+
             <small>Ingrese solo letras y espacios entre palabras</small>
         </p>
         
         <p>
             <label for="txtLocalidad">Localidad *</label> <br>
-            <input type="text" id="txtLocalidad" name="txtLocalidad" value="<c:out value='${clienteIng.localidad}' />" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" maxlength="50" required> <br>
+            <input type="text" id="txtLocalidad" name="txtLocalidad" value="<c:out value='${clienteIng.localidad}' />" maxlength="50"> <br>
+
             <small>Ingrese solo letras y espacios entre palabras</small>
         </p>
         
         <p>
             <label for="txtProvincia">Provincia *</label> <br>
-            <input type="text" id="txtProvincia" name="txtProvincia" value="<c:out value='${clienteIng.provincia}' />" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" maxlength="50" required> <br>
+            <input type="text" id="txtProvincia" name="txtProvincia" value="<c:out value='${clienteIng.provincia}' />" maxlength="50"> <br>
+
             <small>Ingrese solo letras y espacios entre palabras</small>
         </p>
        
         <p>
             <label for="txtCorreo">Correo electrónico *</label> <br>
-            <input type="email" id="txtCorreo" name="txtCorreo" value="<c:out value='${clienteIng.correo}' />" maxlength="100" required> <br>
+            <input type="email" id="txtCorreo" name="txtCorreo" value="<c:out value='${clienteIng.correo}' />" maxlength="100"> <br>
         </p>
         
         <p>
             <label for="txtTelefono">Teléfono *</label> <br>
-            <input type="text" id="txtTelefono" name="txtTelefono" value="<c:out value='${clienteIng.telefono}' />" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required> <br>
+            <input type="text" id="txtTelefono" name="txtTelefono" value="<c:out value='${clienteIng.telefono}' />" inputmode="numeric" maxlength="10"> <br>
+
         	<small>Ingrese 10 dígitos, sin espacios ni guiones</small>
         </p>
 
-        <input type="submit" name="btnGuardar" value="Guardar cliente">
-        <input type="reset" value="Limpiar">
+        <input type="submit" value="Guardar cliente">
+        <a href="${pageContext.request.contextPath}/ServletCliente?accion=agregar">Limpiar</a>
 
 	</form>
 	
-    <p id="mensajeValidacion" hidden="hidden"></p>
+	<c:if test="${not empty errores}">
+        <div role="alert">
+            <p>No se pudo guardar el cliente. Revise los siguientes datos:</p>
+            
+            <ul>
+                <c:forEach var="error" items="${errores}">
+                    <li><c:out value="${error}" /></li>
+                </c:forEach>
+            </ul>
+        </div>
+    </c:if>
     
-	<c:if test="${not empty mensaje}">
-    	<p role="status"><c:out value="${mensaje}" /></p>
-  	</c:if>
-        
-    
-    <script src="${pageContext.request.contextPath}/js/altaCliente.js"></script>
+    <c:if test="${not empty mensaje}">
+		<p role="status">
+			<c:out value="${mensaje}" />
+		</p>
+	</c:if>
 
 </body>
 </html>

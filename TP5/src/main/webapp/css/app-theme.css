@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 :root {
   
   --brand-primary: #3B82F6;          
@@ -232,13 +238,16 @@ body {
 }
 
 .app-input-icon {
-  position: absolute;
-  left: 1.05rem;
-  color: var(--text-muted);
-  font-size: 1.15rem;
-  pointer-events: none;
-  transition: var(--transition-fast);
-  z-index: 2;
+	position: absolute;
+	left: 1.05rem;
+	top: 50%;
+	transform: translateY(-50%);
+
+	color: var(--text-muted);
+	font-size: 1.15rem;
+	pointer-events: none;
+	transition: var(--transition-fast);
+	z-index: 2;
 }
 
 .app-input {
@@ -271,7 +280,63 @@ body {
 
 .app-input-wrapper:focus-within .app-input-icon {
   color: var(--brand-accent);
-  transform: scale(1.08);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.password-wrapper {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 3.25rem;
+	align-items: stretch;
+
+	background: var(--bg-input);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-md);
+
+	transition: var(--transition-smooth);
+}
+
+.password-wrapper:focus-within {
+	border-color: var(--border-focus);
+	box-shadow: var(--shadow-input-focus);
+}
+
+.password-wrapper .password-input {
+	width: 100%;
+	min-width: 0;
+
+	background: transparent;
+	border: none;
+	border-radius: var(--radius-md) 0 0 var(--radius-md);
+
+	padding: 0.82rem 0.5rem 0.82rem 2.85rem;
+
+	box-shadow: none;
+}
+
+.password-wrapper .password-input:focus {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+.password-wrapper .app-password-toggle {
+	position: static;
+
+	width: 3.25rem;
+	height: 100%;
+
+	background: transparent;
+	border: none;
+	color: var(--text-muted);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	cursor: pointer;
+	border-radius: 0 var(--radius-md) var(--radius-md) 0;
+
+	transition: var(--transition-fast);
 }
 
 .app-password-toggle {
@@ -414,17 +479,6 @@ body {
   background: rgba(59, 130, 246, 0.1);
   padding: 0.15rem 0.45rem;
   border-radius: var(--radius-sm);
-}
-
-.login-viewport {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  background-color: var(--bg-canvas);
 }
 
 .ambient-mesh {
