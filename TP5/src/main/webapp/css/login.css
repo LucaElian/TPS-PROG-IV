@@ -1,0 +1,212 @@
+.password-wrapper {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 3.25rem;
+	align-items: stretch;
+
+	background: var(--bg-input);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-md);
+
+	transition: var(--transition-smooth);
+}
+
+.password-wrapper:focus-within {
+	border-color: var(--border-focus);
+	box-shadow: var(--shadow-input-focus);
+}
+
+.password-wrapper .password-input {
+	width: 100%;
+	min-width: 0;
+
+	background: transparent;
+	border: none;
+	border-radius: var(--radius-md) 0 0 var(--radius-md);
+
+	padding: 0.82rem 0.5rem 0.82rem 2.85rem;
+
+	box-shadow: none;
+}
+
+.password-wrapper .password-input:focus {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+.password-wrapper .app-password-toggle {
+	position: static;
+
+	width: 3.25rem;
+	height: 100%;
+
+	background: transparent;
+	border: none;
+	color: var(--text-muted);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	cursor: pointer;
+	border-radius: 0 var(--radius-md) var(--radius-md) 0;
+
+	transition: var(--transition-fast);
+}
+
+.app-password-toggle {
+	position: absolute;
+	right: 0.75rem;
+
+	background: transparent;
+	border: none;
+	color: var(--text-muted);
+
+	padding: 0.45rem;
+
+	font-size: 1.1rem;
+
+	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: var(--radius-sm);
+
+	transition: var(--transition-fast);
+
+	z-index: 3;
+}
+
+.app-password-toggle:hover {
+	color: var(--brand-accent);
+	background: rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+.login-viewport {
+	min-height: 100vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 1.5rem;
+
+	position: relative;
+	overflow: hidden;
+
+	background-color: var(--bg-canvas);
+}
+
+.login-card-single {
+	width: 100%;
+	max-width: 440px;
+
+	margin: auto;
+
+	z-index: 1;
+	position: relative;
+
+	background: var(--bg-surface-glass);
+
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+
+	border: 1px solid var(--border-glass);
+	border-radius: 20px;
+
+	box-shadow:
+		0 25px 50px -12px rgba(0, 0, 0, 0.7),
+		0 0 0 1px rgba(255, 255, 255, 0.08);
+
+	overflow: hidden;
+
+	animation:
+		authCardEnter
+		0.5s
+		cubic-bezier(0.16, 1, 0.3, 1)
+		forwards;
+}
+
+.login-icon-badge {
+	width: 54px;
+	height: 54px;
+
+	margin: 0 auto;
+
+	border-radius: 16px;
+
+	background: var(--brand-gradient);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	color: #FFFFFF;
+
+	font-size: 1.5rem;
+
+	box-shadow:
+		0 8px 24px rgba(37, 99, 235, 0.45);
+}
+
+.login-title {
+	font-size: 1.65rem;
+	font-weight: 700;
+
+	letter-spacing: -0.02em;
+
+	color: var(--text-main);
+
+	margin: 0;
+}
+
+
+/* =========================================================
+   ANIMACIÓN LOGIN
+   ========================================================= */
+
+@keyframes authCardEnter {
+
+	0% {
+		opacity: 0;
+
+		transform:
+			translateY(20px)
+			scale(0.985);
+	}
+
+	100% {
+		opacity: 1;
+
+		transform:
+			translateY(0)
+			scale(1);
+	}
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+	.login-viewport {
+		padding: 1rem 0.85rem;
+	}
+
+	.login-card-single {
+		border-radius: 16px;
+	}
+
+	.login-title {
+		font-size: 1.45rem;
+	}
+}

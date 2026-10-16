@@ -1,0 +1,178 @@
+.alta-viewport {
+	min-height: 100vh;
+	display: flex;
+	position: relative;
+	background: var(--bg-canvas);
+}
+
+.alta-sidebar {
+	width: 220px;
+	min-height: 100vh;
+	padding: 2rem 1rem;
+	position: relative;
+	z-index: 1;
+	background: rgba(17, 24, 39, 0.92);
+	border-right: 1px solid var(--border-subtle);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+}
+
+.alta-menu-title {
+	margin: 0 0 1.25rem;
+	padding: 0 0.75rem;
+	font-size: 1rem;
+	font-weight: 700;
+	color: var(--text-main);
+}
+
+.alta-menu {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.alta-menu-link {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	padding: 0.8rem 0.9rem;
+	border-radius: var(--radius-sm);
+	color: var(--text-muted);
+	font-size: 0.88rem;
+	font-weight: 600;
+	text-decoration: none;
+	transition: var(--transition-fast);
+}
+
+.alta-menu-link:hover {
+	background: rgba(255, 255, 255, 0.05);
+	color: var(--text-main);
+}
+
+.alta-menu-link.active {
+	background: var(--brand-primary-subtle);
+	border: 1px solid rgba(59, 130, 246, 0.3);
+	color: #93C5FD;
+}
+
+.alta-content {
+	width: calc(100% - 220px);
+	max-width: 1150px;
+	padding: 2.5rem 2rem 3rem;
+	position: relative;
+	z-index: 1;
+}
+
+.alta-heading h1 {
+	margin: 0 0 0.75rem;
+	font-size: 1.8rem;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	color: var(--text-main);
+}
+
+.alta-user {
+	display: flex;
+	align-items: center;
+	gap: 0.45rem;
+	margin: 0;
+	color: var(--text-muted);
+	font-size: 0.9rem;
+}
+
+.alta-user i {
+	color: var(--brand-accent);
+	font-size: 1rem;
+}
+
+.alta-user strong {
+	color: var(--text-main);
+}
+
+.alta-form-card {
+	width: 100%;
+}
+
+.alta-help {
+	display: block;
+	margin-top: 0.4rem;
+	font-size: 0.72rem;
+	color: var(--text-subtle);
+}
+
+.alta-select {
+	cursor: pointer;
+}
+
+.alta-select option {
+	background: var(--bg-surface);
+	color: var(--text-main);
+}
+
+.alta-date {
+	color-scheme: dark;
+}
+
+.alta-actions {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.alta-actions button {
+	font-family: var(--font-main);
+}
+
+@media (max-width: 768px) {
+
+	.alta-viewport {
+		display: block;
+	}
+
+	.alta-sidebar {
+		width: 100%;
+		min-height: auto;
+		padding: 1rem;
+		border-right: none;
+		border-bottom: 1px solid var(--border-subtle);
+	}
+
+	.alta-menu-title {
+		margin-bottom: 0.75rem;
+	}
+
+	.alta-menu {
+		flex-direction: row;
+	}
+
+	.alta-menu-link {
+		flex: 1;
+		justify-content: center;
+	}
+
+	.alta-content {
+		width: 100%;
+		padding: 1.5rem 1rem 2rem;
+	}
+}
+
+@media (max-width: 576px) {
+
+	.alta-menu {
+		flex-direction: column;
+	}
+
+	.alta-heading h1 {
+		font-size: 1.5rem;
+	}
+
+	.alta-actions {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.alta-actions .app-btn-primary,
+	.alta-actions .app-btn-secondary {
+		width: 100%;
+	}
+}
