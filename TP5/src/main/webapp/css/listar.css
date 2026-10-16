@@ -1,0 +1,84 @@
+
+.app-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.app-badge-primary {
+  background: var(--brand-primary-subtle);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93C5FD;
+}
+
+.app-badge-accent {
+  background: var(--brand-accent-subtle);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #67E8F9;
+}
+
+.app-badge-success {
+  background: var(--status-success-bg);
+  border: 1px solid var(--status-success-border);
+  color: #6EE7B7;
+}
+
+.app-badge-neutral {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.app-table-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.app-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--text-main);
+  font-size: 0.92rem;
+}
+
+.app-table thead th {
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.app-table tbody td {
+  padding: 0.95rem 1.1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  vertical-align: middle;
+  transition: background 0.15s ease;
+}
+
+.app-table tbody tr:hover td {
+  background: rgba(59, 130, 246, 0.06);
+}
+
+.app-code {
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  color: #93C5FD;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+}
