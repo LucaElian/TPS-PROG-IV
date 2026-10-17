@@ -11,17 +11,23 @@
 	padding: 2rem 1rem;
 	position: relative;
 	z-index: 1;
-	background: rgba(17, 24, 39, 0.92);
+
+	background: rgba(247, 249, 252, 0.92);
 	border-right: 1px solid var(--border-subtle);
+
 	backdrop-filter: blur(16px);
 	-webkit-backdrop-filter: blur(16px);
+
+	box-shadow: 4px 0 18px rgba(15, 23, 42, 0.04);
 }
 
 .alta-menu-title {
 	margin: 0 0 1.25rem;
 	padding: 0 0.75rem;
+
 	font-size: 1rem;
 	font-weight: 700;
+
 	color: var(--text-main);
 }
 
@@ -35,39 +41,53 @@
 	display: flex;
 	align-items: center;
 	gap: 0.65rem;
+
 	padding: 0.8rem 0.9rem;
+
+	border: 1px solid transparent;
 	border-radius: var(--radius-sm);
+
 	color: var(--text-muted);
+
 	font-size: 0.88rem;
 	font-weight: 600;
+
 	text-decoration: none;
+
 	transition: var(--transition-fast);
 }
 
 .alta-menu-link:hover {
-	background: rgba(255, 255, 255, 0.05);
+	background: rgba(30, 41, 59, 0.045);
 	color: var(--text-main);
 }
 
 .alta-menu-link.active {
 	background: var(--brand-primary-subtle);
-	border: 1px solid rgba(59, 130, 246, 0.3);
-	color: #93C5FD;
+
+	border-color: rgba(var(--brand-primary-rgb), 0.22);
+
+	color: var(--brand-primary-active);
 }
 
 .alta-content {
 	width: calc(100% - 220px);
 	max-width: 1150px;
+
 	padding: 2.5rem 2rem 3rem;
+
 	position: relative;
 	z-index: 1;
 }
 
 .alta-heading h1 {
 	margin: 0 0 0.75rem;
+
 	font-size: 1.8rem;
 	font-weight: 700;
+
 	letter-spacing: -0.025em;
+
 	color: var(--text-main);
 }
 
@@ -75,13 +95,16 @@
 	display: flex;
 	align-items: center;
 	gap: 0.45rem;
+
 	margin: 0;
+
 	color: var(--text-muted);
+
 	font-size: 0.9rem;
 }
 
 .alta-user i {
-	color: var(--brand-accent);
+	color: var(--brand-primary);
 	font-size: 1rem;
 }
 
@@ -95,8 +118,11 @@
 
 .alta-help {
 	display: block;
+
 	margin-top: 0.4rem;
+
 	font-size: 0.72rem;
+
 	color: var(--text-subtle);
 }
 
@@ -105,12 +131,12 @@
 }
 
 .alta-select option {
-	background: var(--bg-surface);
+	background: var(--bg-surface-elevated);
 	color: var(--text-main);
 }
 
 .alta-date {
-	color-scheme: dark;
+	color-scheme: light;
 }
 
 .alta-actions {
@@ -123,6 +149,11 @@
 	font-family: var(--font-main);
 }
 
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
 @media (max-width: 768px) {
 
 	.alta-viewport {
@@ -132,9 +163,13 @@
 	.alta-sidebar {
 		width: 100%;
 		min-height: auto;
+
 		padding: 1rem;
+
 		border-right: none;
 		border-bottom: 1px solid var(--border-subtle);
+
+		box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
 	}
 
 	.alta-menu-title {
@@ -152,6 +187,7 @@
 
 	.alta-content {
 		width: 100%;
+
 		padding: 1.5rem 1rem 2rem;
 	}
 }

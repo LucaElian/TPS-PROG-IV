@@ -89,13 +89,6 @@ public class ServletCliente extends HttpServlet {
 				
 				List<String> errores = validarCliente(cliente);
 				
-				if (errores.isEmpty()) {
-					
-					if (daoC.existeDni(dni)) 		errores.add("Ya existe un cliente con ese DNI");
-					if (daoC.existeCuil(cuil))		errores.add("Ya existe un cliente con ese CUIL");
-					if (daoC.existeCorreo(correo))	errores.add("Ya existe un cliente con ese correo electrónico");
-				}
-				
 				if (!errores.isEmpty()) {
 					
 					request.setAttribute("errores", errores);
@@ -126,7 +119,11 @@ public class ServletCliente extends HttpServlet {
 		String letras = "\\p{L}+(?: +\\p{L}+)*";
 		
 		validarCampo(errores, "DNI", c.getDni(), 8, "[0-9]{6,8}");
+		if (daoC.existeDni(c.getDni())) 		errores.add("DNI: Ya existe un cliente con este DNI");
+		
 		validarCampo(errores, "CUIL", c.getCuil(), 11, "[0-9]{11}");
+		if (daoC.existeCuil(c.getCuil()))		errores.add("CUIL: Ya existe un cliente con este CUIL");
+		
 		validarCampo(errores, "Nombre", c.getNombre(), 100, letras);
 		validarCampo(errores, "Apellido", c.getApellido(), 100, letras);
 		validarCampo(errores, "Sexo", c.getSexo(), 10, "M|F|Otro");
@@ -135,7 +132,10 @@ public class ServletCliente extends HttpServlet {
 		validarCampo(errores, "Nacionalidad", c.getNacionalidad(), 50, letras);
 		validarCampo(errores, "Localidad", c.getLocalidad(), 50, letras);
 		validarCampo(errores, "Provincia", c.getProvincia(), 50, letras);
+		
 		validarCampo(errores, "Correo electrónico", c.getCorreo(), 100, "[^\\s@]+@[^\\s@]+\\.[^\\s@]+");
+		if (daoC.existeCorreo(c.getCorreo()))	errores.add("Correo electrónico: Ya existe un cliente con este correo electrónico");
+		
 		validarCampo(errores, "Teléfono", c.getTelefono(), 10, "[0-9]{10}");
 		
 		

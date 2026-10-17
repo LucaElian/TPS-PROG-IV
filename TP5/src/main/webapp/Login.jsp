@@ -89,7 +89,7 @@
 					<c:if test="${not empty mensaje}">
 	                    <div class="app-alert app-alert-danger" role="alert">
 	                        <i class="bi bi-exclamation-triangle-fill alert-icon"></i>
-                           	<span>${mensaje}</span>
+                           	<span><strong>${mensaje}</strong></span>
 	                    </div>
                 	</c:if>
 
