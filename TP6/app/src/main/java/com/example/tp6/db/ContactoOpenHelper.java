@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
+import com.example.tp6.clases.Contacto;
 
 public class ContactoOpenHelper extends SQLiteOpenHelper {
 
@@ -17,8 +18,8 @@ public class ContactoOpenHelper extends SQLiteOpenHelper {
     public static final String COL_APELLIDO = "apellido";
     public static final String COL_TELEFONO = "telefono";
     public static final String COL_TIPO_TELEFONO = "tipo_telefono";
-    public static final String COL_EMAIL = "email";
-    public static final String COL_TIPO_EMAIL = "tipo_email";
+    public static final String COL_MAIL = "mail";
+    public static final String COL_TIPO_MAIL = "tipo_mail";
     public static final String COL_DIRECCION = "direccion";
     public static final String COL_FECHA_NACIMIENTO = "fecha_nacimiento";
     public static final String COL_NIVEL_ESTUDIOS = "nivel_estudios";
@@ -36,8 +37,8 @@ public class ContactoOpenHelper extends SQLiteOpenHelper {
             COL_APELLIDO + " TEXT NOT NULL, " +
             COL_TELEFONO + " TEXT, " +
             COL_TIPO_TELEFONO + " TEXT, " +
-            COL_EMAIL + " TEXT, " +
-            COL_TIPO_EMAIL + " TEXT, " +
+            COL_MAIL + " TEXT, " +
+            COL_TIPO_MAIL + " TEXT, " +
             COL_DIRECCION + " TEXT, " +
             COL_FECHA_NACIMIENTO + " TEXT, " +
             COL_NIVEL_ESTUDIOS + " TEXT, " +
@@ -68,22 +69,21 @@ public class ContactoOpenHelper extends SQLiteOpenHelper {
     public long insertarContacto(Contacto contacto) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COL_NOMBRE, contacto.nombre);
         values.put(COL_NOMBRE, contacto.getNombre());
         values.put(COL_APELLIDO, contacto.getApellido());
         values.put(COL_TELEFONO, contacto.getTelefono());
         values.put(COL_TIPO_TELEFONO, contacto.getTipoTelefono());
-        values.put(COL_EMAIL, contacto.getEmail());
-        values.put(COL_TIPO_EMAIL, contacto.getTipoEmail());
+        values.put(COL_MAIL, contacto.getMail());
+        values.put(COL_TIPO_MAIL, contacto.getTipoMail());
         values.put(COL_DIRECCION, contacto.getDireccion());
         values.put(COL_FECHA_NACIMIENTO, contacto.getFechaNacimiento());
         values.put(COL_NIVEL_ESTUDIOS, contacto.getNivelEstudios());
 
-        values.put(COL_INTERES_DEPORTE, contacto.getInteresDeporte() ? 1 : 0);
-        values.put(COL_INTERES_MUSICA, contacto.getInteresMusica() ? 1 : 0);
-        values.put(COL_INTERES_ARTE, contacto.getInteresArte() ? 1 : 0);
-        values.put(COL_INTERES_TECNOLOGIA, contacto.getInteresTecnologia() ? 1 : 0);
-        values.put(COL_RECIBIR_INFORMACION, contacto.getRecibirInformacion() ? 1 : 0);
+        values.put(COL_INTERES_DEPORTE, contacto.isDeporte() ? 1 : 0);
+        values.put(COL_INTERES_MUSICA, contacto.isMusica() ? 1 : 0);
+        values.put(COL_INTERES_ARTE, contacto.isArte() ? 1 : 0);
+        values.put(COL_INTERES_TECNOLOGIA, contacto.isTecnologia() ? 1 : 0);
+        values.put(COL_RECIBIR_INFORMACION, contacto.isRecibirInfo() ? 1 : 0);
         long id = db.insert(TABLA_CONTACTOS, null, values);
         db.close();
         return id;
