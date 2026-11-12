@@ -1,4 +1,6 @@
-package com.example.tp6.clases;
+package com.example.tp6.entidad;
+
+import androidx.annotation.NonNull;
 
 public class Contacto {
 
@@ -6,9 +8,9 @@ public class Contacto {
     private String nombre;
     private String apellido;
     private String telefono;
-    private String tipoTelefono;
+    private TipoContacto tipoTelefono;
     private String mail;
-    private String tipoMail;
+    private TipoContacto tipoMail;
     private String direccion;
     private String fechaNacimiento;
     private String nivelEstudios;
@@ -18,11 +20,13 @@ public class Contacto {
     private boolean tecnologia;
     private boolean recibirInfo;
 
-    public Contacto() {
-    }
+    public Contacto() { }
 
-    public Contacto(int id, String nombre, String apellido, String telefono, String tipoTelefono, String mail, String tipoMail, String direccion, String fechaNacimiento, String nivelEstudios, boolean deporte, boolean musica, boolean arte, boolean tecnologia, boolean recibirInfo) {
-        this.id = id;
+    public Contacto(String nombre, String apellido, String telefono, TipoContacto tipoTelefono,
+                    String mail, TipoContacto tipoMail, String direccion, String fechaNacimiento,
+                    String nivelEstudios, boolean deporte, boolean musica, boolean arte,
+                    boolean tecnologia, boolean recibirInfo) {
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -71,11 +75,11 @@ public class Contacto {
         this.telefono = telefono;
     }
 
-    public String getTipoTelefono() {
+    public TipoContacto getTipoTelefono() {
         return tipoTelefono;
     }
 
-    public void setTipoTelefono(String tipoTelefono) {
+    public void setTipoTelefono(TipoContacto tipoTelefono) {
         this.tipoTelefono = tipoTelefono;
     }
 
@@ -87,11 +91,11 @@ public class Contacto {
         this.mail = mail;
     }
 
-    public String getTipoMail() {
+    public TipoContacto getTipoMail() {
         return tipoMail;
     }
 
-    public void setTipoMail(String tipoMail) {
+    public void setTipoMail(TipoContacto tipoMail) {
         this.tipoMail = tipoMail;
     }
 
@@ -159,24 +163,9 @@ public class Contacto {
         this.recibirInfo = recibirInfo;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "Contacto{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", tipoTelefono='" + tipoTelefono + '\'' +
-                ", mail='" + mail + '\'' +
-                ", tipoMail='" + tipoMail + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", fechaNacimiento='" + fechaNacimiento + '\'' +
-                ", nivelEstudios='" + nivelEstudios + '\'' +
-                ", deporte=" + deporte +
-                ", musica=" + musica +
-                ", arte=" + arte +
-                ", tecnologia=" + tecnologia +
-                ", recibirInfo=" + recibirInfo +
-                '}';
+        return nombre + " " + apellido + " - " + mail;
     }
 }

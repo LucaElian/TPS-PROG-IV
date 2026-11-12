@@ -1,14 +1,14 @@
-package com.example.tp6.db;
+package com.example.tp6.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
-import com.example.tp6.clases.Contacto;
+import com.example.tp6.entidad.Contacto;
 
 public class ContactoOpenHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "TP6.db";
+    private static final String DATABASE_NAME = "contacto.db";
     private static final int DATABASE_VERSION = 1;
 
     public static final String TABLA_CONTACTOS = "contactos";
@@ -31,24 +31,27 @@ public class ContactoOpenHelper extends SQLiteOpenHelper {
 
     public static final String COL_RECIBIR_INFORMACION = "recibir_informacion";
 
-    public static final String CREAR_TABLA_CONTACTOS = "CREATE TABLE " + TABLA_CONTACTOS + " (" +
-            COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            COL_NOMBRE + " TEXT NOT NULL, " +
-            COL_APELLIDO + " TEXT NOT NULL, " +
-            COL_TELEFONO + " TEXT, " +
-            COL_TIPO_TELEFONO + " TEXT, " +
-            COL_MAIL + " TEXT, " +
-            COL_TIPO_MAIL + " TEXT, " +
-            COL_DIRECCION + " TEXT, " +
-            COL_FECHA_NACIMIENTO + " TEXT, " +
-            COL_NIVEL_ESTUDIOS + " TEXT, " +
-            COL_INTERES_DEPORTE + " INTEGER DEFAULT 0, " +
-            COL_INTERES_MUSICA + " INTEGER DEFAULT 0, " +
-            COL_INTERES_ARTE + " INTEGER DEFAULT 0, " +
-            COL_INTERES_TECNOLOGIA + " INTEGER DEFAULT 0, " +
-            COL_RECIBIR_INFORMACION + " INTEGER DEFAULT 1);";
+    public static final String CREAR_TABLA_CONTACTOS =
+            "CREATE TABLE IF NOT EXISTS " + TABLA_CONTACTOS + " (" +
+                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_NOMBRE + " TEXT NOT NULL, " +
+                COL_APELLIDO + " TEXT NOT NULL, " +
+                COL_TELEFONO + " TEXT NOT NULL, " +
+                COL_TIPO_TELEFONO + " TEXT NOT NULL, " +
+                COL_MAIL + " TEXT NOT NULL, " +
+                COL_TIPO_MAIL + " TEXT NOT NULL, " +
+                COL_DIRECCION + " TEXT NOT NULL, " +
+                COL_FECHA_NACIMIENTO + " TEXT NOT NULL, " +
+                COL_NIVEL_ESTUDIOS + " TEXT NOT NULL, " +
+                COL_INTERES_DEPORTE + " INTEGER NOT NULL DEFAULT 0, " +
+                COL_INTERES_MUSICA + " INTEGER NOT NULL DEFAULT 0, " +
+                COL_INTERES_ARTE + " INTEGER NOT NULL DEFAULT 0, " +
+                COL_INTERES_TECNOLOGIA + " INTEGER NOT NULL DEFAULT 0, " +
+                COL_RECIBIR_INFORMACION + " INTEGER NOT NULL DEFAULT 1" +
+            ");";
 
-    public static final String ELIMINAR_TABLA_CONTACTOS = "DROP TABLE IF EXISTS " + TABLA_CONTACTOS + ";";
+    public static final String ELIMINAR_TABLA_CONTACTOS =
+            "DROP TABLE IF EXISTS " + TABLA_CONTACTOS + ";";
 
     public ContactoOpenHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -65,16 +68,16 @@ public class ContactoOpenHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
     public long insertarContacto(Contacto contacto) {
-        SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues values = new ContentValues();
+
         values.put(COL_NOMBRE, contacto.getNombre());
         values.put(COL_APELLIDO, contacto.getApellido());
         values.put(COL_TELEFONO, contacto.getTelefono());
-        values.put(COL_TIPO_TELEFONO, contacto.getTipoTelefono());
+        values.put(COL_TIPO_TELEFONO, contacto.getTipoTelefono().name());
         values.put(COL_MAIL, contacto.getMail());
-        values.put(COL_TIPO_MAIL, contacto.getTipoMail());
+        values.put(COL_TIPO_MAIL, contacto.getTipoMail().name());
         values.put(COL_DIRECCION, contacto.getDireccion());
         values.put(COL_FECHA_NACIMIENTO, contacto.getFechaNacimiento());
         values.put(COL_NIVEL_ESTUDIOS, contacto.getNivelEstudios());
@@ -84,9 +87,7 @@ public class ContactoOpenHelper extends SQLiteOpenHelper {
         values.put(COL_INTERES_ARTE, contacto.isArte() ? 1 : 0);
         values.put(COL_INTERES_TECNOLOGIA, contacto.isTecnologia() ? 1 : 0);
         values.put(COL_RECIBIR_INFORMACION, contacto.isRecibirInfo() ? 1 : 0);
-        long id = db.insert(TABLA_CONTACTOS, null, values);
-        db.close();
-        return id;
+
+        return getWritableDatabase().insert(TABLA_CONTACTOS, null, values);
     }
 }
-
