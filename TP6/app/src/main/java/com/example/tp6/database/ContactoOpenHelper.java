@@ -5,6 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 import com.example.tp6.entidad.Contacto;
+import com.example.tp6.entidad.TipoContacto;
+
+import android.database.Cursor;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactoOpenHelper extends SQLiteOpenHelper {
 
@@ -90,4 +95,76 @@ public class ContactoOpenHelper extends SQLiteOpenHelper {
 
         return getWritableDatabase().insert(TABLA_CONTACTOS, null, values);
     }
+
+    public List<Contacto> getListadoContactos()
+    {
+        List<Contacto> listaContactos = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(
+                TABLA_CONTACTOS,
+                new String[]{
+                        COL_ID,
+                        COL_NOMBRE,
+                        COL_APELLIDO,
+                        COL_TELEFONO,
+                        COL_TIPO_TELEFONO,
+                        COL_MAIL,
+                        COL_TIPO_MAIL,
+                        COL_DIRECCION,
+                        COL_FECHA_NACIMIENTO,
+                        COL_NIVEL_ESTUDIOS,
+                        COL_INTERES_DEPORTE,
+                        COL_INTERES_MUSICA,
+                        COL_INTERES_ARTE,
+                        COL_INTERES_TECNOLOGIA,
+                        COL_RECIBIR_INFORMACION
+                },
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                Contacto contacto = new Contacto();
+
+                contacto.setId(cursor.getInt(0));
+                contacto.setNombre(cursor.getString(1));
+                contacto.setApellido(cursor.getString(2));
+                contacto.setTelefono(cursor.getString(3));
+
+                contacto.setTipoTelefono(
+                        TipoContacto.valueOf(cursor.getString(4))
+                );
+
+                contacto.setMail(cursor.getString(5));
+
+                contacto.setTipoMail(
+                        TipoContacto.valueOf(cursor.getString(6))
+                );
+
+                contacto.setDireccion(cursor.getString(7));
+                contacto.setFechaNacimiento(cursor.getString(8));
+                contacto.setNivelEstudios(cursor.getString(9));
+                contacto.setDeporte(cursor.getInt(10) == 1);
+                contacto.setMusica(cursor.getInt(11) == 1);
+                contacto.setArte(cursor.getInt(12) == 1);
+                contacto.setTecnologia(cursor.getInt(13) == 1);
+                contacto.setRecibirInfo(cursor.getInt(14) == 1);
+
+                listaContactos.add(contacto);
+
+            } while (cursor.moveToNext());
+
+        }
+
+        cursor.close();
+        return listaContactos;
+    }
+
+
 }
