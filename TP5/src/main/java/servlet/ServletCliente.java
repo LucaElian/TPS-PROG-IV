@@ -97,9 +97,7 @@ public class ServletCliente extends HttpServlet {
 					return;
 				}
 				
-				int filas = daoC.altaCliente(cliente);
-				
-				if (filas > 0) {
+				if (daoC.altaCliente(cliente) > 0) {
 					
 					request.removeAttribute("clienteIng");
 					request.setAttribute("mensaje", "Cliente agregado correctamente");
