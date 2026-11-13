@@ -1,7 +1,37 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.TP6" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-    </style>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="Base.Theme.TP6" parent="Theme.Material3.DayNight">
+    <item name="colorPrimary">@color/app_primary</item>
+    <item name="colorOnPrimary">@color/app_on_primary</item>
+    <item name="colorPrimaryContainer">@color/app_primary_container</item>
+    <item name="colorOnPrimaryContainer">@color/app_on_primary_container</item>
+    <item name="colorSecondary">@color/app_primary</item>
+    <item name="colorOnSecondary">@color/app_on_primary</item>
+    <item name="colorSecondaryContainer">@color/app_primary_container</item>
+    <item name="colorOnSecondaryContainer">@color/app_on_primary_container</item>
+    <item name="android:colorBackground">@color/app_background</item>
+    <item name="colorOnBackground">@color/app_text</item>
+    <item name="colorSurface">@color/app_surface</item>
+    <item name="colorOnSurface">@color/app_text</item>
+    <item name="colorOnSurfaceVariant">@color/app_text_secondary</item>
+    <item name="colorOutline">@color/app_outline</item>
+    <item name="android:windowBackground">@color/app_background</item>
+    <item name="android:textColorPrimary">@color/app_text</item>
+    <item name="android:textColorSecondary">@color/app_text_secondary</item>
+    <item name="android:statusBarColor">@color/app_bar_background</item>
+    <item name="android:navigationBarColor">@color/app_background</item>
+    <item name="colorControlNormal">@color/app_text_secondary</item>
+    <item name="colorControlActivated">@color/app_primary</item>
+    <item name="colorControlHighlight">@color/app_highlight</item>
+    <item name="actionBarStyle">@style/Widget.TP6.ActionBar</item>
+    <item name="actionBarTheme">@style/ThemeOverlay.TP6.Navigation</item>
+    <item name="actionBarPopupTheme">@style/ThemeOverlay.TP6.Popup</item>
+    <item name="popupMenuStyle">@style/Widget.TP6.PopupMenu</item>
+    <item name="android:windowLightStatusBar">false</item>
+    <item name="android:windowLightNavigationBar">false</item>
+    <item name="android:actionBarStyle">@style/Widget.TP6.FrameworkActionBar</item>
+    <item name="android:actionBarTheme">@style/ThemeOverlay.TP6.Navigation</item>
+    <item name="android:colorPrimary">@color/app_bar_background</item>
+    <item name="android:colorPrimaryDark">@color/app_bar_background</item>
+  </style>
 </resources>

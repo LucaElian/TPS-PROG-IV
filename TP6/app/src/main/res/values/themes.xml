@@ -1,9 +1,78 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.TP6" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
-
-    <style name="Theme.TP6" parent="Base.Theme.TP6" />
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="Base.Theme.TP6" parent="Theme.Material3.DayNight">
+    <item name="colorPrimary">@color/app_primary</item>
+    <item name="colorOnPrimary">@color/app_on_primary</item>
+    <item name="colorPrimaryContainer">@color/app_primary_container</item>
+    <item name="colorOnPrimaryContainer">@color/app_on_primary_container</item>
+    <item name="colorSecondary">@color/app_primary</item>
+    <item name="colorOnSecondary">@color/app_on_primary</item>
+    <item name="colorSecondaryContainer">@color/app_primary_container</item>
+    <item name="colorOnSecondaryContainer">@color/app_on_primary_container</item>
+    <item name="android:colorBackground">@color/app_background</item>
+    <item name="colorOnBackground">@color/app_text</item>
+    <item name="colorSurface">@color/app_surface</item>
+    <item name="colorOnSurface">@color/app_text</item>
+    <item name="colorOnSurfaceVariant">@color/app_text_secondary</item>
+    <item name="colorOutline">@color/app_outline</item>
+    <item name="android:windowBackground">@color/app_background</item>
+    <item name="android:textColorPrimary">@color/app_text</item>
+    <item name="android:textColorSecondary">@color/app_text_secondary</item>
+    <item name="android:statusBarColor">@color/app_bar_background</item>
+    <item name="android:navigationBarColor">@color/app_background</item>
+    <item name="colorControlNormal">@color/app_text_secondary</item>
+    <item name="colorControlActivated">@color/app_primary</item>
+    <item name="colorControlHighlight">@color/app_highlight</item>
+    <item name="actionBarStyle">@style/Widget.TP6.ActionBar</item>
+    <item name="actionBarTheme">@style/ThemeOverlay.TP6.Navigation</item>
+    <item name="actionBarPopupTheme">@style/ThemeOverlay.TP6.Popup</item>
+    <item name="popupMenuStyle">@style/Widget.TP6.PopupMenu</item>
+    <item name="android:windowLightStatusBar">false</item>
+    <item name="android:windowLightNavigationBar">true</item>
+    <item name="android:actionBarStyle">@style/Widget.TP6.FrameworkActionBar</item>
+    <item name="android:actionBarTheme">@style/ThemeOverlay.TP6.Navigation</item>
+    <item name="android:colorPrimary">@color/app_bar_background</item>
+    <item name="android:colorPrimaryDark">@color/app_bar_background</item>
+  </style>
+  <style name="Theme.TP6" parent="Base.Theme.TP6" />
+  <style name="Widget.TP6.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
+    <item name="background">@color/app_bar_background</item>
+    <item name="elevation">0dp</item>
+    <item name="titleTextStyle">@style/TextAppearance.TP6.Title</item>
+    <item name="popupTheme">@style/ThemeOverlay.TP6.Popup</item>
+  </style>
+  <style name="TextAppearance.TP6.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <item name="android:textColor">@color/app_bar_text</item>
+    <item name="android:fontFamily">sans-serif-medium</item>
+    <item name="android:textSize">20sp</item>
+  </style>
+  <style name="ThemeOverlay.TP6.Navigation" parent="ThemeOverlay.AppCompat">
+    <item name="android:textColorPrimary">@color/app_bar_text</item>
+    <item name="android:textColorSecondary">@color/app_bar_text</item>
+    <item name="colorControlNormal">@color/app_bar_text</item>
+    <item name="colorControlHighlight">@color/app_highlight</item>
+    <item name="popupMenuStyle">@style/Widget.TP6.PopupMenu</item>
+    <item name="android:colorControlNormal">@color/app_bar_text</item>
+    <item name="android:actionMenuTextColor">@color/app_bar_text</item>
+  </style>
+  <style name="Widget.TP6.PopupMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+    <item name="android:popupBackground">@color/app_surface</item>
+  </style>
+  <style name="ThemeOverlay.TP6.Popup" parent="ThemeOverlay.AppCompat">
+    <item name="android:listSelector">@drawable/menu_item_highlight</item>
+    <item name="android:colorControlHighlight">#33C6FF00</item>
+    <item name="android:textColorPrimary">@color/app_text</item>
+    <item name="android:textColorSecondary">@color/app_text_secondary</item>
+    <item name="colorControlNormal">@color/app_text</item>
+    <item name="colorControlHighlight">@color/app_highlight</item>
+    <item name="android:colorBackground">@color/app_surface</item>
+    <item name="popupMenuStyle">@style/Widget.TP6.PopupMenu</item>
+  </style>
+  <style name="Widget.TP6.FrameworkActionBar" parent="android:style/Widget.Material.ActionBar.Solid">
+    <item name="android:background">@color/app_bar_background</item>
+    <item name="android:titleTextStyle">@style/TextAppearance.TP6.Title</item>
+    <item name="android:subtitleTextStyle">@style/TextAppearance.TP6.Title</item>
+    <item name="android:elevation">0dp</item>
+    <item name="android:popupTheme">@style/ThemeOverlay.TP6.Popup</item>
+  </style>
 </resources>

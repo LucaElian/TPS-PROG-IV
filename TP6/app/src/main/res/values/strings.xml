@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TP6</string>
+  <string name="app_name">EjercicioControles - Grupo 4</string>
+  <string name="titulo_contactos">EjercicioControles - Grupo 4</string>
+  <string name="menu_agregar_contacto">Agregar contactos</string>
+  <string name="menu_listado_contactos">Listado de contactos</string>
 </resources>
