@@ -70,11 +70,11 @@
                     <i class="bi bi-exclamation-triangle-fill alert-icon"></i>
 
                     <div>
-                        <p class="mb-2">No se pudo guardar el cliente. Revise los siguientes datos:</p>
+                        <p class="mb-2"><strong>No se pudo guardar el cliente. Revise los siguientes datos:</strong></p>
 
                         <ul class="mb-0">
                             <c:forEach var="error" items="${errores}">
-                                <li><c:out value="${error}" /></li>
+                            	<li><strong> <c:out value="${error}" /></strong></li>
                             </c:forEach>
                         </ul>
                     </div>
@@ -84,7 +84,7 @@
             <c:if test="${not empty mensaje}">
                 <div class="app-alert app-alert-success mt-4" role="status">
                     <i class="bi bi-check-circle-fill"></i>
-                    <span><c:out value="${mensaje}" /></span>
+                    <span><strong><c:out value="${mensaje}" /></strong></span>
                 </div>
             </c:if>
             

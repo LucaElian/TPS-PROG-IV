@@ -46,3 +46,18 @@ Thumbs.db
 # Archivos comprimidos
 *.zip
 *.rar
+
+# Android
+local.properties
+.kotlin/
+.cxx/
+.externalNativeBuild/
+captures/
+
+# Builds instalables
+*.apk
+*.aab
+
+# Claves de firma
+*.jks
+*.keystore

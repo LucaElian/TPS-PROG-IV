@@ -1,3 +1,7 @@
+/* =========================================================
+   CONTRASEÑA
+   ========================================================= */
+
 .password-wrapper {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) 3.25rem;
@@ -11,6 +15,7 @@
 }
 
 .password-wrapper:focus-within {
+	background: #FFFFFF;
 	border-color: var(--border-focus);
 	box-shadow: var(--shadow-input-focus);
 }
@@ -49,17 +54,24 @@
 	justify-content: center;
 
 	cursor: pointer;
-	border-radius: 0 var(--radius-md) var(--radius-md) 0;
+
+	border-radius:
+		0
+		var(--radius-md)
+		var(--radius-md)
+		0;
 
 	transition: var(--transition-fast);
 }
 
 .app-password-toggle {
 	position: absolute;
+
 	right: 0.75rem;
 
 	background: transparent;
 	border: none;
+
 	color: var(--text-muted);
 
 	padding: 0.45rem;
@@ -80,8 +92,9 @@
 }
 
 .app-password-toggle:hover {
-	color: var(--brand-accent);
-	background: rgba(255, 255, 255, 0.06);
+	color: var(--brand-primary);
+
+	background: rgba(30, 41, 59, 0.06);
 }
 
 
@@ -101,7 +114,24 @@
 	position: relative;
 	overflow: hidden;
 
-	background-color: var(--bg-canvas);
+	background:
+		radial-gradient(
+			circle at 12% 30%,
+			rgba(91, 120, 166, 0.30) 0%,
+			rgba(91, 120, 166, 0.12) 22%,
+			transparent 42%
+		),
+		radial-gradient(
+			circle at 88% 70%,
+			rgba(109, 155, 181, 0.28) 0%,
+			rgba(109, 155, 181, 0.11) 24%,
+			transparent 44%
+		),
+		var(--bg-canvas);
+}
+
+.login-viewport .technical-grid {
+	display: none;
 }
 
 .login-card-single {
@@ -122,8 +152,8 @@
 	border-radius: 20px;
 
 	box-shadow:
-		0 25px 50px -12px rgba(0, 0, 0, 0.7),
-		0 0 0 1px rgba(255, 255, 255, 0.08);
+		0 20px 45px -12px rgba(15, 23, 42, 0.20),
+		0 0 0 1px rgba(255, 255, 255, 0.55);
 
 	overflow: hidden;
 
@@ -153,7 +183,7 @@
 	font-size: 1.5rem;
 
 	box-shadow:
-		0 8px 24px rgba(37, 99, 235, 0.45);
+		0 7px 20px rgba(75, 102, 143, 0.24);
 }
 
 .login-title {
