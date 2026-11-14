@@ -1,6 +1,7 @@
 package com.example.tp6.activity;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -36,6 +37,25 @@ public class AgregarContactoActivity extends BaseActivity {
         etDireccion = findViewById(R.id.etDireccion);
         etFechaNacimiento = findViewById(R.id.etFechaNacimiento);
         btnContinuar = findViewById(R.id.btnContinuar);
+
+        String[] tiposTelefono = {
+                "Casa",
+                "Trabajo",
+                "Móvil"
+        };
+
+        ArrayAdapter<String> adapterTipoTelefono =
+                new ArrayAdapter<>(
+                        this,
+                        android.R.layout.simple_spinner_item,
+                        tiposTelefono
+                );
+
+        adapterTipoTelefono.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item
+        );
+
+        spTipoTelefono.setAdapter(adapterTipoTelefono);
 
     }
 
