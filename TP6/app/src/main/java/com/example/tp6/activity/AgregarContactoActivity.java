@@ -1,20 +1,32 @@
 package com.example.tp6.activity;
 
 import android.os.Bundle;
-import android.app.DatePickerDialog;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.tp6.R;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.example.tp6.entidad.TipoContacto;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointBackward;
+import com.google.android.material.datepicker.MaterialDatePicker;
+
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class AgregarContactoActivity extends BaseActivity {
+
+    private static final String REGEX_NOMBRE_APELLIDO =
+            "[\\p{L}\\p{M}]+(?:[ '’\\-][\\p{L}\\p{M}]+)*";
+
+    private static final String REGEX_TELEFONO =
+            "[0-9]+(?:-[0-9]+)*";
+
+    private static final String FORMATO_FECHA =
+            "%02d/%02d/%04d";
+
     private EditText etNombre;
     private EditText etApellido;
     private EditText etTelefono;
@@ -44,157 +56,160 @@ public class AgregarContactoActivity extends BaseActivity {
         etFechaNacimiento = findViewById(R.id.etFechaNacimiento);
         btnContinuar = findViewById(R.id.btnContinuar);
 
-        etFechaNacimiento.setOnClickListener(view -> mostrarCalendario());
-        etNombre.setOnFocusChangeListener((view, tieneFoco) -> {
-            if (!tieneFoco) validarNombreApellido(etNombre);
-        });
-        etApellido.setOnFocusChangeListener((view, tieneFoco) -> {
-            if (!tieneFoco) validarNombreApellido(etApellido);
-        });
-        etTelefono.setOnFocusChangeListener((view, tieneFoco) -> {
-            if (!tieneFoco) validarTelefono();
-        });
-        btnContinuar.setOnClickListener(view -> {
-            if (!validarDatosPersonales()) return;
-            // Integrar aqui el paso a Mas datos cuando esa actividad este creada.
-        });
-
-        String[] tiposTelefono = {
-                "Casa",
-                "Trabajo",
-                "Móvil"
-        };
-
-        ArrayAdapter<String> adapterTipoTelefono =
+        ArrayAdapter<TipoContacto> adapterTipoContacto =
                 new ArrayAdapter<>(
                         this,
                         android.R.layout.simple_spinner_item,
-                        tiposTelefono
+                        TipoContacto.values()
                 );
 
-        adapterTipoTelefono.setDropDownViewResource(
+        adapterTipoContacto.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item
         );
 
-        spTipoTelefono.setAdapter(adapterTipoTelefono);
+        spTipoTelefono.setAdapter(adapterTipoContacto);
+        spTipoEmail.setAdapter(adapterTipoContacto);
 
-    }
+        etFechaNacimiento.setOnClickListener(view -> mostrarCalendario());
 
-    private SimpleDateFormat formatoFecha() {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", Locale.ROOT);
-        formato.setLenient(false);
-        return formato;
+        etNombre.setOnFocusChangeListener((view, tieneFoco) -> {
+            if (!tieneFoco) validarCampo(
+                    etNombre,
+                    REGEX_NOMBRE_APELLIDO,
+                    R.string.error_nombre_apellido
+            );
+        });
+
+        etApellido.setOnFocusChangeListener((view, tieneFoco) -> {
+            if (!tieneFoco) validarCampo(
+                    etApellido,
+                    REGEX_NOMBRE_APELLIDO,
+                    R.string.error_nombre_apellido
+            );
+        });
+
+        etTelefono.setOnFocusChangeListener((view, tieneFoco) -> {
+            if (!tieneFoco) validarCampo(
+                    etTelefono,
+                    REGEX_TELEFONO,
+                    R.string.error_telefono
+            );
+        });
+
+        // validaciones q faltan...
+
+
+        btnContinuar.setOnClickListener(view -> {
+            if (!validarDatosPersonales()) return;
+
+            // Integrar aqui el paso a Mas datos cuando esa actividad este creada.
+        });
     }
 
     private void mostrarCalendario() {
-        Calendar seleccion = Calendar.getInstance();
-        String texto = etFechaNacimiento.getText().toString();
-        if (!texto.isEmpty()) {
-            try {
-                Date fecha = formatoFecha().parse(texto);
-                if (fecha != null) seleccion.setTime(fecha);
-            } catch (ParseException ignored) {
-                // Si no hay una fecha valida, abrir el calendario en el dia actual.
-            }
-        }
 
-        DatePickerDialog calendario = new DatePickerDialog(this, R.style.Theme_TP6_Calendario,
-                (view, anio, mes, dia) -> {
-                    Calendar fecha = Calendar.getInstance();
-                    fecha.set(anio, mes, dia);
-                    etFechaNacimiento.setText(formatoFecha().format(fecha.getTime()));
-                    etFechaNacimiento.setError(null);
-                }, seleccion.get(Calendar.YEAR), seleccion.get(Calendar.MONTH),
-                seleccion.get(Calendar.DAY_OF_MONTH));
-        calendario.getDatePicker().setMaxDate(System.currentTimeMillis());
-        calendario.show();
-        colorearEncabezadoCalendario(calendario.getDatePicker(), false);
-        configurarBotonCalendario(calendario.getButton(DatePickerDialog.BUTTON_POSITIVE),
-                R.string.calendario_aceptar);
-        configurarBotonCalendario(calendario.getButton(DatePickerDialog.BUTTON_NEGATIVE),
-                R.string.calendario_cancelar);
+        Calendar fechaMinima = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+
+        fechaMinima.clear();
+        fechaMinima.set(1900, Calendar.JANUARY, 1);
+
+        CalendarConstraints restricciones =
+                new CalendarConstraints.Builder()
+                        .setStart(fechaMinima.getTimeInMillis())
+                        .setEnd(MaterialDatePicker.todayInUtcMilliseconds())
+                        .setValidator(DateValidatorPointBackward.now())
+                        .build();
+
+        MaterialDatePicker<Long> calendario =
+                MaterialDatePicker.Builder.datePicker()
+                        .setTitleText(R.string.fecha_nacimiento)
+                        .setPositiveButtonText(R.string.calendario_aceptar)
+                        .setNegativeButtonText(R.string.calendario_cancelar)
+                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                        .setCalendarConstraints(restricciones)
+                        .setTheme(R.style.ThemeOverlay_TP6_Calendario)
+                        .build();
+
+        calendario.addOnPositiveButtonClickListener(seleccion -> {
+
+            Calendar fecha = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+
+            fecha.setTimeInMillis(seleccion);
+
+            String fechaTexto = String.format(
+                    Locale.ROOT,
+                    FORMATO_FECHA,
+                    fecha.get(Calendar.DAY_OF_MONTH),
+                    fecha.get(Calendar.MONTH) + 1,
+                    fecha.get(Calendar.YEAR)
+            );
+
+            etFechaNacimiento.setText(fechaTexto);
+            etFechaNacimiento.setError(null);
+
+        });
+
+        calendario.show(getSupportFragmentManager(), "FECHA_NACIMIENTO");
     }
 
-    private void colorearEncabezadoCalendario(android.view.View vista,
-                                              boolean dentroDelEncabezado) {
-        boolean esEncabezado = dentroDelEncabezado;
-        if (vista.getId() != android.view.View.NO_ID) {
-            try {
-                String nombre = vista.getResources().getResourceEntryName(vista.getId());
-                esEncabezado |= nombre.startsWith("date_picker_header");
-            } catch (android.content.res.Resources.NotFoundException ignored) {
-                // Las vistas sin un recurso identificable se recorren igualmente.
-            }
-        }
-        if (esEncabezado && vista instanceof android.widget.TextView) {
-            ((android.widget.TextView) vista).setTextColor(
-                    androidx.core.content.ContextCompat.getColor(this, R.color.app_primary));
-        }
-        if (vista instanceof android.view.ViewGroup) {
-            android.view.ViewGroup grupo = (android.view.ViewGroup) vista;
-            for (int i = 0; i < grupo.getChildCount(); i++) {
-                colorearEncabezadoCalendario(grupo.getChildAt(i), esEncabezado);
-            }
-        }
-    }
+    private boolean validarCampo(EditText campo, String expresion, int mensajeError) {
 
-    private void configurarBotonCalendario(Button boton, int texto) {
-        boton.setText(texto);
-        boton.setTextColor(android.graphics.Color.BLACK);
-        boton.setBackgroundTintList(null);
-        boton.setBackgroundResource(R.drawable.calendario_boton);
-        int espacio = Math.round(8 * getResources().getDisplayMetrics().density);
-        boton.setPadding(espacio * 2, espacio, espacio * 2, espacio);
-        if (boton.getLayoutParams() instanceof android.view.ViewGroup.MarginLayoutParams) {
-            android.view.ViewGroup.MarginLayoutParams parametros =
-                    (android.view.ViewGroup.MarginLayoutParams) boton.getLayoutParams();
-            parametros.setMarginStart(espacio);
-            boton.setLayoutParams(parametros);
-        }
-    }
-
-    private boolean validarNombreApellido(EditText campo) {
         String texto = campo.getText().toString().trim();
+
         if (texto.isEmpty()) {
             campo.setError(getString(R.string.error_campo_obligatorio));
             return false;
         }
-        if (!texto.matches("[\\p{L}\\p{M}]+(?:[ '’\\-][\\p{L}\\p{M}]+)*")) {
-            campo.setError(getString(R.string.error_nombre_apellido));
+
+        if (!texto.matches(expresion)) {
+            campo.setError(getString(mensajeError));
             return false;
         }
+
         campo.setError(null);
         return true;
     }
 
-    private boolean validarTelefono() {
-        String texto = etTelefono.getText().toString().trim();
-        if (texto.isEmpty()) {
-            etTelefono.setError(getString(R.string.error_campo_obligatorio));
-            return false;
-        }
-        if (!texto.matches("[0-9]+(?:-[0-9]+)*")) {
-            etTelefono.setError(getString(R.string.error_telefono));
-            return false;
-        }
-        etTelefono.setError(null);
-        return true;
-    }
-
     public boolean validarDatosPersonales() {
-        boolean nombreValido = validarNombreApellido(etNombre);
-        boolean apellidoValido = validarNombreApellido(etApellido);
-        boolean telefonoValido = validarTelefono();
+
+        boolean nombreValido = validarCampo(
+                etNombre,
+                REGEX_NOMBRE_APELLIDO,
+                R.string.error_nombre_apellido
+        );
+
+        boolean apellidoValido = validarCampo(
+                etApellido,
+                REGEX_NOMBRE_APELLIDO,
+                R.string.error_nombre_apellido
+        );
+
+        boolean telefonoValido = validarCampo(
+                etTelefono,
+                REGEX_TELEFONO,
+                R.string.error_telefono
+        );
+
         boolean fechaValida = !etFechaNacimiento.getText().toString().isEmpty();
-        etFechaNacimiento.setError(fechaValida ? null
-                : getString(R.string.error_fecha_obligatoria));
+
+        etFechaNacimiento.setError(
+                fechaValida
+                        ? null
+                        : getString(R.string.error_fecha_obligatoria)
+        );
 
         if (!nombreValido) etNombre.requestFocus();
+
         else if (!apellidoValido) etApellido.requestFocus();
+
         else if (!telefonoValido) etTelefono.requestFocus();
+
         else if (!fechaValida) etFechaNacimiento.getParent().requestChildFocus(
                 etFechaNacimiento, etFechaNacimiento);
 
-        return nombreValido && apellidoValido && telefonoValido && fechaValida;
+        return nombreValido
+                && apellidoValido
+                && telefonoValido
+                && fechaValida;
     }
 }

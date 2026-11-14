@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-  <string name="app_name">EjercicioControles - Grupo 4</string>
-  <string name="titulo_contactos">EjercicioControles - Grupo 4</string>
-  <string name="menu_agregar_contacto">Agregar contactos</string>
-  <string name="menu_listado_contactos">Listado de contactos</string>
-  <string name="error_fecha_obligatoria">Seleccioná la fecha de nacimiento en el calendario.</string>
-  <string name="error_nombre_apellido">Ingresá letras; podés usar espacios, apóstrofes o guiones entre palabras.</string>
-  <string name="error_campo_obligatorio">Completá este campo.</string>
-  <string name="error_telefono">Ingresá solo números y guiones entre grupos de números.</string>
+
+    <string name="app_name">EjercicioControles - Grupo 4</string>
+    <string name="titulo_contactos">EjercicioControles - Grupo 4</string>
+
+    <string name="menu_agregar_contacto">Agregar contactos</string>
+    <string name="menu_listado_contactos">Listado de contactos</string>
+
+    <string name="calendario_aceptar">Aceptar</string>
+    <string name="calendario_cancelar">Cancelar</string>
+
+    <string name="error_fecha_obligatoria">Seleccioná la fecha de nacimiento en el calendario.</string>
+    <string name="error_nombre_apellido">Ingresá letras; podés usar espacios, apóstrofes o guiones entre palabras.</string>
+    <string name="error_campo_obligatorio">Completá este campo.</string>
+    <string name="error_telefono">Ingresá solo números y guiones entre grupos de números.</string>
+    <string name="titulo_agregar_contacto">FORMULARIO DE CONTACTO</string>
+    <string name="descripcion_agregar_contacto">Este es un formulario destinado al registro de personas, sus datos personales e intereses.</string>
+    <string name="nombre">NOMBRE</string>
+    <string name="hint_nombre">Nombre</string>
+    <string name="apellido">APELLIDO</string>
+    <string name="hint_apellido">Apellido</string>
+    <string name="telefono">TELÉFONO</string>
+    <string name="hint_telefono">Telefono</string>
+    <string name="email">EMAIL</string>
+    <string name="hint_email">Email</string>
+    <string name="direccion">DIRECCION</string>
+    <string name="hint_direccion">Direccion</string>
+    <string name="fecha_de_nacimiento">FECHA DE NACIMIENTO</string>
+    <string name="hint_fecha_nacimiento">Fecha nacimiento</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento</string>
+    <string name="continuar">CONTINUAR</string>
+
 </resources>

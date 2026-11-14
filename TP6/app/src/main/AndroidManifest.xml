@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -10,22 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TP6">
+
         <activity
             android:name=".activity.AgregarContactoActivity"
-            android:exported="false"
-            android:label="@string/menu_agregar_contacto"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/titulo_contactos"
+            android:label="@string/menu_agregar_contacto"
             android:windowSoftInputMode="adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
     </application>
 
 </manifest>

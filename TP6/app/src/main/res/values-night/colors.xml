@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-  <color name="app_primary">#C6FF00</color>
-  <color name="app_on_primary">#000000</color>
-  <color name="app_primary_container">#172033</color>
-  <color name="app_on_primary_container">#FFFFFF</color>
-  <color name="app_background">#000000</color>
-  <color name="app_surface">#111827</color>
-  <color name="app_text">#FFFFFF</color>
-  <color name="app_text_secondary">#CBD5E1</color>
-  <color name="app_outline">#94A3B8</color>
-  <color name="app_highlight">#29C6FF00</color>
-  <color name="app_bar_background">#000000</color>
-  <color name="app_bar_text">#C6FF00</color>
-  <color name="app_bar_divider">#526176</color>
+
+    <color name="app_primary">#C6FF00</color>
+    <color name="app_on_primary">#000000</color>
+
+    <color name="app_primary_container">#172033</color>
+    <color name="app_on_primary_container">#FFFFFF</color>
+
+    <color name="app_background">#000000</color>
+    <color name="app_surface">#111827</color>
+
+    <color name="app_text">#FFFFFF</color>
+    <color name="app_text_secondary">#CBD5E1</color>
+    <color name="app_outline">#94A3B8</color>
+
+    <color name="app_highlight">#29C6FF00</color>
+
+    <color name="app_bar_background">#000000</color>
+    <color name="app_bar_text">#C6FF00</color>
+
 </resources>

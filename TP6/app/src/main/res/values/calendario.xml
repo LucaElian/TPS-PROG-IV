@@ -1,15 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <style name="Theme.TP6.Calendario" parent="android:style/Theme.Material.Light.Dialog.Alert">
-        <item name="android:colorAccent">@color/app_primary</item>
-        <item name="android:datePickerStyle">@style/Widget.TP6.Calendario</item>
-        <item name="android:textColorPrimaryInverse">@color/app_primary</item>
-        <item name="android:textColorSecondaryInverse">@color/app_primary</item>
+
+    <style
+        name="ThemeOverlay.TP6.Calendario"
+        parent="ThemeOverlay.Material3.MaterialCalendar">
+
+        <item name="materialCalendarStyle">
+            @style/Widget.TP6.MaterialCalendar
+        </item>
+
+        <item name="colorPrimary">@color/app_primary</item>
+        <item name="colorOnPrimary">@color/app_on_primary</item>
+
+        <item name="textInputStyle">
+            @style/Widget.TP6.MaterialCalendar.TextInput
+        </item>
+
+        <item name="buttonBarPositiveButtonStyle">
+            @style/Widget.TP6.MaterialCalendar.Button
+        </item>
+
+        <item name="buttonBarNegativeButtonStyle">
+            @style/Widget.TP6.MaterialCalendar.Button
+        </item>
+
     </style>
-    <style name="Widget.TP6.Calendario" parent="android:style/Widget.Material.DatePicker">
-        <item name="android:datePickerMode">calendar</item>
-        <item name="android:headerBackground">@color/black</item>
+
+
+    <style
+        name="Widget.TP6.MaterialCalendar"
+        parent="Widget.Material3.MaterialCalendar">
+
+        <item name="dayTodayStyle">
+            @style/Widget.TP6.MaterialCalendar.Day.Today
+        </item>
+
+        <item name="daySelectedStyle">
+            @style/Widget.TP6.MaterialCalendar.Day.Selected
+        </item>
+
     </style>
-    <string name="calendario_aceptar">Aceptar</string>
-    <string name="calendario_cancelar">Cancelar</string>
+
+
+    <style
+        name="Widget.TP6.MaterialCalendar.Day.Today"
+        parent="Widget.Material3.MaterialCalendar.Day.Today">
+
+        <item name="itemTextColor">@color/app_text</item>
+        <item name="itemStrokeColor">@android:color/transparent</item>
+        <item name="itemStrokeWidth">0dp</item>
+
+    </style>
+
+
+    <style
+        name="Widget.TP6.MaterialCalendar.Day.Selected"
+        parent="Widget.Material3.MaterialCalendar.Day.Selected">
+
+        <item name="itemFillColor">@color/app_primary</item>
+        <item name="itemTextColor">@color/app_on_primary</item>
+        <item name="itemStrokeWidth">0dp</item>
+
+    </style>
+
+
+    <style
+        name="Widget.TP6.MaterialCalendar.Button"
+        parent="Widget.Material3.Button.TextButton.Dialog">
+
+        <item name="android:textColor">@color/app_text</item>
+
+    </style>
+
+    <style
+        name="Widget.TP6.MaterialCalendar.TextInput"
+        parent="Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <item name="boxStrokeColor">@color/app_outline</item>
+        <item name="hintTextColor">@color/app_text_secondary</item>
+        <item name="cursorColor">@color/app_text</item>
+
+    </style>
+
 </resources>

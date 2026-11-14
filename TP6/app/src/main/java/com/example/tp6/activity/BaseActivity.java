@@ -24,12 +24,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(getLayoutResource());
 
-        ViewCompat.setOnApplyWindowInsetsListener(
-                findViewById(R.id.main),
-                (view, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (view, insets) -> {
 
-                    Insets systemBars =
-                            insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
 
                     view.setPadding(
                             systemBars.left,
@@ -47,7 +44,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-
         if (bd != null) {
             bd.close();
         }
