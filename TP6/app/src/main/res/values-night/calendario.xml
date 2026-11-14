@@ -3,5 +3,7 @@
     <style name="Theme.TP6.Calendario" parent="android:style/Theme.Material.Dialog.Alert">
         <item name="android:colorAccent">@color/app_primary</item>
         <item name="android:datePickerStyle">@style/Widget.TP6.Calendario</item>
+        <item name="android:textColorPrimaryInverse">@color/app_primary</item>
+        <item name="android:textColorSecondaryInverse">@color/app_primary</item>
     </style>
 </resources>

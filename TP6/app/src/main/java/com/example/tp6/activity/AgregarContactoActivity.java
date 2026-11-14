@@ -108,10 +108,34 @@ public class AgregarContactoActivity extends BaseActivity {
                 seleccion.get(Calendar.DAY_OF_MONTH));
         calendario.getDatePicker().setMaxDate(System.currentTimeMillis());
         calendario.show();
+        colorearEncabezadoCalendario(calendario.getDatePicker(), false);
         configurarBotonCalendario(calendario.getButton(DatePickerDialog.BUTTON_POSITIVE),
                 R.string.calendario_aceptar);
         configurarBotonCalendario(calendario.getButton(DatePickerDialog.BUTTON_NEGATIVE),
                 R.string.calendario_cancelar);
+    }
+
+    private void colorearEncabezadoCalendario(android.view.View vista,
+                                              boolean dentroDelEncabezado) {
+        boolean esEncabezado = dentroDelEncabezado;
+        if (vista.getId() != android.view.View.NO_ID) {
+            try {
+                String nombre = vista.getResources().getResourceEntryName(vista.getId());
+                esEncabezado |= nombre.startsWith("date_picker_header");
+            } catch (android.content.res.Resources.NotFoundException ignored) {
+                // Las vistas sin un recurso identificable se recorren igualmente.
+            }
+        }
+        if (esEncabezado && vista instanceof android.widget.TextView) {
+            ((android.widget.TextView) vista).setTextColor(
+                    androidx.core.content.ContextCompat.getColor(this, R.color.app_primary));
+        }
+        if (vista instanceof android.view.ViewGroup) {
+            android.view.ViewGroup grupo = (android.view.ViewGroup) vista;
+            for (int i = 0; i < grupo.getChildCount(); i++) {
+                colorearEncabezadoCalendario(grupo.getChildAt(i), esEncabezado);
+            }
+        }
     }
 
     private void configurarBotonCalendario(Button boton, int texto) {
