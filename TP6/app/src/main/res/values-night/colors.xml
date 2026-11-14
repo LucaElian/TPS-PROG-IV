@@ -12,4 +12,5 @@
   <color name="app_highlight">#29C6FF00</color>
   <color name="app_bar_background">#000000</color>
   <color name="app_bar_text">#C6FF00</color>
+  <color name="app_bar_divider">#526176</color>
 </resources>

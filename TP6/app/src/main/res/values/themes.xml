@@ -36,7 +36,7 @@
   </style>
   <style name="Theme.TP6" parent="Base.Theme.TP6" />
   <style name="Widget.TP6.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
-    <item name="background">@color/app_bar_background</item>
+    <item name="background">@drawable/app_bar_background</item>
     <item name="elevation">0dp</item>
     <item name="titleTextStyle">@style/TextAppearance.TP6.Title</item>
     <item name="popupTheme">@style/ThemeOverlay.TP6.Popup</item>
@@ -69,7 +69,7 @@
     <item name="popupMenuStyle">@style/Widget.TP6.PopupMenu</item>
   </style>
   <style name="Widget.TP6.FrameworkActionBar" parent="android:style/Widget.Material.ActionBar.Solid">
-    <item name="android:background">@color/app_bar_background</item>
+    <item name="android:background">@drawable/app_bar_background</item>
     <item name="android:titleTextStyle">@style/TextAppearance.TP6.Title</item>
     <item name="android:subtitleTextStyle">@style/TextAppearance.TP6.Title</item>
     <item name="android:elevation">0dp</item>

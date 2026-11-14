@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TP6.Calendario" parent="android:style/Theme.Material.Light.Dialog.Alert">
+        <item name="android:colorAccent">@color/app_primary</item>
+        <item name="android:datePickerStyle">@style/Widget.TP6.Calendario</item>
+    </style>
+    <style name="Widget.TP6.Calendario" parent="android:style/Widget.Material.DatePicker">
+        <item name="android:datePickerMode">calendar</item>
+        <item name="android:headerBackground">@color/black</item>
+        <item name="android:headerTextColor">@color/app_primary</item>
+    </style>
+    <string name="calendario_aceptar">Aceptar</string>
+    <string name="calendario_cancelar">Cancelar</string>
+</resources>

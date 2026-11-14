@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TP6">
         <activity
+            android:name=".activity.AgregarContactoActivity"
+            android:exported="false"
+            android:label="@string/menu_agregar_contacto"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/titulo_contactos"

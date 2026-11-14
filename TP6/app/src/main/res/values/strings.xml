@@ -4,4 +4,8 @@
   <string name="titulo_contactos">EjercicioControles - Grupo 4</string>
   <string name="menu_agregar_contacto">Agregar contactos</string>
   <string name="menu_listado_contactos">Listado de contactos</string>
+  <string name="error_fecha_obligatoria">Seleccioná la fecha de nacimiento en el calendario.</string>
+  <string name="error_nombre_apellido">Ingresá letras; podés usar espacios, apóstrofes o guiones entre palabras.</string>
+  <string name="error_campo_obligatorio">Completá este campo.</string>
+  <string name="error_telefono">Ingresá solo números y guiones entre grupos de números.</string>
 </resources>
