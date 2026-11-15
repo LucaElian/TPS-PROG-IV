@@ -32,4 +32,13 @@
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
     <string name="continuar">CONTINUAR</string>
 
+    <string name="titulo_mas_datos_contacto">FORMULARIO DE CONTACTO</string>
+    <string name="descripcion_mas_datos_contacto">A continuación, por favor se pide completar más datos personales.</string>
+    <string name="nivel_estudios_alcanzados">NIVEL DE ESTUDIOS ALCANZADOS</string>
+    <string name="primario_incompleto">Primario incompleto</string>
+    <string name="primario_completo">Primario completo</string>
+    <string name="secundario_incompleto">Secundario incompleto</string>
+    <string name="secundario_completo">Secundario completo</string>
+    <string name="otros">Otros</string>
+
 </resources>
