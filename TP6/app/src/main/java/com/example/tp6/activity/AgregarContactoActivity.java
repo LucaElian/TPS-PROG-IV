@@ -1,6 +1,8 @@
 package com.example.tp6.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -96,13 +98,37 @@ public class AgregarContactoActivity extends BaseActivity {
             );
         });
 
-        // validaciones q faltan...
+        etEmail.setOnFocusChangeListener((view, tieneFoco) ->{
+          if(!tieneFoco) validarCampo(
+                  etEmail,
+                  Patterns.EMAIL_ADDRESS.pattern(),
+                  R.string.error_email
+          );
+        });
 
+        etDireccion.setOnFocusChangeListener((view, tieneFoco) ->{
+            if(!tieneFoco)
+                if(etDireccion.getText().toString().trim().isEmpty())
+                    etDireccion.setError(getString(R.string.error_campo_obligatorio));
+                else{
+                    etDireccion.setError(null);
+                }
+        });
 
         btnContinuar.setOnClickListener(view -> {
             if (!validarDatosPersonales()) return;
 
-            // Integrar aqui el paso a Mas datos cuando esa actividad este creada.
+            Intent intent = new Intent(this, MasDatosContactoActivity.class);
+            intent.putExtra("nombre", etNombre.getText().toString().trim());
+            intent.putExtra("apellido", etApellido.getText().toString().trim());
+            intent.putExtra("telefono", etTelefono.getText().toString().trim());
+            intent.putExtra("tipoTelefono", spTipoTelefono.getSelectedItem().toString());
+            intent.putExtra("mail", etEmail.getText().toString().trim());
+            intent.putExtra("tipoMail", spTipoEmail.getSelectedItem().toString());
+            intent.putExtra("direccion", etDireccion.getText().toString().trim());
+            intent.putExtra("fechaNacimiento", etFechaNacimiento.getText().toString().trim());
+
+            startActivity(intent);
         });
     }
 
@@ -192,10 +218,24 @@ public class AgregarContactoActivity extends BaseActivity {
 
         boolean fechaValida = !etFechaNacimiento.getText().toString().isEmpty();
 
+        boolean mailValido = validarCampo(
+                etEmail,
+                Patterns.EMAIL_ADDRESS.pattern(),
+                R.string.error_email
+        );
+
+        boolean direccionValida = !etDireccion.getText().toString().trim().isEmpty();
+
         etFechaNacimiento.setError(
                 fechaValida
                         ? null
                         : getString(R.string.error_fecha_obligatoria)
+        );
+
+        etDireccion.setError(
+                direccionValida
+                        ? null
+                        : getString(R.string.error_campo_obligatorio)
         );
 
         if (!nombreValido) etNombre.requestFocus();
@@ -207,9 +247,15 @@ public class AgregarContactoActivity extends BaseActivity {
         else if (!fechaValida) etFechaNacimiento.getParent().requestChildFocus(
                 etFechaNacimiento, etFechaNacimiento);
 
+        else if(!mailValido) etEmail.requestFocus();
+
+        else if (!direccionValida) etDireccion.requestFocus();
+
         return nombreValido
                 && apellidoValido
                 && telefonoValido
-                && fechaValida;
+                && fechaValida
+                && mailValido
+                && direccionValida;
     }
 }
