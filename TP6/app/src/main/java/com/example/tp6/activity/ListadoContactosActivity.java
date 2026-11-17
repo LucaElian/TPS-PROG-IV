@@ -34,5 +34,18 @@ public class ListadoContactosActivity extends BaseActivity {
                 );
 
         lvContactos.setAdapter(adapterContactos);
+
+        lvContactos.setOnItemClickListener((parent, view, position, id) ->{
+          Contacto contacto = contactos.get(position);
+          String detalleContacto = obtenerDetalles(contacto);
+
+
+
+        });
+    }
+
+    private String obtenerDetalles(Contacto contacto){
+        return contacto.getNombre() + " " + contacto.getApellido() + "\n" +
+                contacto.getTipoTelefono() + ": " + contacto.getTelefono();
     }
 }
