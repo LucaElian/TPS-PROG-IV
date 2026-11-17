@@ -13,6 +13,11 @@
         android:theme="@style/Theme.TP6">
 
         <activity
+            android:name=".activity.ListadoContactosActivity"
+            android:exported="false"
+            android:label="@string/menu_listado_contactos" />
+
+        <activity
             android:name=".activity.MasDatosContactoActivity"
             android:exported="false" />
 
