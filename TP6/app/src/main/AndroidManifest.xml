@@ -13,6 +13,10 @@
         android:theme="@style/Theme.TP6">
 
         <activity
+            android:name=".activity.MasDatosContactoActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".activity.AgregarContactoActivity"
             android:exported="true"
             android:label="@string/menu_agregar_contacto"

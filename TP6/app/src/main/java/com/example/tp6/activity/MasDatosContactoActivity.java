@@ -1,22 +1,22 @@
 package com.example.tp6.activity;
 
 import android.os.Bundle;
-import android.widget.RadioButton;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.example.tp6.R;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class MasDatosContactoActivity extends BaseActivity {
 
-    private TextView tvTitulo;
-    private TextView tvDescripcion;
     private RadioGroup rgNivelEstudios;
-    private RadioButton rbPrimarioIncompleto;
-    private RadioButton rbPrimarioCompleto;
-    private RadioButton rbSecundarioIncompleto;
-    private RadioButton rbSecundarioCompleto;
-    private RadioButton rbOtros;
+    private CheckBox cbDeporte;
+    private CheckBox cbMusica;
+    private CheckBox cbArte;
+    private CheckBox cbTecnologia;
+    private MaterialSwitch swRecibirInfo;
+    private Button btnGuardar;
 
     @Override
     protected int getLayoutResource() {
@@ -27,13 +27,23 @@ public class MasDatosContactoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        tvTitulo = findViewById(R.id.tvTitulo);
-        tvDescripcion = findViewById(R.id.tvDescripcion);
         rgNivelEstudios = findViewById(R.id.rgNivelEstudios);
-        rbPrimarioIncompleto = findViewById(R.id.rbPrimarioIncompleto);
-        rbPrimarioCompleto = findViewById(R.id.rbPrimarioCompleto);
-        rbSecundarioIncompleto = findViewById(R.id.rbSecundarioIncompleto);
-        rbSecundarioCompleto = findViewById(R.id.rbSecundarioCompleto);
-        rbOtros = findViewById(R.id.rbOtros);
+
+        cbDeporte = findViewById(R.id.cbDeporte);
+        cbMusica = findViewById(R.id.cbMusica);
+        cbArte = findViewById(R.id.cbArte);
+        cbTecnologia = findViewById(R.id.cbTecnologia);
+
+        swRecibirInfo = findViewById(R.id.swRecibirInfo);
+
+        btnGuardar = findViewById(R.id.btnGuardar);
+
+        swRecibirInfo.setOnCheckedChangeListener((buttonView, estaActivado) -> {
+            swRecibirInfo.setText(
+                    estaActivado
+                            ? R.string.si
+                            : R.string.no
+            );
+        });
     }
 }

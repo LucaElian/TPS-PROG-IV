@@ -122,9 +122,9 @@ public class AgregarContactoActivity extends BaseActivity {
             intent.putExtra("nombre", etNombre.getText().toString().trim());
             intent.putExtra("apellido", etApellido.getText().toString().trim());
             intent.putExtra("telefono", etTelefono.getText().toString().trim());
-            intent.putExtra("tipoTelefono", spTipoTelefono.getSelectedItem().toString());
+            intent.putExtra("tipoTelefono", ((TipoContacto) spTipoTelefono.getSelectedItem()).name());
             intent.putExtra("mail", etEmail.getText().toString().trim());
-            intent.putExtra("tipoMail", spTipoEmail.getSelectedItem().toString());
+            intent.putExtra("tipoMail", ((TipoContacto) spTipoEmail.getSelectedItem()).name());
             intent.putExtra("direccion", etDireccion.getText().toString().trim());
             intent.putExtra("fechaNacimiento", etFechaNacimiento.getText().toString().trim());
 
@@ -244,12 +244,12 @@ public class AgregarContactoActivity extends BaseActivity {
 
         else if (!telefonoValido) etTelefono.requestFocus();
 
-        else if (!fechaValida) etFechaNacimiento.getParent().requestChildFocus(
-                etFechaNacimiento, etFechaNacimiento);
-
         else if(!mailValido) etEmail.requestFocus();
 
         else if (!direccionValida) etDireccion.requestFocus();
+
+        else if (!fechaValida) etFechaNacimiento.getParent().requestChildFocus(
+                etFechaNacimiento, etFechaNacimiento);
 
         return nombreValido
                 && apellidoValido
