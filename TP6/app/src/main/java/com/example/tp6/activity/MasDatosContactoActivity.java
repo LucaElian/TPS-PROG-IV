@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.tp6.R;
 import com.google.android.material.materialswitch.MaterialSwitch;
@@ -45,5 +46,33 @@ public class MasDatosContactoActivity extends BaseActivity {
                             : R.string.no
             );
         });
+    }
+
+    private boolean verificarRb(RadioGroup rg){
+        return rg.getCheckedRadioButtonId() != -1;
+    }
+
+    private boolean verificarIntereses(CheckBox cb1, CheckBox cb2, CheckBox cb3, CheckBox cb4){
+        return cb1.isChecked() || cb2.isChecked() || cb3.isChecked() || cb4.isChecked();
+    }
+
+
+    private boolean validarDatos(){
+
+        boolean rbValido = verificarRb(rgNivelEstudios);
+
+        if(!rbValido) {
+            Toast.makeText(this, R.string.error_nivel_estudios, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        boolean interesesValidos = verificarIntereses(cbArte, cbDeporte, cbTecnologia, cbMusica);
+
+        if(!interesesValidos){
+            Toast.makeText(this, R.string.error_intereses, Toast.LENGTH_SHORT).show();
+            return false;
+            }
+
+        return true;
     }
 }
