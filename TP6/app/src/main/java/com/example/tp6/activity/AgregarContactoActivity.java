@@ -196,7 +196,7 @@ public class AgregarContactoActivity extends BaseActivity {
         return true;
     }
 
-    public boolean validarDatosPersonales() {
+    private boolean validarDatosPersonales() {
 
         boolean nombreValido = validarCampo(
                 etNombre,

@@ -66,4 +66,10 @@
 
     <string name="guardar">GUARDAR</string>
 
+    <string name="contacto_guardado">Contacto guardado con éxito</string>
+    <string name="error_guardar_contacto">Error al guardar el contacto</string>
+
+
+    <string name="titulo_listado_contactos">LISTADO DE CONTACTOS</string>
+
 </resources>

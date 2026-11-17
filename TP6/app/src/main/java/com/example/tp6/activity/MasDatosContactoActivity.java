@@ -21,7 +21,6 @@ public class MasDatosContactoActivity extends BaseActivity {
     private CheckBox cbArte;
     private CheckBox cbTecnologia;
     private MaterialSwitch swRecibirInfo;
-    private Button btnGuardar;
 
     @Override
     protected int getLayoutResource() {
@@ -41,10 +40,10 @@ public class MasDatosContactoActivity extends BaseActivity {
 
         swRecibirInfo = findViewById(R.id.swRecibirInfo);
 
-        btnGuardar = findViewById(R.id.btnGuardar);
+        Button btnGuardar = findViewById(R.id.btnGuardar);
 
         swRecibirInfo.setOnCheckedChangeListener((buttonView, estaActivado) -> {
-            swRecibirInfo.setText(
+            buttonView.setText(
                     estaActivado
                             ? R.string.si
                             : R.string.no
@@ -59,28 +58,30 @@ public class MasDatosContactoActivity extends BaseActivity {
     }
 
     private void guardarContacto() {
+
         Intent intentOrigen = getIntent();
+
         String nombre = intentOrigen.getStringExtra("nombre");
         String apellido = intentOrigen.getStringExtra("apellido");
+
         String telefono = intentOrigen.getStringExtra("telefono");
-        String tipoTelefonoStr = intentOrigen.getStringExtra("tipoTelefono");
-        TipoContacto tipoTelefono = tipoTelefonoStr != null ? TipoContacto.valueOf(tipoTelefonoStr) : TipoContacto.CASA;
+        TipoContacto tipoTelefono = TipoContacto.valueOf(intentOrigen.getStringExtra("tipoTelefono"));
 
         String mail = intentOrigen.getStringExtra("mail");
-        String tipoMailStr = intentOrigen.getStringExtra("tipoMail");
-        TipoContacto tipoMail = tipoMailStr != null ? TipoContacto.valueOf(tipoMailStr) : TipoContacto.CASA;
+        TipoContacto tipoMail = TipoContacto.valueOf(intentOrigen.getStringExtra("tipoMail"));
 
         String direccion = intentOrigen.getStringExtra("direccion");
         String fechaNacimiento = intentOrigen.getStringExtra("fechaNacimiento");
 
         int idRbSeleccionado = rgNivelEstudios.getCheckedRadioButtonId();
         RadioButton rbSeleccionado = findViewById(idRbSeleccionado);
-        String nivelEstudios = rbSeleccionado != null ? rbSeleccionado.getText().toString() : "";
+        String nivelEstudios = rbSeleccionado.getText().toString();
 
         boolean deporte = cbDeporte.isChecked();
         boolean musica = cbMusica.isChecked();
         boolean arte = cbArte.isChecked();
         boolean tecnologia = cbTecnologia.isChecked();
+
         boolean recibirInfo = swRecibirInfo.isChecked();
 
         Contacto contacto = new Contacto(
@@ -103,36 +104,55 @@ public class MasDatosContactoActivity extends BaseActivity {
         long id = bd.insertarContacto(contacto);
 
         if (id != -1) {
-            Toast.makeText(this, "Contacto guardado con éxito", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(
+                    this,
+                    R.string.contacto_guardado,
+                    Toast.LENGTH_SHORT
+            ).show();
 
             Intent intentListado = new Intent(this, ListadoContactosActivity.class);
+
             startActivity(intentListado);
             finish();
+
         } else {
-            Toast.makeText(this, "Error al guardar el contacto", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(
+                    this,
+                    R.string.error_guardar_contacto,
+                    Toast.LENGTH_SHORT
+            ).show();
         }
-    }
-
-    private boolean verificarRb(RadioGroup rg) {
-        return rg.getCheckedRadioButtonId() != -1;
-    }
-
-    private boolean verificarIntereses(CheckBox cb1, CheckBox cb2, CheckBox cb3, CheckBox cb4) {
-        return cb1.isChecked() || cb2.isChecked() || cb3.isChecked() || cb4.isChecked();
     }
 
     private boolean validarDatos() {
-        boolean rbValido = verificarRb(rgNivelEstudios);
 
-        if (!rbValido) {
-            Toast.makeText(this, R.string.error_nivel_estudios, Toast.LENGTH_SHORT).show();
+        if (rgNivelEstudios.getCheckedRadioButtonId() == -1) {
+
+            Toast.makeText(
+                    this,
+                    R.string.error_nivel_estudios,
+                    Toast.LENGTH_SHORT
+            ).show();
+
             return false;
         }
 
-        boolean interesesValidos = verificarIntereses(cbArte, cbDeporte, cbTecnologia, cbMusica);
+        boolean tieneInteres =
+                cbDeporte.isChecked()
+                        || cbMusica.isChecked()
+                        || cbArte.isChecked()
+                        || cbTecnologia.isChecked();
 
-        if (!interesesValidos) {
-            Toast.makeText(this, R.string.error_intereses, Toast.LENGTH_SHORT).show();
+        if (!tieneInteres) {
+
+            Toast.makeText(
+                    this,
+                    R.string.error_intereses,
+                    Toast.LENGTH_SHORT
+            ).show();
+
             return false;
         }
 

@@ -1,6 +1,9 @@
 package com.example.tp6.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +43,44 @@ public abstract class BaseActivity extends AppCompatActivity {
         );
 
         bd = new ContactoOpenHelper(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.menu_agregar_contacto) {
+
+            if (!(this instanceof AgregarContactoActivity)) {
+                Intent intent =
+                        new Intent(this, AgregarContactoActivity.class);
+
+                startActivity(intent);
+            }
+
+            return true;
+        }
+
+        if (id == R.id.menu_listado_contactos) {
+
+            if (!(this instanceof ListadoContactosActivity)) {
+                Intent intent =
+                        new Intent(this, ListadoContactosActivity.class);
+
+                startActivity(intent);
+            }
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

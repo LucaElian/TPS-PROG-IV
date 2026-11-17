@@ -13,7 +13,6 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -22,7 +21,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvDescripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -137,10 +135,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:clickable="true"
             android:focusable="false"
-            android:hint="@string/hint_fecha_nacimiento"
-            android:inputType="date" />
+            android:hint="@string/hint_fecha_nacimiento" />
 
         <Button
             android:id="@+id/btnContinuar"
