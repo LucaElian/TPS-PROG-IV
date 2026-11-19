@@ -131,16 +131,16 @@ public class ListadoContactosActivity extends BaseActivity {
     private String obtenerDetalles(Contacto contacto) {
         String recibirInfo = contacto.isRecibirInfo() ? getString(R.string.si) : getString(R.string.no);
 
-        return "Nombre: " + contacto.getNombre() + "\n" +
-                "Apellido: " + contacto.getApellido() + "\n" +
-                "Telefono: " + contacto.getTelefono() + "\n" +
-                "Tipo de telefono: " + contacto.getTipoTelefono() + "\n" +
-                "Email: " + contacto.getMail() + "\n" +
-                "Tipo de email: " + contacto.getTipoMail() + "\n" +
-                "Dirección: " + contacto.getDireccion() + "\n" +
-                "Fecha de nacimiento: " + contacto.getFechaNacimiento() + "\n" +
-                "Nivel de estudios: " + contacto.getNivelEstudios() + "\n" +
-                "Intereses: " + obtenerIntereses(contacto) + "\n" +
-                "Recibir información: " + recibirInfo;
+        return getString(R.string.nombre) + ": " + contacto.getNombre() + "\n" +
+                getString(R.string.apellido) + ": " + contacto.getApellido() + "\n" +
+                getString(R.string.detalle_telefono) + ": " + contacto.getTelefono() + "\n" +
+                getString(R.string.detalle_tipo_telefono) + ": " + contacto.getTipoTelefono() + "\n" +
+                getString(R.string.detalle_email) + ": " + contacto.getMail() + "\n" +
+                getString(R.string.detalle_tipo_email) + ": " + contacto.getTipoMail() + "\n" +
+                getString(R.string.direccion) + ": " + contacto.getDireccion() + "\n" +
+                getString(R.string.fecha_nacimiento) + ": " + contacto.getFechaNacimiento() + "\n" +
+                getString(R.string.detalle_nivel_estudios) + ": " + contacto.getNivelEstudios() + "\n" +
+                getString(R.string.intereses) + ": " + obtenerIntereses(contacto) + "\n" +
+                getString(R.string.detalle_recibir_informacion) + ": " + recibirInfo;
     }
 }

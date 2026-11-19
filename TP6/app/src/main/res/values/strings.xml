@@ -76,6 +76,12 @@
     <string name="sin_contactos_titulo">Todavía no hay contactos</string>
     <string name="sin_contactos_descripcion">Abrí el menú superior y elegí "Agregar contactos" para registrar el primero.</string>
     <string name="detalle_contacto">Ficha del contacto</string>
+    <string name="detalle_telefono">Telefono</string>
+    <string name="detalle_tipo_telefono">Tipo de telefono</string>
+    <string name="detalle_email">Email</string>
+    <string name="detalle_tipo_email">Tipo de email</string>
+    <string name="detalle_nivel_estudios">Nivel de estudios</string>
+    <string name="detalle_recibir_informacion">Recibir información</string>
     <string name="cerrar">Cerrar</string>
     <string name="ninguno">Ninguno</string>
     <string name="ver_detalle">Ver detalle</string>
