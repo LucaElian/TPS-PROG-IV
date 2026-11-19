@@ -4,153 +4,243 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_aurora_canvas"
+    android:clipToPadding="false"
     android:fillViewport="true">
 
     <LinearLayout
+        android:id="@+id/contenedorMasDatos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="28dp">
+
+        <View
+            android:id="@+id/auroraAccentStrip"
+            android:layout_width="56dp"
+            android:layout_height="4dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_aurora_strip_anim" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="6dp"
             android:text="@string/titulo_mas_datos_contacto"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textAppearance="@style/TextAppearance.TP6.PageTitle" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/descripcion_mas_datos_contacto" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/nivel_estudios_alcanzados"
-            android:textStyle="bold" />
-
-        <RadioGroup
-            android:id="@+id/rgNivelEstudios"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/rbPrimarioIncompleto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/primario_incompleto" />
-
-            <RadioButton
-                android:id="@+id/rbPrimarioCompleto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/primario_completo" />
-
-            <RadioButton
-                android:id="@+id/rbSecundarioIncompleto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/secundario_incompleto" />
-
-            <RadioButton
-                android:id="@+id/rbSecundarioCompleto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/secundario_completo" />
-
-            <RadioButton
-                android:id="@+id/rbOtros"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/otros" />
-
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/intereses"
-            android:textStyle="bold" />
+            android:layout_marginBottom="20dp"
+            android:text="@string/descripcion_mas_datos_contacto"
+            android:textAppearance="@style/TextAppearance.TP6.PageSubtitle" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/cbDeporte"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/deporte" />
-
-            <CheckBox
-                android:id="@+id/cbMusica"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/musica" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/cbArte"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/arte" />
-
-            <CheckBox
-                android:id="@+id/cbTecnologia"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/tecnologia" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/bg_aurora_card"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/nivel_estudios_alcanzados"
+                android:textAppearance="@style/TextAppearance.TP6.SectionTitle" />
+
+            <RadioGroup
+                android:id="@+id/rgNivelEstudios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rbPrimarioIncompleto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingStart="8dp"
+                    android:text="@string/primario_incompleto"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/rbPrimarioCompleto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingStart="8dp"
+                    android:text="@string/primario_completo"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/rbSecundarioIncompleto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingStart="8dp"
+                    android:text="@string/secundario_incompleto"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/rbSecundarioCompleto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingStart="8dp"
+                    android:text="@string/secundario_completo"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/rbOtros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:paddingStart="8dp"
+                    android:text="@string/otros"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/bg_aurora_card"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/intereses"
+                android:textAppearance="@style/TextAppearance.TP6.SectionTitle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbDeporte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:paddingStart="6dp"
+                    android:text="@string/deporte"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp" />
+
+                <CheckBox
+                    android:id="@+id/cbMusica"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:paddingStart="6dp"
+                    android:text="@string/musica"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbArte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:paddingStart="6dp"
+                    android:text="@string/arte"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp" />
+
+                <CheckBox
+                    android:id="@+id/cbTecnologia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:paddingStart="6dp"
+                    android:text="@string/tecnologia"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/bg_aurora_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
                 android:layout_weight="1"
-                android:text="@string/desea_recibir_informacion"
-                android:textStyle="bold" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/desea_recibir_informacion"
+                    android:textColor="@color/app_text"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/subtitulo_recibir_informacion"
+                    android:textColor="@color/app_text_secondary"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
 
             <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/swRecibirInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="@string/si" />
+                android:text="@string/si"
+                android:textColor="@color/app_text" />
 
         </LinearLayout>
 
-
         <Button
             android:id="@+id/btnGuardar"
-            android:layout_width="wrap_content"
+            style="@style/Widget.TP6.Button.Aurora"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="16dp"
             android:text="@string/guardar" />
 
     </LinearLayout>

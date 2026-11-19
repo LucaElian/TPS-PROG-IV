@@ -4,143 +4,187 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_aurora_canvas"
+    android:clipToPadding="false"
     android:fillViewport="true">
 
     <LinearLayout
+        android:id="@+id/contenedorFormulario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="28dp">
+
+        <View
+            android:id="@+id/auroraAccentStrip"
+            android:layout_width="56dp"
+            android:layout_height="4dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_aurora_strip_anim" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="6dp"
             android:text="@string/titulo_agregar_contacto"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textAppearance="@style/TextAppearance.TP6.PageTitle" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/descripcion_agregar_contacto" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nombre"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:hint="@string/hint_nombre"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/apellido"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/etApellido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:hint="@string/hint_apellido"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/telefono"
-            android:textStyle="bold" />
+            android:layout_marginBottom="20dp"
+            android:text="@string/descripcion_agregar_contacto"
+            android:textAppearance="@style/TextAppearance.TP6.PageSubtitle" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:orientation="horizontal" >
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_aurora_card"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <EditText
-                android:id="@+id/etTelefono"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/hint_telefono"
-                android:inputType="phone" />
-
-            <Spinner
-                android:id="@+id/spTipoTelefono"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/email"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:orientation="horizontal" >
+                android:layout_marginBottom="6dp"
+                android:text="@string/nombre"
+                android:textAppearance="@style/TextAppearance.TP6.FieldLabel" />
 
             <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="0dp"
+                android:id="@+id/etNombre"
+                style="@style/Widget.TP6.EditText.Aurora"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/hint_email"
-                android:inputType="textEmailAddress" />
+                android:layout_marginBottom="16dp"
+                android:hint="@string/hint_nombre"
+                android:inputType="textPersonName" />
 
-            <Spinner
-                android:id="@+id/spTipoEmail"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical" />
+                android:layout_marginBottom="6dp"
+                android:text="@string/apellido"
+                android:textAppearance="@style/TextAppearance.TP6.FieldLabel" />
+
+            <EditText
+                android:id="@+id/etApellido"
+                style="@style/Widget.TP6.EditText.Aurora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/hint_apellido"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="@string/telefono"
+                android:textAppearance="@style/TextAppearance.TP6.FieldLabel" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etTelefono"
+                    style="@style/Widget.TP6.EditText.Aurora"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_telefono"
+                    android:inputType="phone" />
+
+                <Spinner
+                    android:id="@+id/spTipoTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_aurora_spinner"
+                    android:minWidth="112dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="@string/email"
+                android:textAppearance="@style/TextAppearance.TP6.FieldLabel" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    style="@style/Widget.TP6.EditText.Aurora"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_email"
+                    android:inputType="textEmailAddress" />
+
+                <Spinner
+                    android:id="@+id/spTipoEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_aurora_spinner"
+                    android:minWidth="112dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="@string/direccion"
+                android:textAppearance="@style/TextAppearance.TP6.FieldLabel" />
+
+            <EditText
+                android:id="@+id/etDireccion"
+                style="@style/Widget.TP6.EditText.Aurora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/hint_direccion"
+                android:inputType="textPostalAddress" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="@string/fecha_de_nacimiento"
+                android:textAppearance="@style/TextAppearance.TP6.FieldLabel" />
+
+            <EditText
+                android:id="@+id/etFechaNacimiento"
+                style="@style/Widget.TP6.EditText.Aurora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableEnd="@drawable/ic_calendar"
+                android:drawablePadding="12dp"
+                android:focusable="false"
+                android:hint="@string/hint_fecha_nacimiento" />
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/direccion"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/etDireccion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:hint="@string/hint_direccion"
-            android:inputType="textPostalAddress" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fecha_de_nacimiento"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/etFechaNacimiento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:focusable="false"
-            android:hint="@string/hint_fecha_nacimiento" />
 
         <Button
             android:id="@+id/btnContinuar"
-            android:layout_width="wrap_content"
+            style="@style/Widget.TP6.Button.Aurora"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/continuar" />
 

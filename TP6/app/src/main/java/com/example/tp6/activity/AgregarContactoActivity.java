@@ -61,7 +61,7 @@ public class AgregarContactoActivity extends BaseActivity {
         ArrayAdapter<TipoContacto> adapterTipoContacto =
                 new ArrayAdapter<>(
                         this,
-                        android.R.layout.simple_spinner_item,
+                        R.layout.item_spinner_aurora,
                         TipoContacto.values()
                 );
 
@@ -71,6 +71,9 @@ public class AgregarContactoActivity extends BaseActivity {
 
         spTipoTelefono.setAdapter(adapterTipoContacto);
         spTipoEmail.setAdapter(adapterTipoContacto);
+
+        iniciarAuroraAnimada(findViewById(R.id.auroraAccentStrip));
+        animarEntradaStaggered(findViewById(R.id.contenedorFormulario));
 
         etFechaNacimiento.setOnClickListener(view -> mostrarCalendario());
 
@@ -128,7 +131,7 @@ public class AgregarContactoActivity extends BaseActivity {
             intent.putExtra("direccion", etDireccion.getText().toString().trim());
             intent.putExtra("fechaNacimiento", etFechaNacimiento.getText().toString().trim());
 
-            startActivity(intent);
+            navegarConTransicion(intent);
         });
     }
 

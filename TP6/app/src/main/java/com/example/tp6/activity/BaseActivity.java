@@ -1,15 +1,24 @@
 package com.example.tp6.activity;
 
+import android.animation.ValueAnimator;
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.SystemBarStyle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import com.example.tp6.R;
 import com.example.tp6.database.ContactoOpenHelper;
@@ -24,18 +33,29 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        EdgeToEdge.enable(this);
+        EdgeToEdge.enable(
+                this,
+                SystemBarStyle.dark(android.graphics.Color.TRANSPARENT)
+        );
         setContentView(getLayoutResource());
+        WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
+                .setAppearanceLightStatusBars(false);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (view, insets) -> {
+        View mainView = findViewById(R.id.main);
+        int padLeft = mainView.getPaddingLeft();
+        int padTop = mainView.getPaddingTop();
+        int padRight = mainView.getPaddingRight();
+        int padBottom = mainView.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(mainView, (view, insets) -> {
 
                     Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
 
                     view.setPadding(
-                            systemBars.left,
-                            systemBars.top,
-                            systemBars.right,
-                            systemBars.bottom
+                            padLeft + systemBars.left,
+                            padTop + systemBars.top,
+                            padRight + systemBars.right,
+                            padBottom + systemBars.bottom
                     );
 
                     return insets;
@@ -43,6 +63,51 @@ public abstract class BaseActivity extends AppCompatActivity {
         );
 
         bd = new ContactoOpenHelper(this);
+    }
+
+    protected void iniciarAuroraAnimada(View vista) {
+        if (vista == null || !ValueAnimator.areAnimatorsEnabled()) return;
+
+        Drawable fondo = vista.getBackground();
+        if (fondo instanceof AnimationDrawable) {
+            AnimationDrawable anim = (AnimationDrawable) fondo;
+            anim.setEnterFadeDuration(2400);
+            anim.setExitFadeDuration(2400);
+            vista.post(anim::start);
+        }
+    }
+
+    protected void animarEntradaStaggered(ViewGroup contenedor) {
+        if (contenedor == null || !ValueAnimator.areAnimatorsEnabled()) return;
+
+        float desplazamiento = 18f * getResources().getDisplayMetrics().density;
+        FastOutSlowInInterpolator interpolator = new FastOutSlowInInterpolator();
+
+        for (int i = 0; i < contenedor.getChildCount(); i++) {
+            View hijo = contenedor.getChildAt(i);
+            hijo.setAlpha(0f);
+            hijo.setTranslationY(desplazamiento);
+            hijo.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .setDuration(260)
+                    .setStartDelay(i * 45L)
+                    .setInterpolator(interpolator)
+                    .start();
+        }
+    }
+
+    protected void navegarConTransicion(Intent intent) {
+        if (ValueAnimator.areAnimatorsEnabled()) {
+            Bundle opciones = ActivityOptions.makeCustomAnimation(
+                    this,
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left
+            ).toBundle();
+            startActivity(intent, opciones);
+        } else {
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -62,7 +127,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 Intent intent =
                         new Intent(this, AgregarContactoActivity.class);
 
-                startActivity(intent);
+                navegarConTransicion(intent);
             }
 
             return true;
@@ -74,7 +139,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 Intent intent =
                         new Intent(this, ListadoContactosActivity.class);
 
-                startActivity(intent);
+                navegarConTransicion(intent);
             }
 
             return true;

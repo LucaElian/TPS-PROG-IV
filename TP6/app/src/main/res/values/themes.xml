@@ -4,33 +4,36 @@
 
     <style name="Base.Theme.TP6" parent="Theme.Material3.DayNight">
 
-      <item name="colorPrimary">@color/app_primary</item>
-      <item name="colorOnPrimary">@color/app_on_primary</item>
+        <item name="colorPrimary">@color/app_primary</item>
+        <item name="colorOnPrimary">@color/app_on_primary</item>
 
-      <item name="colorPrimaryContainer">@color/app_primary_container</item>
-      <item name="colorOnPrimaryContainer">@color/app_on_primary_container</item>
+        <item name="colorPrimaryContainer">@color/app_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/app_on_primary_container</item>
 
-      <item name="colorSecondary">@color/app_primary</item>
-      <item name="colorOnSecondary">@color/app_on_primary</item>
+        <item name="colorSecondary">@color/app_aurora_cyan</item>
+        <item name="colorOnSecondary">@color/app_on_primary</item>
 
-      <item name="android:colorBackground">@color/app_background</item>
-      <item name="colorSurface">@color/app_surface</item>
+        <item name="android:colorBackground">@color/app_background</item>
+        <item name="colorSurface">@color/app_surface</item>
+        <item name="colorSurfaceVariant">@color/app_surface_subtle</item>
+        <item name="colorOutline">@color/app_card_stroke</item>
 
-      <item name="android:textColorPrimary">@color/app_text</item>
-      <item name="android:textColorSecondary">@color/app_text_secondary</item>
+        <item name="android:textColorPrimary">@color/app_text</item>
+        <item name="android:textColorSecondary">@color/app_text_secondary</item>
 
-      <item name="colorControlNormal">@color/app_text_secondary</item>
-      <item name="colorControlActivated">@color/app_primary</item>
-      <item name="colorControlHighlight">@color/app_highlight</item>
+        <item name="colorControlNormal">@color/app_text_secondary</item>
+        <item name="colorControlActivated">@color/app_aurora_teal</item>
+        <item name="colorControlHighlight">@color/app_highlight</item>
 
-      <item name="android:statusBarColor">@color/app_bar_background</item>
-      <item name="android:navigationBarColor">@color/app_background</item>
+        <item name="android:statusBarColor">@color/app_bar_background</item>
+        <item name="android:navigationBarColor">@color/app_background</item>
 
-      <item name="actionBarStyle">@style/Widget.TP6.ActionBar</item>
-      <item name="actionBarTheme">@style/ThemeOverlay.TP6.Navigation</item>
-      <item name="actionBarPopupTheme">@style/ThemeOverlay.TP6.Popup</item>
+        <item name="actionBarStyle">@style/Widget.TP6.ActionBar</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.TP6.Navigation</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.TP6.Popup</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.TP6.BottomSheetDialog</item>
 
-      <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightStatusBar">false</item>
 
     </style>
 
@@ -41,10 +44,10 @@
     <style name="Widget.TP6.ActionBar"
         parent="Widget.AppCompat.ActionBar.Solid">
 
-      <item name="background">@color/app_bar_background</item>
-      <item name="elevation">0dp</item>
-      <item name="titleTextStyle">@style/TextAppearance.TP6.Title</item>
-      <item name="popupTheme">@style/ThemeOverlay.TP6.Popup</item>
+        <item name="background">@color/app_bar_background</item>
+        <item name="elevation">0dp</item>
+        <item name="titleTextStyle">@style/TextAppearance.TP6.Title</item>
+        <item name="popupTheme">@style/ThemeOverlay.TP6.Popup</item>
 
     </style>
 
@@ -52,9 +55,10 @@
     <style name="TextAppearance.TP6.Title"
         parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
 
-      <item name="android:textColor">@color/app_bar_text</item>
-      <item name="android:fontFamily">sans-serif-medium</item>
-      <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/app_bar_text</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textSize">19sp</item>
 
     </style>
 
@@ -62,9 +66,9 @@
     <style name="ThemeOverlay.TP6.Navigation"
         parent="ThemeOverlay.AppCompat">
 
-      <item name="android:textColorPrimary">@color/app_bar_text</item>
-      <item name="android:textColorSecondary">@color/app_bar_text</item>
-      <item name="colorControlNormal">@color/app_bar_text</item>
+        <item name="android:textColorPrimary">@color/app_bar_text</item>
+        <item name="android:textColorSecondary">@color/app_bar_text</item>
+        <item name="colorControlNormal">@color/app_bar_text</item>
 
     </style>
 
@@ -72,10 +76,102 @@
     <style name="ThemeOverlay.TP6.Popup"
         parent="ThemeOverlay.AppCompat">
 
-      <item name="android:colorBackground">@color/app_surface</item>
-      <item name="android:textColorPrimary">@color/app_text</item>
-      <item name="android:textColorSecondary">@color/app_text_secondary</item>
-      <item name="android:listSelector">@drawable/menu_item_highlight</item>
+        <item name="android:colorBackground">@color/app_surface</item>
+        <item name="android:textColorPrimary">@color/app_text</item>
+        <item name="android:textColorSecondary">@color/app_text_secondary</item>
+        <item name="android:listSelector">@drawable/menu_item_highlight</item>
+
+    </style>
+
+
+    <style name="ThemeOverlay.TP6.BottomSheetDialog"
+        parent="ThemeOverlay.Material3.BottomSheetDialog">
+
+        <item name="bottomSheetStyle">@style/Widget.TP6.BottomSheet</item>
+
+    </style>
+
+
+    <style name="Widget.TP6.BottomSheet"
+        parent="Widget.Material3.BottomSheet.Modal">
+
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+
+
+    <style name="TextAppearance.TP6.PageTitle" parent="TextAppearance.Material3.HeadlineSmall">
+
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/app_text</item>
+
+    </style>
+
+
+    <style name="TextAppearance.TP6.PageSubtitle" parent="TextAppearance.Material3.BodyMedium">
+
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+        <item name="android:textColor">@color/app_text_secondary</item>
+
+    </style>
+
+
+    <style name="TextAppearance.TP6.SectionTitle" parent="TextAppearance.Material3.TitleSmall">
+
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/app_label</item>
+
+    </style>
+
+
+    <style name="TextAppearance.TP6.FieldLabel" parent="TextAppearance.Material3.LabelMedium">
+
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/app_label</item>
+
+    </style>
+
+
+    <style name="Widget.TP6.EditText.Aurora" parent="Widget.AppCompat.EditText">
+
+        <item name="android:background">@drawable/bg_aurora_input</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/app_text</item>
+        <item name="android:textColorHint">@color/app_text_secondary</item>
+
+    </style>
+
+
+    <style name="Widget.TP6.Button.Aurora" parent="Widget.Material3.Button">
+
+        <item name="backgroundTint">@color/app_primary</item>
+        <item name="android:textColor">@color/app_on_primary</item>
+        <item name="android:minHeight">54dp</item>
+        <item name="android:paddingStart">28dp</item>
+        <item name="android:paddingEnd">28dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="rippleColor">@color/app_highlight</item>
+        <item name="elevation">0dp</item>
 
     </style>
 

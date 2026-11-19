@@ -19,57 +19,65 @@
     <string name="error_nivel_estudios">Seleccioná un nivel de estudios</string>
     <string name="error_intereses">Seleccioná al menos un interés</string>
 
-    <string name="titulo_agregar_contacto">FORMULARIO DE CONTACTO</string>
-    <string name="descripcion_agregar_contacto">Este es un formulario destinado al registro de personas, sus datos personales e intereses.</string>
+    <string name="titulo_agregar_contacto">Nuevo contacto</string>
+    <string name="descripcion_agregar_contacto">Completá los datos personales y de contacto para registrar una nueva persona.</string>
 
-    <string name="nombre">NOMBRE</string>
-    <string name="hint_nombre">Nombre</string>
+    <string name="nombre">Nombre</string>
+    <string name="hint_nombre">Ej. Juan</string>
 
-    <string name="apellido">APELLIDO</string>
-    <string name="hint_apellido">Apellido</string>
+    <string name="apellido">Apellido</string>
+    <string name="hint_apellido">Ej. Pérez</string>
 
-    <string name="telefono">TELÉFONO</string>
-    <string name="hint_telefono">Teléfono</string>
+    <string name="telefono">Teléfono</string>
+    <string name="hint_telefono">Ej. 11-4567-8901</string>
 
-    <string name="email">EMAIL</string>
-    <string name="hint_email">Email</string>
+    <string name="email">Correo electrónico</string>
+    <string name="hint_email">nombre@correo.com</string>
 
-    <string name="direccion">DIRECCIÓN</string>
-    <string name="hint_direccion">Dirección</string>
+    <string name="direccion">Dirección</string>
+    <string name="hint_direccion">Calle y altura</string>
 
-    <string name="fecha_de_nacimiento">FECHA DE NACIMIENTO</string>
-    <string name="hint_fecha_nacimiento">Fecha de nacimiento</string>
+    <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
+    <string name="hint_fecha_nacimiento">Seleccioná una fecha</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
 
-    <string name="continuar">CONTINUAR</string>
+    <string name="continuar">Continuar</string>
 
 
-    <string name="titulo_mas_datos_contacto">FORMULARIO DE CONTACTO</string>
-    <string name="descripcion_mas_datos_contacto">A continuación, por favor se pide completar más datos personales.</string>
+    <string name="titulo_mas_datos_contacto">Perfil e intereses</string>
+    <string name="descripcion_mas_datos_contacto">Sumá el nivel de estudios, temas de interés y preferencias de comunicación.</string>
 
-    <string name="nivel_estudios_alcanzados">NIVEL DE ESTUDIOS ALCANZADOS</string>
+    <string name="nivel_estudios_alcanzados">Nivel de estudios alcanzados</string>
     <string name="primario_incompleto">Primario incompleto</string>
     <string name="primario_completo">Primario completo</string>
     <string name="secundario_incompleto">Secundario incompleto</string>
     <string name="secundario_completo">Secundario completo</string>
     <string name="otros">Otros</string>
 
-    <string name="intereses">INTERESES</string>
+    <string name="intereses">Intereses</string>
     <string name="deporte">Deporte</string>
     <string name="musica">Música</string>
     <string name="arte">Arte</string>
     <string name="tecnologia">Tecnología</string>
 
-    <string name="desea_recibir_informacion">¿DESEA RECIBIR INFORMACIÓN?</string>
+    <string name="desea_recibir_informacion">¿Desea recibir información?</string>
+    <string name="subtitulo_recibir_informacion">Novedades y avisos por correo</string>
     <string name="si">Sí</string>
     <string name="no">No</string>
 
-    <string name="guardar">GUARDAR</string>
+    <string name="guardar">Guardar contacto</string>
 
     <string name="contacto_guardado">Contacto guardado con éxito</string>
     <string name="error_guardar_contacto">Error al guardar el contacto</string>
 
 
-    <string name="titulo_listado_contactos">LISTADO DE CONTACTOS</string>
+    <string name="titulo_listado_contactos">Contactos registrados</string>
+    <string name="descripcion_listado_contactos">Tocá cualquier persona para ver su ficha completa.</string>
+    <string name="sin_contactos_titulo">Todavía no hay contactos</string>
+    <string name="sin_contactos_descripcion">Abrí el menú superior y elegí "Agregar contactos" para registrar el primero.</string>
+    <string name="detalle_contacto">Ficha del contacto</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="ninguno">Ninguno</string>
+    <string name="ver_detalle">Ver detalle</string>
 
 </resources>

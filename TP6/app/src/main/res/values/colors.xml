@@ -6,21 +6,38 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="app_primary">#C6FF00</color>
-    <color name="app_on_primary">#000000</color>
+    <color name="app_on_primary">#090F1A</color>
 
-    <color name="app_primary_container">#F1F4F6</color>
+    <color name="app_primary_container">#E8F4F8</color>
     <color name="app_on_primary_container">#0B1220</color>
 
-    <color name="app_background">#FFFFFF</color>
+    <color name="app_aurora_emerald">#10B981</color>
+    <color name="app_aurora_cyan">#0EA5E9</color>
+    <color name="app_aurora_teal">#0F766E</color>
+
+    <color name="aurora_glow_1">#26C6FF00</color>
+    <color name="aurora_glow_2">#200EA5E9</color>
+    <color name="aurora_glow_3">#1E10B981</color>
+
+    <color name="app_background">#F3F7FA</color>
     <color name="app_surface">#FFFFFF</color>
+    <color name="app_surface_subtle">#F7FAFC</color>
+
+    <color name="app_card_stroke">#DCE6F0</color>
+    <color name="app_input_stroke">#CBD5E1</color>
+    <color name="app_input_stroke_focused">#0F766E</color>
 
     <color name="app_text">#0B1220</color>
-    <color name="app_text_secondary">#374151</color>
-    <color name="app_outline">#6B7280</color>
+    <color name="app_text_secondary">#475569</color>
+    <color name="app_label">#0F4C5C</color>
+    <color name="app_outline">#94A3B8</color>
 
-    <color name="app_highlight">#240B1220</color>
+    <color name="app_highlight">#240EA5E9</color>
 
-    <color name="app_bar_background">#000000</color>
+    <color name="app_bar_background">#050810</color>
     <color name="app_bar_text">#C6FF00</color>
+
+    <color name="app_badge_bg">#E6F7F4</color>
+    <color name="app_badge_text">#0F5C54</color>
 
 </resources>
