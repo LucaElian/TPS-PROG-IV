@@ -60,6 +60,7 @@ public class ContactoAdapter extends ArrayAdapter<Contacto> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
         View view = convertView;
         if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(R.layout.item_contacto, parent, false);

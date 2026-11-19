@@ -42,9 +42,6 @@ public class MasDatosContactoActivity extends BaseActivity {
 
         Button btnGuardar = findViewById(R.id.btnGuardar);
 
-        iniciarAuroraAnimada(findViewById(R.id.auroraAccentStrip));
-        animarEntradaStaggered(findViewById(R.id.contenedorMasDatos));
-
         swRecibirInfo.setOnCheckedChangeListener((buttonView, estaActivado) -> {
             buttonView.setText(
                     estaActivado
@@ -116,7 +113,7 @@ public class MasDatosContactoActivity extends BaseActivity {
 
             Intent intentListado = new Intent(this, ListadoContactosActivity.class);
 
-            navegarConTransicion(intentListado);
+            startActivity(intentListado);
             finish();
 
         } else {

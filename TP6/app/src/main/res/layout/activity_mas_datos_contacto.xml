@@ -9,7 +9,6 @@
     android:fillViewport="true">
 
     <LinearLayout
-        android:id="@+id/contenedorMasDatos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -17,13 +16,6 @@
         android:paddingTop="20dp"
         android:paddingEnd="20dp"
         android:paddingBottom="28dp">
-
-        <View
-            android:id="@+id/auroraAccentStrip"
-            android:layout_width="56dp"
-            android:layout_height="4dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/bg_aurora_strip_anim" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -244,5 +236,4 @@
             android:text="@string/guardar" />
 
     </LinearLayout>
-
 </ScrollView>

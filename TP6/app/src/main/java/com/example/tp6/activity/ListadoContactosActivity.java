@@ -38,8 +38,6 @@ public class ListadoContactosActivity extends BaseActivity {
         lvContactos = findViewById(R.id.lvContactos);
         lvContactos.setEmptyView(findViewById(R.id.emptyStateContactos));
 
-        iniciarAuroraAnimada(findViewById(R.id.auroraAccentStrip));
-
         List<Contacto> contactos = bd.getListadoContactos();
 
         ContactoAdapter adapterContactos = new ContactoAdapter(this, contactos);
@@ -55,8 +53,6 @@ public class ListadoContactosActivity extends BaseActivity {
     private void mostrarDetalleContacto(Contacto contacto, String detalleContacto) {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View sheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_detalle_contacto, null);
-
-        iniciarAuroraAnimada(sheetView.findViewById(R.id.auroraSheetStrip));
 
         TextView tvAvatarDetalle = sheetView.findViewById(R.id.tvAvatarDetalle);
         TextView tvTituloDetalle = sheetView.findViewById(R.id.tvTituloDetalle);

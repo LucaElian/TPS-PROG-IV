@@ -72,9 +72,6 @@ public class AgregarContactoActivity extends BaseActivity {
         spTipoTelefono.setAdapter(adapterTipoContacto);
         spTipoEmail.setAdapter(adapterTipoContacto);
 
-        iniciarAuroraAnimada(findViewById(R.id.auroraAccentStrip));
-        animarEntradaStaggered(findViewById(R.id.contenedorFormulario));
-
         etFechaNacimiento.setOnClickListener(view -> mostrarCalendario());
 
         etNombre.setOnFocusChangeListener((view, tieneFoco) -> {
@@ -131,7 +128,7 @@ public class AgregarContactoActivity extends BaseActivity {
             intent.putExtra("direccion", etDireccion.getText().toString().trim());
             intent.putExtra("fechaNacimiento", etFechaNacimiento.getText().toString().trim());
 
-            navegarConTransicion(intent);
+            startActivity(intent);
         });
     }
 

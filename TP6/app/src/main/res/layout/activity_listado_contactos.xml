@@ -11,13 +11,6 @@
     android:paddingEnd="20dp"
     android:paddingBottom="16dp">
 
-    <View
-        android:id="@+id/auroraAccentStrip"
-        android:layout_width="56dp"
-        android:layout_height="4dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_aurora_strip_anim" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,7 +78,5 @@
                 android:textAppearance="@style/TextAppearance.TP6.PageSubtitle" />
 
         </LinearLayout>
-
     </FrameLayout>
-
 </LinearLayout>
