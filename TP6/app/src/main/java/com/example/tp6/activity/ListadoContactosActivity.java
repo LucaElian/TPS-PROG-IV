@@ -25,7 +25,7 @@ import java.util.List;
 
 public class ListadoContactosActivity extends BaseActivity {
 
-    private ListView lvContactos;
+    private ContactoAdapter adapterContactos;
 
     @Override
     protected int getLayoutResource() {
@@ -36,19 +36,30 @@ public class ListadoContactosActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        lvContactos = findViewById(R.id.lvContactos);
+        ListView lvContactos = findViewById(R.id.lvContactos);
         lvContactos.setEmptyView(findViewById(R.id.emptyStateContactos));
 
-        List<Contacto> contactos = bd.getListadoContactos();
-
-        ContactoAdapter adapterContactos = new ContactoAdapter(this, contactos);
+        adapterContactos = new ContactoAdapter(this, new ArrayList<>());
         lvContactos.setAdapter(adapterContactos);
 
         lvContactos.setOnItemClickListener((parent, view, position, id) -> {
-            Contacto contacto = contactos.get(position);
+            Contacto contacto = adapterContactos.getItem(position);
+            if (contacto == null) return;
+
             String detalleContacto = obtenerDetalles(contacto);
             mostrarDetalleContacto(contacto, detalleContacto);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        List<Contacto> contactos = bd.getListadoContactos();
+        adapterContactos.setNotifyOnChange(false);
+        adapterContactos.clear();
+        adapterContactos.addAll(contactos);
+        adapterContactos.notifyDataSetChanged();
     }
 
     private void mostrarDetalleContacto(Contacto contacto, String detalleContacto) {
@@ -122,8 +133,8 @@ public class ListadoContactosActivity extends BaseActivity {
 
         return "Nombre: " + contacto.getNombre() + "\n" +
                 "Apellido: " + contacto.getApellido() + "\n" +
-                "Número y tipo de teléfono: " + contacto.getTipoTelefono() +
-                " - " + contacto.getTelefono() + "\n" +
+                "Telefono: " + contacto.getTelefono() + "\n" +
+                "Tipo de telefono: " + contacto.getTipoTelefono() + "\n" +
                 "Email: " + contacto.getMail() + "\n" +
                 "Tipo de email: " + contacto.getTipoMail() + "\n" +
                 "Dirección: " + contacto.getDireccion() + "\n" +
