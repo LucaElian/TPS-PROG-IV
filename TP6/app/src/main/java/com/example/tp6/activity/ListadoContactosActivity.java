@@ -45,7 +45,14 @@ public class ListadoContactosActivity extends BaseActivity {
     }
 
     private String obtenerDetalles(Contacto contacto){
-        return contacto.getNombre() + " " + contacto.getApellido() + "\n" +
-                contacto.getTipoTelefono() + ": " + contacto.getTelefono();
+        return "Nombre: " + contacto.getNombre() + "\n" +
+                "Apellido: " + contacto.getApellido() + "\n" +
+                "Número y tipo de teléfono: " + contacto.getTipoTelefono() +
+                " - " + contacto.getTelefono() + "\n" +
+                "Email: " + contacto.getMail() + "\n" +
+                "Tipo de email: " + contacto.getTipoMail() + "\n" +
+                "Dirección: " + contacto.getDireccion() + "\n" +
+                "Fecha de nacimiento: " + contacto.getFechaNacimiento() + "\n" +
+                "Nivel de estudios: " + contacto.getNivelEstudios();
     }
 }
