@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import com.example.tp6.R;
 import com.example.tp6.adapter.ContactoAdapter;
 import com.example.tp6.entidad.Contacto;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -68,6 +69,9 @@ public class ListadoContactosActivity extends BaseActivity {
         btnCerrarDetalle.setOnClickListener(v -> bottomSheetDialog.dismiss());
 
         bottomSheetDialog.setContentView(sheetView);
+        BottomSheetBehavior<?> comportamiento = bottomSheetDialog.getBehavior();
+        comportamiento.setSkipCollapsed(true);
+        comportamiento.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetDialog.show();
     }
 
